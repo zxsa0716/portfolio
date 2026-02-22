@@ -1,0 +1,378 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════
+   DESIGN SYSTEM — 최희도 포트폴리오
+   Aesthetic: Linear × Vercel × Raycast
+   Mode: Dark-first, deep navy/charcoal base
+   Accent: Electric Blue (#3B82F6) + Emerald (#10B981)
+   ═══════════════════════════════════════════ */
+
+@theme inline {
+  /* ── Backgrounds ── */
+  --color-bg-base:    #080E1C;
+  --color-bg-surface: #0C1426;
+  --color-bg-raised:  #111D36;
+  --color-bg-hover:   #162040;
+  --color-bg-overlay: #1A2745;
+
+  /* ── Borders ── */
+  --color-border:         #1E2D4A;
+  --color-border-subtle:  rgba(255,255,255,0.06);
+  --color-border-strong:  rgba(255,255,255,0.14);
+  --color-border-focus:   #3B82F6;
+
+  /* ── Blue (Primary Accent) ── */
+  --color-blue-950:  #0A1628;
+  --color-blue-900:  #0F2347;
+  --color-blue-800:  #1E3A6E;
+  --color-blue-700:  #1D4ED8;
+  --color-blue-600:  #2563EB;
+  --color-blue-500:  #3B82F6;
+  --color-blue-400:  #60A5FA;
+  --color-blue-300:  #93C5FD;
+  --color-blue-200:  #BFDBFE;
+  --color-blue-100:  #DBEAFE;
+
+  /* ── Emerald (Environment/Forest Domain) ── */
+  --color-emerald-900: #064E3B;
+  --color-emerald-800: #065F46;
+  --color-emerald-700: #047857;
+  --color-emerald-600: #059669;
+  --color-emerald-500: #10B981;
+  --color-emerald-400: #34D399;
+  --color-emerald-300: #6EE7B7;
+
+  /* ── Slate Text ── */
+  --color-text-primary:   #F1F5F9;
+  --color-text-secondary: #94A3B8;
+  --color-text-muted:     #64748B;
+  --color-text-disabled:  #334155;
+
+  /* ── Semantic ── */
+  --color-success:  #10B981;
+  --color-warning:  #F59E0B;
+  --color-error:    #EF4444;
+  --color-info:     #3B82F6;
+
+  /* ── Typography ── */
+  --font-sans:    var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif;
+  --font-mono:    var(--font-geist-mono), "JetBrains Mono", "Fira Code", monospace;
+
+  /* ── Spacing/Radii ── */
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  14px;
+  --radius-xl:  20px;
+  --radius-2xl: 28px;
+
+  /* ── Shadows ── */
+  --shadow-glow-blue:    0 0 40px rgba(59, 130, 246, 0.18);
+  --shadow-glow-emerald: 0 0 40px rgba(16, 185, 129, 0.15);
+  --shadow-card:         0 1px 3px rgba(0,0,0,0.4), 0 4px 16px rgba(0,0,0,0.25);
+  --shadow-card-hover:   0 2px 8px rgba(0,0,0,0.5), 0 12px 40px rgba(0,0,0,0.3);
+}
+
+/* ═══════════════════════════════════════════
+   BASE STYLES
+   ═══════════════════════════════════════════ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  background-color: #080E1C;
+  color: #F1F5F9;
+  font-family: var(--font-inter), "Inter", system-ui, sans-serif;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════════
+   GRAIN TEXTURE OVERLAY
+   Subtle noise for depth — Linear.app aesthetic
+   ═══════════════════════════════════════════ */
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.022;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+/* ═══════════════════════════════════════════
+   TYPOGRAPHY SCALE
+   ═══════════════════════════════════════════ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #F1F5F9;
+}
+
+h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.05; }
+h2 { font-size: clamp(1.875rem, 3.5vw, 3rem);  line-height: 1.1;  }
+h3 { font-size: clamp(1.25rem, 2vw, 1.5rem);   line-height: 1.3;  }
+
+p {
+  line-height: 1.7;
+  color: #94A3B8;
+}
+
+code, kbd, pre {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.875em;
+}
+
+/* ═══════════════════════════════════════════
+   REDUCED MOTION
+   Framer Motion handles this via MotionConfig
+   reducedMotion="user" in Providers.tsx.
+   This CSS layer covers all non-JS transitions.
+   ═══════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:       0.01ms !important;
+    animation-iteration-count: 1    !important;
+    transition-duration:      0.01ms !important;
+    scroll-behavior:          auto  !important;
+  }
+  /* Keep opacity transitions for accessibility (not motion) */
+  .transition-opacity {
+    transition-duration: 150ms !important;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   SCROLLBAR
+   ═══════════════════════════════════════════ */
+
+::-webkit-scrollbar         { width: 6px; }
+::-webkit-scrollbar-track   { background: #080E1C; }
+::-webkit-scrollbar-thumb   { background: #1E2D4A; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #2563EB; }
+
+/* ═══════════════════════════════════════════
+   SELECTION
+   ═══════════════════════════════════════════ */
+
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: #F1F5F9;
+}
+
+/* ═══════════════════════════════════════════
+   FOCUS
+   ═══════════════════════════════════════════ */
+
+:focus-visible {
+  outline: 2px solid #3B82F6;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ═══════════════════════════════════════════
+   UTILITY CLASSES (design system shortcuts)
+   ═══════════════════════════════════════════ */
+
+@layer utilities {
+  /* Glass surface */
+  .glass {
+    background: rgba(12, 20, 38, 0.7);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  }
+
+  .glass-raised {
+    background: rgba(17, 29, 54, 0.8);
+    backdrop-filter: blur(24px) saturate(1.5);
+    -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  }
+
+  /* Borders */
+  .border-subtle  { border: 1px solid rgba(255,255,255,0.06); }
+  .border-default { border: 1px solid #1E2D4A; }
+  .border-strong  { border: 1px solid rgba(255,255,255,0.14); }
+
+  /* Text color shorthands */
+  .text-primary   { color: #F1F5F9; }
+  .text-secondary { color: #94A3B8; }
+  .text-muted     { color: #64748B; }
+
+  /* Glow effects */
+  .glow-blue    { box-shadow: 0 0 40px rgba(59, 130, 246, 0.18); }
+  .glow-emerald { box-shadow: 0 0 40px rgba(16, 185, 129, 0.15); }
+
+  /* Grid background pattern — Vercel-style */
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Dot grid pattern */
+  .dot-bg {
+    background-image: radial-gradient(circle, rgba(59,130,246,0.12) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* Radial gradient fade-out for backgrounds */
+  .radial-fade {
+    -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  }
+
+  /* Animated gradient border */
+  .gradient-border {
+    position: relative;
+  }
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(59,130,246,0.5), rgba(16,185,129,0.3), rgba(59,130,246,0.1));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Section padding */
+  .section-pad { padding-top: 7rem; padding-bottom: 7rem; }
+
+  /* Container */
+  .content-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  /* Label style above headings */
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #3B82F6;
+  }
+
+  /* Stat number */
+  .stat-number {
+    font-family: var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #60A5FA;
+    line-height: 1;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   COMPONENT CLASSES
+   ═══════════════════════════════════════════ */
+
+@layer components {
+  /* Button base */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: var(--font-inter), "Inter", system-ui, sans-serif;
+  }
+
+  .btn-primary {
+    background: #2563EB;
+    color: #ffffff;
+    border: 1px solid transparent;
+  }
+  .btn-primary:hover {
+    background: #3B82F6;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: #94A3B8;
+    border: 1px solid #1E2D4A;
+  }
+  .btn-ghost:hover {
+    color: #F1F5F9;
+    border-color: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.04);
+  }
+
+  /* Card base */
+  .card {
+    background: #0C1426;
+    border: 1px solid #1E2D4A;
+    border-radius: 14px;
+    padding: 1.5rem;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card:hover {
+    border-color: rgba(59, 130, 246, 0.35);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4), 0 0 0 1px rgba(59,130,246,0.08);
+    transform: translateY(-2px);
+  }
+
+  /* Badge base */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1;
+    background: rgba(17, 29, 54, 0.9);
+    border: 1px solid #1E2D4A;
+    color: #94A3B8;
+  }
+  .badge-blue {
+    background: rgba(37, 99, 235, 0.12);
+    border-color: rgba(59, 130, 246, 0.25);
+    color: #60A5FA;
+  }
+  .badge-emerald {
+    background: rgba(5, 150, 105, 0.12);
+    border-color: rgba(16, 185, 129, 0.25);
+    color: #34D399;
+  }
+  .badge-amber {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.25);
+    color: #FCD34D;
+  }
+}
