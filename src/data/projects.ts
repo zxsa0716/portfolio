@@ -69,7 +69,7 @@ export const projects: Project[] = [
       { label: "Spatial Block CV",value: "0.9675~0.9691" },
     ],
     links: {
-      paper: "https://www.youtube.com/watch?v=jxCs3xLc0wY",
+      paper: "/materials/우수대학원생_발표.pdf",
     },
     thumbnail: "linear-gradient(135deg, #1D4ED8 0%, #3B82F6 50%, #06B6D4 100%)",
     featured: true,
@@ -110,6 +110,7 @@ export const projects: Project[] = [
       { label: "수상",             value: "우수상 250만원", highlight: true },
     ],
     links: {
+      paper: "/materials/환경데이터공모전_수상작.pdf",
       video: "https://www.youtube.com/watch?v=jxCs3xLc0wY",
     },
     thumbnail: "linear-gradient(135deg, #065F46 0%, #059669 50%, #34D399 100%)",
@@ -145,7 +146,9 @@ export const projects: Project[] = [
       { label: "수상",             value: "최우수포스터논문상", highlight: true },
       { label: "추가 수상",        value: "최우수발표논문상 (2저자)" },
     ],
-    links: {},
+    links: {
+      paper: "/materials/기후변화학회_발표.pdf",
+    },
     thumbnail: "linear-gradient(135deg, #0F2347 0%, #2563EB 60%, #60A5FA 100%)",
     featured: false,
     award: "한국기후변화학회 2025 상반기 최우수포스터논문상",
@@ -259,41 +262,6 @@ export const projects: Project[] = [
     year: 2025,
   },
 
-  /* ──────────────────────────────────────────────────────
-     7. 배밭골 오디세이
-        Source: 최희도_배밭골프로젝트.html, 내경력.txt
-        Category: data (live)
-     ────────────────────────────────────────────────────── */
-  {
-    id: "baebatgol-odyssey",
-    title: "배밭골 오디세이",
-    subtitle: "Community Environmental Research — 정릉3동 현장 연구",
-    description:
-      "정릉3동 배밭골 도시 환경 사각지대 2개월 현장 연구. 쓰레기 신고 4.2건/월 데이터 시각화, 그린 커뮤니티 로드맵, 이해관계자 시뮬레이션 게임 포함 6섹션 웹 서비스.",
-    longDescription:
-      "국민대학교 산림환경시스템학과 20211818 최희도의 2개월 현장 연구 프로젝트입니다. 정릉3동 배밭골의 쓰레기 신고 4.2건/월 데이터로 환경 문제를 정량화하고, 그린 커뮤니티 프로젝트 4단계 실행 방안을 제시했습니다. 시·데이터 시각화·수필·해결방안·지역사회 시뮬레이션 게임 6섹션으로 구성되며, 이해관계자(주민·지자체·기업) 협력 인터랙티브 게임이 포함됩니다. GitHub Pages 배포 완료.",
-    tech: [
-      "HTML5",
-      "CSS3",
-      "JavaScript",
-      "Data Visualization",
-      "Interactive Game",
-      "GitHub Pages",
-    ],
-    category: "data",
-    metrics: [
-      { label: "현장 연구",        value: "2개월" },
-      { label: "쓰레기 신고",      value: "4.2건/월",      highlight: true },
-      { label: "웹 섹션",          value: "6개 섹션" },
-      { label: "로드맵",           value: "4단계 실행안" },
-    ],
-    links: {
-      demo: "https://zxsa0716.github.io/baebatgol-odyssey/",
-    },
-    thumbnail: "linear-gradient(135deg, #431407 0%, #92400E 50%, #D97706 100%)",
-    featured: false,
-    year: 2025,
-  },
 ];
 
 /* ── Derived helpers ── */

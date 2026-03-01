@@ -1,5 +1,6 @@
 // ── Conference papers and academic presentations ─────────────────────────
-// All data sourced from CV, poster image, and award certificates.
+// Data sourced from: CV, award certificates, poster images, 내경력.txt
+// Ordered by date (newest first)
 
 export interface PublicationMetric {
   label: string;
@@ -10,43 +11,45 @@ export interface PublicationMetric {
 export interface Publication {
   id: string;
   title: string;
-  titleEn?: string;
   venue: string;
   venueShort: string;
   venueType: "conference" | "competition" | "program";
   date: string;
   year: number;
-  role: string;          // "제1저자", "제2저자", "발표자"
+  role: string;
   award?: string;
   awardNumber?: string;
   prizeAmount?: string;
   metrics?: PublicationMetric[];
   tags: string[];
+  paper?: string;   // /materials/ 경로 또는 외부 URL
+  video?: string;
 }
 
 export const publications: Publication[] = [
+  // ── 2026 ──────────────────────────────────────────────────────────────
   {
-    id: "gcn-uhi",
+    id: "forest-ews",
     title:
-      "시공간 그래프 신경망(GCN)을 활용한 서울시의 도시열섬 리스크 평가",
-    venue:
-      "한국기후변화학회 2025년 상반기 학술대회",
-    venueShort: "한국기후변화학회 2025 상반기",
+      "기후변화에 따른 강원도 침엽수림의 회복탄력성 상실 규명: EWS 기반 시계열 분석 및 AR(1) 지표를 중심으로",
+    venue: "2026 산림과학 공동학술대회",
+    venueShort: "산림과학 공동학술대회 2026",
     venueType: "conference",
-    date: "2025.05",
-    year: 2025,
-    role: "제1저자 · 포스터 발표",
-    award: "최우수포스터논문상",
-    awardNumber: "제2025-29호",
+    date: "2026.02.10",
+    year: 2026,
+    role: "제2저자 · 포스터 발표",
+    award: "우수포스터논문상",
     metrics: [
-      { label: "MSE",         value: "0.0397",  highlight: true },
-      { label: "RSMSE",       value: "0.1834" },
-      { label: "Moran's I",   value: "0.73",    highlight: true },
-      { label: "클러스터 수", value: "5개" },
-      { label: "R² (검증)",   value: "0.513" },
+      { label: "데이터",     value: "Landsat 1990–2025", highlight: true },
+      { label: "공간해상도", value: "30m (GEE)" },
+      { label: "방법론",     value: "STL + EWS + AR(1)" },
+      { label: "대상",       value: "강원도 침엽수림",    highlight: true },
     ],
-    tags: ["GCN", "도시열섬", "공간통계", "서울시 25구"],
+    tags: ["EWS", "STL 분해", "AR(1)", "산림 생태계", "Google Earth Engine"],
+    paper: "/materials/산림과학회_포스터.pdf",
   },
+
+  // ── 2025 ──────────────────────────────────────────────────────────────
   {
     id: "xai-heat",
     title:
@@ -61,12 +64,55 @@ export const publications: Publication[] = [
     award: "입상",
     awardNumber: "제2025-36호",
     metrics: [
-      { label: "R²",      value: "0.9681", highlight: true },
-      { label: "RMSE",    value: "0.162" },
-      { label: "관측 수", value: "13,170" },
-      { label: "XAI 기법", value: "3종",  highlight: true },
+      { label: "R²",       value: "0.9681", highlight: true },
+      { label: "RMSE",     value: "0.162" },
+      { label: "관측 수",  value: "13,170" },
+      { label: "XAI 기법", value: "3종",   highlight: true },
     ],
     tags: ["GAT", "XAI", "SHAP", "AR6", "기후정의"],
+    paper: "/materials/우수대학원생_발표.pdf",
+  },
+  {
+    id: "gat-lstm-comp",
+    title:
+      "기후 시나리오를 활용한 GAT-LSTM을 통한 기후 취약성 예측: 서울시 읍면동 대상으로",
+    venue: "2025 환경데이터 활용 및 분석 공모전 (직접분석 부문)",
+    venueShort: "환경데이터 공모전 2025",
+    venueType: "competition",
+    date: "2025.11",
+    year: 2025,
+    role: "제1저자",
+    award: "우수상 (국립공원공단이사장상)",
+    prizeAmount: "250만원",
+    metrics: [
+      { label: "분석 단위",   value: "467 읍면동",  highlight: true },
+      { label: "시나리오",    value: "SSP1 ~ SSP5" },
+      { label: "예측 기간",   value: "~ 2100년" },
+      { label: "앙상블 모델", value: "GAT + LSTM",  highlight: true },
+    ],
+    tags: ["GAT", "LSTM", "SSP", "기후취약성", "공간예측"],
+    paper: "/materials/환경데이터공모전_수상작.pdf",
+  },
+  {
+    id: "gcn-uhi",
+    title:
+      "시공간 그래프 신경망(GCN)을 활용한 서울시의 도시열섬 리스크 평가",
+    venue: "한국기후변화학회 2025년 상반기 학술대회",
+    venueShort: "한국기후변화학회 2025 상반기",
+    venueType: "conference",
+    date: "2025.05",
+    year: 2025,
+    role: "제1저자 · 포스터 발표",
+    award: "최우수포스터논문상",
+    awardNumber: "제2025-29호",
+    metrics: [
+      { label: "MSE",       value: "0.0397", highlight: true },
+      { label: "Moran's I", value: "0.73",   highlight: true },
+      { label: "클러스터",  value: "5개" },
+      { label: "R² (검증)", value: "0.513" },
+    ],
+    tags: ["GCN", "도시열섬", "공간통계", "서울시 25구"],
+    paper: "/materials/기후변화학회_발표.pdf",
   },
   {
     id: "flood-inequality",
@@ -86,31 +132,9 @@ export const publications: Publication[] = [
     tags: ["기후불평등", "홍수리스크", "적응 비용"],
   },
   {
-    id: "gat-lstm-comp",
-    title:
-      "기후 시나리오를 활용한 GAT-LSTM을 통한 기후 취약성 예측: 서울시 읍면동 대상으로",
-    venue:
-      "2025 환경데이터 활용 및 분석 공모전 (직접분석 부문)",
-    venueShort: "환경데이터 공모전 2025",
-    venueType: "competition",
-    date: "2025.11",
-    year: 2025,
-    role: "제1저자",
-    award: "우수상 (국립공원공단이사장상)",
-    prizeAmount: "250만원",
-    metrics: [
-      { label: "분석 단위",    value: "467 읍면동", highlight: true },
-      { label: "시나리오",     value: "SSP1 ~ SSP5" },
-      { label: "예측 기간",    value: "~ 2100년" },
-      { label: "앙상블 모델",  value: "GAT + LSTM",  highlight: true },
-    ],
-    tags: ["GAT", "LSTM", "SSP", "기후취약성", "공간예측"],
-  },
-  {
     id: "pcar-biz",
     title: "기후적응플랫폼 PCAR 금융상품",
-    venue:
-      "2025학년도 국민대학교 기후변화대응 비즈니스 아이디어 공모전",
+    venue: "2025학년도 국민대학교 기후변화대응 비즈니스 아이디어 공모전",
     venueShort: "국민대 기후비즈니스 공모전",
     venueType: "competition",
     date: "2025.12.05",
@@ -118,6 +142,6 @@ export const publications: Publication[] = [
     role: "발표자",
     award: "장려상",
     awardNumber: "국민-2025-007호",
-    tags: ["기후금융", "플랫폼", "탄소중립"],
+    tags: ["기후금융", "탄소중립"],
   },
 ];

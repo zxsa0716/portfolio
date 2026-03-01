@@ -1,14 +1,12 @@
-// ── Hexagonal skill grid ─────────────────────────────────────────────────
-// Tier thresholds: expert ≥ 85 | advanced 70–84 | intermediate < 70
-// `short` is the abbreviated label rendered inside the hexagon chip.
-// `rawRgb` drives rgba() colours so opacity can vary by tier at runtime.
+// ── Skill data for clean tag-grid layout ─────────────────────────────────
+// Tier: expert ≥ 85 | advanced 70–84 | intermediate < 70
+// Names shown as-is in the tag grid (no hex abbreviations needed)
 
 export type SkillTier = "expert" | "advanced" | "intermediate";
 
 export interface SkillNode {
-  name: string;   // Full name for tooltip
-  short: string;  // Abbreviated name for hex chip
-  level: number;  // 0–100 proficiency
+  name: string;
+  level: number;
   tier: SkillTier;
 }
 
@@ -16,16 +14,16 @@ export interface SkillCluster {
   id: string;
   label: string;
   labelEn: string;
-  textColor: string;  // Tailwind text-* class
-  rawRgb: string;     // "R,G,B" for dynamic rgba()
-  glowColor: string;  // CSS colour for text-shadow on expert nodes
+  textColor: string;
+  rawRgb: string;
+  glowColor: string;
   skills: SkillNode[];
 }
 
-function node(name: string, short: string, level: number): SkillNode {
+function node(name: string, level: number): SkillNode {
   const tier: SkillTier =
     level >= 85 ? "expert" : level >= 70 ? "advanced" : "intermediate";
-  return { name, short, level, tier };
+  return { name, level, tier };
 }
 
 export const skillClusters: SkillCluster[] = [
@@ -35,14 +33,15 @@ export const skillClusters: SkillCluster[] = [
     labelEn: "Machine Learning & AI",
     textColor: "text-blue-400",
     rawRgb: "59,130,246",
-    glowColor: "rgba(59,130,246,0.6)",
+    glowColor: "rgba(59,130,246,0.5)",
     skills: [
-      node("Graph Attention Network (GAT)", "GAT",      90),
-      node("Graph Convolutional Network (GCN)", "GCN",  88),
-      node("Long Short-Term Memory (LSTM)", "LSTM",     85),
-      node("SHAP Explainability", "SHAP",               85),
-      node("GNNExplainer", "GNNExp",                    82),
-      node("Integrated Gradients", "Int.Grad",          80),
+      node("Graph Attention Network (GAT)", 90),
+      node("Graph Convolutional Network (GCN)", 88),
+      node("Long Short-Term Memory (LSTM)", 85),
+      node("SHAP", 85),
+      node("GNNExplainer", 82),
+      node("Integrated Gradients", 80),
+      node("Random Forest / XGBoost", 75),
     ],
   },
   {
@@ -51,14 +50,15 @@ export const skillClusters: SkillCluster[] = [
     labelEn: "Spatial Analysis / GIS",
     textColor: "text-cyan-400",
     rawRgb: "6,182,212",
-    glowColor: "rgba(6,182,212,0.6)",
+    glowColor: "rgba(6,182,212,0.5)",
     skills: [
-      node("기후 시나리오 (SSP/AR6)", "SSP/AR6",        85),
-      node("GIS 공간 분석", "GIS",                      82),
-      node("시공간 통계 (Moran's I)", "공간통계",        82),
-      node("Spatial Block CV", "S-Block CV",            82),
-      node("공간 클러스터링", "클러스터",                80),
-      node("원격탐사 (NDVI/LST)", "원격탐사",           78),
+      node("Google Earth Engine (GEE)", 83),
+      node("GIS 공간 분석", 82),
+      node("시공간 통계 (Moran's I, LISA)", 82),
+      node("Spatial Block CV", 82),
+      node("공간 클러스터링 (K-means)", 80),
+      node("원격탐사 (NDVI, EVI, LST)", 78),
+      node("QGIS / ArcGIS", 72),
     ],
   },
   {
@@ -67,14 +67,14 @@ export const skillClusters: SkillCluster[] = [
     labelEn: "Programming",
     textColor: "text-emerald-400",
     rawRgb: "16,185,129",
-    glowColor: "rgba(16,185,129,0.6)",
+    glowColor: "rgba(16,185,129,0.5)",
     skills: [
-      node("Python (pandas, numpy, scikit-learn)", "Python", 88),
-      node("HTML / CSS / JavaScript", "HTML/JS",             88),
-      node("React / Next.js", "React",                       80),
-      node("R (통계분석)", "R",                              75),
-      node("TypeScript", "TS",                               75),
-      node("C++", "C++",                                     65),
+      node("Python (pandas, numpy, scikit-learn)", 88),
+      node("HTML / CSS / JavaScript", 88),
+      node("React / Next.js", 80),
+      node("R (통계 분석)", 75),
+      node("TypeScript", 75),
+      node("C++", 65),
     ],
   },
   {
@@ -83,29 +83,30 @@ export const skillClusters: SkillCluster[] = [
     labelEn: "Climate Science",
     textColor: "text-amber-400",
     rawRgb: "245,158,11",
-    glowColor: "rgba(245,158,11,0.6)",
+    glowColor: "rgba(245,158,11,0.5)",
     skills: [
-      node("기후변화 영향·적응 평가", "기후적응",        88),
-      node("기후정의 / 취약성 분석", "기후정의",         85),
-      node("산림환경 시스템", "산림환경",                82),
-      node("온실가스 관리", "온실가스",                  80),
-      node("ESG / 지속가능경영", "ESG",                  75),
+      node("기후변화 영향·적응 평가", 88),
+      node("기후정의 / 취약성 분석", 85),
+      node("기후 시나리오 (SSP / IPCC AR6)", 85),
+      node("STL 시계열 분해", 82),
+      node("온실가스 관리", 80),
+      node("산림환경 시스템", 82),
     ],
   },
   {
     id: "tools",
-    label: "도구 / 프레임워크",
+    label: "도구",
     labelEn: "Tools & Frameworks",
     textColor: "text-slate-400",
     rawRgb: "100,116,139",
-    glowColor: "rgba(100,116,139,0.6)",
+    glowColor: "rgba(100,116,139,0.5)",
     skills: [
-      node("D3.js (시각화)", "D3.js",                   72),
-      node("Leaflet.js (지도)", "Leaflet",               78),
-      node("Chart.js / Recharts", "Chart.js",           80),
-      node("Tailwind CSS", "Tailwind",                  78),
-      node("Git / GitHub", "Git",                       78),
-      node("Netlify / Vercel", "Deploy",                75),
+      node("D3.js", 72),
+      node("Leaflet.js", 78),
+      node("Chart.js / Recharts", 80),
+      node("Tailwind CSS", 78),
+      node("Git / GitHub", 78),
+      node("Netlify / Vercel", 75),
     ],
   },
 ];
