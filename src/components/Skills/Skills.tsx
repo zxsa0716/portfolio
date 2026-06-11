@@ -15,6 +15,7 @@ import {
 } from "@/data/skills";
 import { fadeInUp, viewportConfig } from "@/lib/animations";
 import { useLang } from "@/lib/i18n";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 // ── Single skill tag ──────────────────────────────────────────────────────
 function SkillTag({ skill, cluster }: { skill: SkillNode; cluster: SkillCluster }) {
@@ -76,31 +77,21 @@ export default function Skills() {
       <div className="max-w-5xl mx-auto px-6">
 
         {/* Section header */}
-        <motion.div
-          variants={fadeInUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportConfig}
-          className="mb-14"
-        >
-          <p className="text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: "#3B82F6" }}>
-            Skills
-          </p>
-          <h2
-            className="font-bold tracking-tight text-white mb-3"
-            style={{ fontSize: "clamp(1.75rem, 4vw, 2.75rem)" }}
-          >
-            {t("Technical Skills", "기술 스택")}
-          </h2>
-          <p className="text-sm" style={{ color: "#475569" }}>
-            {t("Tag brightness indicates proficiency —", "태그 밝기로 숙련도를 표현합니다 —")}&nbsp;
-            <span style={{ color: "rgba(255,255,255,0.85)" }}>{t("expert", "전문")}</span>
-            &nbsp;/&nbsp;
-            <span style={{ color: "rgba(255,255,255,0.55)" }}>{t("advanced", "숙련")}</span>
-            &nbsp;/&nbsp;
-            <span style={{ color: "rgba(255,255,255,0.32)" }}>{t("basic", "기본")}</span>
-          </p>
-        </motion.div>
+        <SectionHeader
+          index="03"
+          kicker="Skills & Methods"
+          title={t("Technical skills", "기술 스택")}
+          description={
+            <>
+              {t("Tag brightness indicates proficiency —", "태그 밝기로 숙련도를 표현합니다 —")}&nbsp;
+              <span style={{ color: "rgba(255,255,255,0.85)" }}>{t("expert", "전문")}</span>
+              &nbsp;/&nbsp;
+              <span style={{ color: "rgba(255,255,255,0.55)" }}>{t("advanced", "숙련")}</span>
+              &nbsp;/&nbsp;
+              <span style={{ color: "rgba(255,255,255,0.32)" }}>{t("basic", "기본")}</span>
+            </>
+          }
+        />
 
         {/* Tag table */}
         <motion.div

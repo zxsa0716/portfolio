@@ -10,6 +10,7 @@ import { Trophy, Award, TrendingUp, BookOpen, ExternalLink, FileText } from "luc
 import { publications, type Publication } from "@/data/research";
 import { fadeInUp, staggerContainer, viewportConfig } from "@/lib/animations";
 import { useLang } from "@/lib/i18n";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 // ── Award badge colour map ────────────────────────────────────────────────
 function awardStyle(award: string) {
@@ -230,49 +231,42 @@ export default function Research() {
 
       <div className="relative z-10 max-w-4xl mx-auto px-6">
         {/* ── Header ──────────────────────────────────── */}
+        <SectionHeader
+          index="01"
+          kicker="Publications & Research"
+          title={t("Publications, talks & awards", "논문 · 발표 · 수상")}
+          description={t(
+            `${journalCount} first-author SCIE article · ${publications.length} works · ${awardCount} awards — from the lab bench to the conference stage.`,
+            `SCIE 저널 논문 ${journalCount}편 · 총 ${publications.length}건 · 수상 ${awardCount}건 — 연구실에서 학술 무대까지.`,
+          )}
+        />
+
+        {/* Quick stats strip */}
         <motion.div
-          variants={staggerContainer}
+          variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
           viewport={viewportConfig}
-          className="text-center mb-14"
+          className="flex flex-wrap items-stretch gap-px mb-12 rounded-xl overflow-hidden"
+          style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.07)" }}
         >
-          <motion.p variants={fadeInUp} className="section-label mb-3">
-            Publications & Research
-          </motion.p>
-          <motion.h2
-            variants={fadeInUp}
-            className="font-display font-bold text-[clamp(2rem,5vw,3.25rem)] tracking-tight leading-none text-[#F1F5F9] mb-4"
-          >
-            {t("Publications · Talks · Awards", "논문 · 발표 · 공모")}
-          </motion.h2>
-          <motion.p variants={fadeInUp} className="text-[#64748B] max-w-xl mx-auto text-base">
-            {t(
-              `${journalCount} SCIE journal article · ${publications.length} works · ${awardCount} awards — from the lab to the stage.`,
-              `SCIE 저널 논문 ${journalCount}편 · 총 ${publications.length}건 · 수상 ${awardCount}건 — 연구실에서 무대까지.`,
-            )}
-          </motion.p>
-
-          {/* Quick stats */}
-          <motion.div
-            variants={fadeInUp}
-            className="mt-8 inline-flex items-center gap-6 px-6 py-3 rounded-2xl"
-            style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}
-          >
-            {[
-              { icon: <BookOpen className="w-4 h-4 text-rose-400" />,      label: t("Journal (IF)", "저널 IF"), value: "6.9" },
-              { icon: <Trophy className="w-4 h-4 text-amber-400" />,       label: t("Awards", "수상"),         value: `${awardCount}` },
-              { icon: <TrendingUp className="w-4 h-4 text-emerald-400" />, label: t("Best R²", "최고 R²"),     value: "0.9681" },
-            ].map((s) => (
-              <div key={s.label} className="flex flex-col items-center gap-1">
-                <div className="flex items-center gap-1.5">
-                  {s.icon}
-                  <span className="font-display font-bold text-sm text-[#F1F5F9]">{s.value}</span>
-                </div>
-                <span className="text-[10px] text-[#475569]">{s.label}</span>
+          {[
+            { icon: <BookOpen className="w-4 h-4 text-rose-400" />,      label: t("Journal IF", "저널 IF"),  value: "6.9" },
+            { icon: <Trophy className="w-4 h-4 text-amber-400" />,       label: t("Awards", "수상"),          value: `${awardCount}` },
+            { icon: <TrendingUp className="w-4 h-4 text-emerald-400" />, label: t("Best R²", "최고 R²"),      value: "0.9681" },
+          ].map((s) => (
+            <div
+              key={s.label}
+              className="flex-1 min-w-[110px] flex flex-col gap-1 px-5 py-4"
+              style={{ background: "#060C18" }}
+            >
+              <div className="flex items-center gap-1.5">
+                {s.icon}
+                <span className="font-display font-bold text-lg text-[#F1F5F9] tabular">{s.value}</span>
               </div>
-            ))}
-          </motion.div>
+              <span className="text-[10px] uppercase tracking-wider text-[#475569]">{s.label}</span>
+            </div>
+          ))}
         </motion.div>
 
         {/* ── Timeline ─────────────────────────────────── */}

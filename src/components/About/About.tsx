@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { fadeInUp, fadeInLeft, fadeInRight, viewportConfig } from "@/lib/animations";
 import { useLang } from "@/lib/i18n";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 export default function About() {
   const { t } = useLang();
@@ -100,26 +101,17 @@ export default function About() {
     <section id="about" className="py-28 bg-gray-950">
       <div className="max-w-6xl mx-auto px-6">
         {/* Section header */}
-        <motion.div
-          variants={fadeInUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportConfig}
-          className="text-center mb-20"
-        >
-          <p className="text-blue-400 text-sm font-semibold tracking-widest uppercase mb-3">
-            About Me
-          </p>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            {t("Who I Am", "저를 소개합니다")}
-          </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            {t(
+        <div className="mb-16">
+          <SectionHeader
+            index="00"
+            kicker="About"
+            title={t("Who I am", "저를 소개합니다")}
+            description={t(
               "Climate research, AI development, and deployable web platforms — I enjoy crossing the boundary between domain science and engineering.",
               "기후변화 연구와 AI 개발, 그리고 실제로 배포 가능한 웹 플랫폼까지 — 도메인과 기술의 경계를 넘나드는 것을 즐깁니다.",
             )}
-          </p>
-        </motion.div>
+          />
+        </div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left: Bio */}

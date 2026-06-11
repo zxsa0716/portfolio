@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk, Geist_Mono } from "next/font/google";
+import { Inter, Space_Grotesk, Geist_Mono, Newsreader } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Providers from "@/components/Providers";
 
-// ── Fonts ─────────────────────────────────────────────────────────────────
+// ── Latin type system ───────────────────────────────────────────────────────
 // next/font handles subsetting, preloading, and self-hosting automatically.
 
 const inter = Inter({
@@ -22,11 +23,44 @@ const spaceGrotesk = Space_Grotesk({
   weight:    ["500", "600", "700"],
 });
 
+// Academic-journal serif — used for section titles & display accents (EN).
+const newsreader = Newsreader({
+  variable:  "--font-serif",
+  subsets:   ["latin"],
+  display:   "swap",
+  preload:   true,
+  weight:    ["300", "400", "500", "600"],
+  style:     ["normal", "italic"],
+});
+
 const geistMono = Geist_Mono({
   variable:  "--font-geist-mono",
   subsets:   ["latin"],
   display:   "swap",
   preload:   false, // secondary font — lazy is fine
+});
+
+// ── Korean type system (subset woff2, lazy — KO is a toggle) ─────────────────
+// KoPubWorld Dotum → Korean sans · KoPubWorld Batang → Korean serif titles.
+const kopubDotum = localFont({
+  variable: "--font-kopub",
+  display:  "swap",
+  preload:  false,
+  src: [
+    { path: "./fonts/KoPubDotum-Light.woff2",  weight: "300", style: "normal" },
+    { path: "./fonts/KoPubDotum-Medium.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/KoPubDotum-Bold.woff2",   weight: "700", style: "normal" },
+  ],
+});
+
+const kopubBatang = localFont({
+  variable: "--font-kopub-serif",
+  display:  "swap",
+  preload:  false,
+  src: [
+    { path: "./fonts/KoPubBatang-Light.woff2", weight: "300", style: "normal" },
+    { path: "./fonts/KoPubBatang-Bold.woff2",  weight: "700", style: "normal" },
+  ],
 });
 
 // ── Metadata ──────────────────────────────────────────────────────────────
@@ -87,7 +121,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${newsreader.variable} ${geistMono.variable} ${kopubDotum.variable} ${kopubBatang.variable} antialiased`}
       >
         <Providers>{children}</Providers>
       </body>

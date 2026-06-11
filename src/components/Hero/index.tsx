@@ -88,17 +88,40 @@ export default function Hero() {
         {/* Statement */}
         <motion.p
           {...fade(0.38)}
-          className="max-w-[40rem] text-base leading-relaxed mb-8"
-          style={{ color: "#64748B" }}
+          className="max-w-[40rem] text-lg leading-relaxed mb-7 font-serif italic"
+          style={{ color: "#94A3B8" }}
         >
           {t(
-            "I model urban climate risk with satellite data and graph neural networks, and support policy decisions through deployed platforms. First-author work published in Urban Climate (IF 6.9).",
-            "위성 데이터와 그래프 신경망으로 도시 기후 위험을 모델링하고, 실제 배포 플랫폼으로 정책 결정을 지원합니다. 제1저자 논문을 Urban Climate (IF 6.9)에 게재했습니다.",
+            "I model urban climate risk with satellite data and graph neural networks, and turn it into platforms that support policy decisions.",
+            "위성 데이터와 그래프 신경망으로 도시 기후 위험을 모델링하고, 이를 정책 결정을 돕는 플랫폼으로 구현합니다.",
           )}
         </motion.p>
 
+        {/* Featured publication citation */}
+        <motion.a
+          {...fade(0.44)}
+          href={LINKS.paperDoi}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 mb-9 px-4 py-2 rounded-full transition-colors duration-200"
+          style={{ background: "rgba(244,63,94,0.06)", border: "1px solid rgba(244,63,94,0.22)" }}
+        >
+          <span className="font-mono text-[10px] uppercase tracking-wider" style={{ color: "#FDA4AF" }}>
+            {t("Latest", "최신 논문")}
+          </span>
+          <span className="text-[12px]" style={{ color: "#CBD5E1" }}>
+            Choi, H. et al. (2026)
+          </span>
+          <span className="font-serif italic text-[12px]" style={{ color: "#94A3B8" }}>
+            Urban Climate
+          </span>
+          <span className="font-mono text-[10px] group-hover:text-rose-300 transition-colors" style={{ color: "#64748B" }}>
+            doi:10.1016/j.uclim.2026.102981 ↗
+          </span>
+        </motion.a>
+
         {/* Social links */}
-        <motion.div {...fade(0.44)} className="flex items-center gap-2.5 mb-9">
+        <motion.div {...fade(0.5)} className="flex items-center gap-2.5 mb-9">
           {socials.map((s) => (
             <a
               key={s.label}
@@ -125,7 +148,7 @@ export default function Hero() {
 
         {/* CTAs */}
         <motion.div
-          {...fade(0.5)}
+          {...fade(0.56)}
           className="flex flex-col sm:flex-row items-center gap-3"
         >
           <a

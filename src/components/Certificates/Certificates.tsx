@@ -10,6 +10,7 @@ import { Award, Medal, CheckCircle } from "lucide-react";
 import { certificates, activityCerts, awards } from "@/data/certificates";
 import { fadeInUp, staggerContainer, scaleIn, viewportConfig } from "@/lib/animations";
 import { useLang } from "@/lib/i18n";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 // ── National cert category styles ────────────────────────────────────────
 const CAT_STYLE: Record<string, { label: string; labelEn: string; bg: string; text: string }> = {
@@ -59,29 +60,15 @@ export default function Certificates() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
         {/* ── Section header ─────────────────────────── */}
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportConfig}
-          className="text-center mb-14"
-        >
-          <motion.p variants={fadeInUp} className="section-label mb-3">
-            Credentials
-          </motion.p>
-          <motion.h2
-            variants={fadeInUp}
-            className="font-display font-bold text-[clamp(2rem,5vw,3.25rem)] tracking-tight leading-none text-[#F1F5F9] mb-4"
-          >
-            {t("Certifications · Training · Awards", "자격증 · 수료 · 수상")}
-          </motion.h2>
-          <motion.p variants={fadeInUp} className="text-[#64748B] max-w-xl mx-auto text-base">
-            {t(
-              `${certificates.length} certifications · ${activityCerts.length} training records · ${awards.length} awards`,
-              `자격증 ${certificates.length}개 · 활동수료 ${activityCerts.length}개 · 수상 ${awards.length}건`,
-            )}
-          </motion.p>
-        </motion.div>
+        <SectionHeader
+          index="04"
+          kicker="Credentials"
+          title={t("Certifications, training & awards", "자격 · 수료 · 수상")}
+          description={t(
+            `${certificates.length} certifications · ${activityCerts.length} training records · ${awards.length} awards`,
+            `자격증 ${certificates.length}개 · 활동수료 ${activityCerts.length}개 · 수상 ${awards.length}건`,
+          )}
+        />
 
         {/* SECTION 1 — Certifications */}
         <motion.div

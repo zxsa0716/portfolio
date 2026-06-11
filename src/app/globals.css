@@ -54,9 +54,12 @@
   --color-error:    #EF4444;
   --color-info:     #3B82F6;
 
-  /* ── Typography ── */
-  --font-sans:    var(--font-inter), "Inter", system-ui, sans-serif;
-  --font-display: var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif;
+  /* ── Typography ──
+     Latin glyph comes from the first font that has it; Korean glyphs fall
+     through to the KoPub families automatically (per-glyph fallback). */
+  --font-sans:    var(--font-inter), var(--font-kopub), "Inter", system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-kopub), "Space Grotesk", system-ui, sans-serif;
+  --font-serif:   var(--font-serif), var(--font-kopub-serif), "Newsreader", Georgia, serif;
   --font-mono:    var(--font-geist-mono), "JetBrains Mono", "Fira Code", monospace;
 
   /* ── Spacing/Radii ── */
@@ -89,7 +92,7 @@ html {
 body {
   background-color: #080E1C;
   color: #F1F5F9;
-  font-family: var(--font-inter), "Inter", system-ui, sans-serif;
+  font-family: var(--font-inter), var(--font-kopub), "Inter", system-ui, sans-serif;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -121,7 +124,7 @@ body::after {
    ═══════════════════════════════════════════ */
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif;
+  font-family: var(--font-space-grotesk), var(--font-kopub), "Space Grotesk", system-ui, sans-serif;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: #F1F5F9;
@@ -140,6 +143,14 @@ code, kbd, pre {
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.875em;
 }
+
+/* Academic-journal serif accent — section titles, display quotes */
+.font-serif {
+  font-family: var(--font-serif), var(--font-kopub-serif), Georgia, serif;
+  letter-spacing: -0.01em;
+}
+.font-kopub  { font-family: var(--font-kopub), system-ui, sans-serif; }
+.font-mono   { font-family: var(--font-geist-mono), monospace; }
 
 /* ═══════════════════════════════════════════
    REDUCED MOTION
@@ -287,6 +298,56 @@ code, kbd, pre {
     color: #60A5FA;
     line-height: 1;
   }
+
+  /* ── Editorial / research-journal system ─────────────────────────────── */
+
+  /* Monospace section index, e.g. §03 */
+  .section-index {
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    color: #3B82F6;
+    text-transform: uppercase;
+  }
+
+  /* Hairline rule — fades from accent to nothing */
+  .hairline {
+    height: 1px;
+    background: linear-gradient(90deg, rgba(59,130,246,0.5) 0%, rgba(30,45,74,0.6) 18%, rgba(30,45,74,0.0) 100%);
+  }
+  .hairline-faint {
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.12), rgba(255,255,255,0));
+  }
+
+  /* Blueprint grid — finer, lab-notebook feel */
+  .blueprint-bg {
+    background-image:
+      linear-gradient(rgba(59,130,246,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.035) 1px, transparent 1px),
+      linear-gradient(rgba(59,130,246,0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.018) 1px, transparent 1px);
+    background-size: 96px 96px, 96px 96px, 16px 16px, 16px 16px;
+  }
+
+  /* Corner-tick frame — precise, instrument-panel feel */
+  .corner-ticks { position: relative; }
+  .corner-ticks::before,
+  .corner-ticks::after {
+    content: "";
+    position: absolute;
+    width: 10px; height: 10px;
+    border-color: rgba(59,130,246,0.4);
+    pointer-events: none;
+    transition: border-color 0.25s ease;
+  }
+  .corner-ticks::before { top: -1px;  left: -1px;  border-top: 1px solid;  border-left: 1px solid;  }
+  .corner-ticks::after  { bottom: -1px; right: -1px; border-bottom: 1px solid; border-right: 1px solid; }
+  .corner-ticks:hover::before,
+  .corner-ticks:hover::after { border-color: rgba(96,165,250,0.85); }
+
+  /* Tabular figures for data/metrics alignment */
+  .tabular { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
 }
 
 /* ═══════════════════════════════════════════

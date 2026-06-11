@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { fadeInUp, staggerContainer, viewportConfig } from "@/lib/animations";
 import { useLang, LINKS } from "@/lib/i18n";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 const EMAIL = LINKS.emailAcademic;
 
@@ -123,27 +124,16 @@ export default function Contact() {
 
         <div className="relative z-10 max-w-3xl mx-auto px-6">
           {/* Header */}
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            className="text-center mb-14"
-          >
-            <motion.p variants={fadeInUp} className="section-label mb-3">Contact</motion.p>
-            <motion.h2
-              variants={fadeInUp}
-              className="font-display font-bold text-[clamp(2rem,5vw,3.25rem)] tracking-tight leading-none text-[#F1F5F9] mb-4"
-            >
-              {t("Let's build together", "함께 만들어 가요")}
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="text-[#64748B] max-w-lg mx-auto text-base">
-              {t(
-                "Research collaboration, project inquiries, or just sharing ideas — always welcome.",
-                "연구 협업, 프로젝트 문의, 아이디어 공유 — 언제든지 환영합니다.",
-              )}
-            </motion.p>
-          </motion.div>
+          <SectionHeader
+            index="05"
+            kicker="Contact"
+            align="center"
+            title={t("Let's build together", "함께 만들어 가요")}
+            description={t(
+              "Research collaboration, project inquiries, or just sharing ideas — always welcome.",
+              "연구 협업, 프로젝트 문의, 아이디어 공유 — 언제든지 환영합니다.",
+            )}
+          />
 
           {/* Email CTA */}
           <motion.div

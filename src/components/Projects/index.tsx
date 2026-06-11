@@ -17,6 +17,7 @@ import { ProjectModal } from "./ProjectModal";
 import { fadeInUp, staggerContainer, viewportConfig } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 import { useLang } from "@/lib/i18n";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 type FilterKey = "all" | Project["category"];
 
@@ -60,29 +61,15 @@ export default function Projects() {
 
         <div className="relative z-10 max-w-6xl mx-auto px-6">
           {/* ── Section header ─────────────────────── */}
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            className="text-center mb-14"
-          >
-            <motion.p variants={fadeInUp} className="section-label mb-3">
-              Projects
-            </motion.p>
-            <motion.h2
-              variants={fadeInUp}
-              className="font-display font-bold text-[clamp(2rem,5vw,3.25rem)] tracking-tight leading-none text-[#F1F5F9] mb-4"
-            >
-              {t("Selected Projects", "주요 프로젝트")}
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="text-[#64748B] max-w-xl mx-auto text-base">
-              {t(
-                "From climate-AI research to deployed platforms — crossing the line between research and engineering.",
-                "기후 AI 연구부터 실제 배포 플랫폼까지 — 연구와 개발의 경계를 넘습니다.",
-              )}
-            </motion.p>
-          </motion.div>
+          <SectionHeader
+            index="02"
+            kicker="Projects"
+            title={t("Selected projects", "주요 프로젝트")}
+            description={t(
+              "From climate-AI research to deployed platforms — crossing the line between research and engineering.",
+              "기후 AI 연구부터 실제 배포 플랫폼까지 — 연구와 개발의 경계를 넘습니다.",
+            )}
+          />
 
           {/* ── Filter tabs ────────────────────────── */}
           <motion.div
