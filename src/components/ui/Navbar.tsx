@@ -2,19 +2,62 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLang, type Lang } from "@/lib/i18n";
 
 const navItems = [
   { label: "About",        href: "#about"        },
+  { label: "Publications", href: "#research"      },
   { label: "Projects",     href: "#projects"      },
   { label: "Skills",       href: "#skills"        },
-  { label: "Research",     href: "#research"      },
   { label: "Credentials",  href: "#certificates"  },
   { label: "Contact",      href: "#contact"       },
 ];
 
+// ── EN / KO segmented toggle ──────────────────────────────────────────────
+function LangToggle({ compact = false }: { compact?: boolean }) {
+  const { lang, setLang } = useLang();
+  const options: { value: Lang; label: string }[] = [
+    { value: "en", label: "EN" },
+    { value: "ko", label: "한국어" },
+  ];
+
+  return (
+    <div
+      role="group"
+      aria-label="Language"
+      className={`flex items-center rounded-full p-0.5 ${compact ? "" : "ml-2"}`}
+      style={{
+        background: "rgba(255,255,255,0.05)",
+        border: "1px solid rgba(255,255,255,0.1)",
+      }}
+    >
+      {options.map((opt) => (
+        <button
+          key={opt.value}
+          onClick={() => setLang(opt.value)}
+          aria-pressed={lang === opt.value}
+          className="px-2.5 py-1 rounded-full text-[11px] font-semibold transition-all duration-200"
+          style={
+            lang === opt.value
+              ? {
+                  background: "rgba(59,130,246,0.2)",
+                  border: "1px solid rgba(59,130,246,0.4)",
+                  color: "#93C5FD",
+                }
+              : { border: "1px solid transparent", color: "#475569" }
+          }
+        >
+          {opt.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export default function Navbar() {
   const [scrolled,    setScrolled]    = useState(false);
   const [mobileOpen,  setMobileOpen]  = useState(false);
+  const { t } = useLang();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -57,7 +100,7 @@ export default function Navbar() {
             WebkitTextFillColor: "transparent",
           }}
         >
-          최희도
+          {t("Heedo Choi", "최희도")}
         </a>
 
         {/* Desktop nav */}
@@ -71,28 +114,32 @@ export default function Navbar() {
               {item.label}
             </a>
           ))}
+          <LangToggle />
         </nav>
 
-        {/* Mobile hamburger */}
-        <button
-          onClick={() => setMobileOpen((o) => !o)}
-          className="md:hidden flex flex-col justify-center gap-[5px] w-9 h-9 p-2"
-          aria-label={mobileOpen ? "메뉴 닫기" : "메뉴 열기"}
-          aria-expanded={mobileOpen}
-        >
-          <span
-            className="block w-full h-px bg-[#94A3B8] transition-transform duration-300 origin-center"
-            style={{ transform: mobileOpen ? "translateY(6px) rotate(45deg)" : "none" }}
-          />
-          <span
-            className="block w-full h-px bg-[#94A3B8] transition-opacity duration-300"
-            style={{ opacity: mobileOpen ? 0 : 1 }}
-          />
-          <span
-            className="block w-full h-px bg-[#94A3B8] transition-transform duration-300 origin-center"
-            style={{ transform: mobileOpen ? "translateY(-6px) rotate(-45deg)" : "none" }}
-          />
-        </button>
+        {/* Mobile: lang toggle + hamburger */}
+        <div className="md:hidden flex items-center gap-3">
+          <LangToggle compact />
+          <button
+            onClick={() => setMobileOpen((o) => !o)}
+            className="flex flex-col justify-center gap-[5px] w-9 h-9 p-2"
+            aria-label={mobileOpen ? t("Close menu", "메뉴 닫기") : t("Open menu", "메뉴 열기")}
+            aria-expanded={mobileOpen}
+          >
+            <span
+              className="block w-full h-px bg-[#94A3B8] transition-transform duration-300 origin-center"
+              style={{ transform: mobileOpen ? "translateY(6px) rotate(45deg)" : "none" }}
+            />
+            <span
+              className="block w-full h-px bg-[#94A3B8] transition-opacity duration-300"
+              style={{ opacity: mobileOpen ? 0 : 1 }}
+            />
+            <span
+              className="block w-full h-px bg-[#94A3B8] transition-transform duration-300 origin-center"
+              style={{ transform: mobileOpen ? "translateY(-6px) rotate(-45deg)" : "none" }}
+            />
+          </button>
+        </div>
       </div>
 
       {/* Mobile drawer */}

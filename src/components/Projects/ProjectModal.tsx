@@ -5,12 +5,20 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ExternalLink, Github, FileText, Play, Trophy, ArrowUpRight } from "lucide-react";
 import type { Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
+import { useLang } from "@/lib/i18n";
 
 const CAT_LABEL: Record<Project["category"], string> = {
   ML:          "AI · ML",
   research:    "연구 · 논문",
   development: "웹 개발",
   data:        "데이터 분석",
+};
+
+const CAT_LABEL_EN: Record<Project["category"], string> = {
+  ML:          "AI · ML",
+  research:    "Research",
+  development: "Web Dev",
+  data:        "Data",
 };
 
 const CAT_ACCENT: Record<Project["category"], string> = {
@@ -26,6 +34,7 @@ interface ProjectModalProps {
 }
 
 export function ProjectModal({ project, onClose }: ProjectModalProps) {
+  const { lang, t } = useLang();
   // Close on Escape
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -99,7 +108,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 {project.award && (
                   <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-semibold">
                     <Trophy className="w-3.5 h-3.5" />
-                    {project.award}
+                    {lang === "en" ? project.awardEn ?? project.award : project.award}
                   </span>
                 )}
               </div>
@@ -109,26 +118,26 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 {/* Category + year */}
                 <div className="flex items-center gap-3 mb-3">
                   <span className={cn("text-xs font-semibold uppercase tracking-widest", CAT_ACCENT[project.category])}>
-                    {CAT_LABEL[project.category]}
+                    {lang === "en" ? CAT_LABEL_EN[project.category] : CAT_LABEL[project.category]}
                   </span>
                   <span className="text-[#334155] text-xs font-mono">{project.year}</span>
                 </div>
 
                 {/* Title */}
                 <h2 className="font-display font-bold text-2xl text-[#F1F5F9] leading-snug mb-1">
-                  {project.title}
+                  {lang === "en" ? project.titleEn : project.title}
                 </h2>
                 <p className="text-[#475569] text-xs font-mono mb-5">{project.subtitle}</p>
 
                 {/* Long description */}
                 <p className="text-[#94A3B8] text-sm leading-relaxed mb-6">
-                  {project.longDescription}
+                  {lang === "en" ? project.longDescriptionEn : project.longDescription}
                 </p>
 
                 {/* Metrics grid */}
                 <div className="mb-6">
                   <h4 className="text-[10px] font-semibold uppercase tracking-widest text-[#475569] mb-3">
-                    핵심 지표
+                    {t("Key metrics", "핵심 지표")}
                   </h4>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                     {project.metrics.map((m) => (
@@ -141,7 +150,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                             : "bg-white/4 border border-white/8",
                         )}
                       >
-                        <span className="text-[#475569] text-[10px]">{m.label}</span>
+                        <span className="text-[#475569] text-[10px]">{lang === "en" ? m.labelEn : m.label}</span>
                         <span className={cn(
                           "font-display font-bold text-base leading-tight",
                           m.highlight ? "text-blue-400" : "text-[#F1F5F9]",
@@ -156,7 +165,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 {/* Full tech stack */}
                 <div className="mb-6">
                   <h4 className="text-[10px] font-semibold uppercase tracking-widest text-[#475569] mb-3">
-                    기술 스택
+                    {t("Tech stack", "기술 스택")}
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {project.tech.map((t) => (
@@ -171,8 +180,20 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 </div>
 
                 {/* Links */}
-                {(project.links.demo || project.links.paper || project.links.video || project.links.github) && (
+                {(project.links.demo || project.links.paper || project.links.video || project.links.github || project.links.doi) && (
                   <div className="flex flex-wrap gap-3">
+                    {project.links.doi && (
+                      <a
+                        href={project.links.doi}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-500/15 border border-rose-500/25 text-rose-400 text-sm font-medium hover:bg-rose-500/25 transition-colors"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        {t("View on DOI", "DOI 보기")}
+                        <ArrowUpRight className="w-3 h-3 opacity-60" />
+                      </a>
+                    )}
                     {project.links.demo && (
                       <a
                         href={project.links.demo}
@@ -181,7 +202,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/15 border border-emerald-500/25 text-emerald-400 text-sm font-medium hover:bg-emerald-500/25 transition-colors"
                       >
                         <ExternalLink className="w-3.5 h-3.5" />
-                        Live 데모
+                        {t("Live demo", "Live 데모")}
                         <ArrowUpRight className="w-3 h-3 opacity-60" />
                       </a>
                     )}
@@ -193,7 +214,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/15 border border-blue-500/25 text-blue-400 text-sm font-medium hover:bg-blue-500/25 transition-colors"
                       >
                         <FileText className="w-3.5 h-3.5" />
-                        논문 / 발표
+                        {t("Paper / Slides", "논문 / 발표")}
                       </a>
                     )}
                     {project.links.video && (
@@ -204,7 +225,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/15 border border-amber-500/25 text-amber-400 text-sm font-medium hover:bg-amber-500/25 transition-colors"
                       >
                         <Play className="w-3.5 h-3.5" />
-                        시연 영상
+                        {t("Demo video", "시연 영상")}
                       </a>
                     )}
                     {project.links.github && (

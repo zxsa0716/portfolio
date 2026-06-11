@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ExternalLink, Github, FileText, Play, Trophy, ArrowUpRight } from "lucide-react";
 import type { Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
+import { useLang } from "@/lib/i18n";
 
 /* ── Category color map ─────────────────────────────────
    No purple/pink per design system. Blue + Emerald only.
@@ -22,6 +23,13 @@ const CAT_LABEL: Record<Project["category"], string> = {
   data:        "데이터 분석",
 };
 
+const CAT_LABEL_EN: Record<Project["category"], string> = {
+  ML:          "AI · ML",
+  research:    "Research",
+  development: "Web Dev",
+  data:        "Data",
+};
+
 interface ProjectCardProps {
   project: Project;
   /** Whether this card spans 2 columns (featured layout) */
@@ -30,6 +38,7 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, wide = false, onClick }: ProjectCardProps) {
+  const { lang, t } = useLang();
   const cat = CAT_STYLE[project.category];
   const hasDemo  = !!project.links.demo;
   const hasPaper = !!project.links.paper;
@@ -70,7 +79,7 @@ export function ProjectCard({ project, wide = false, onClick }: ProjectCardProps
         {project.award && (
           <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-300 text-[11px] font-semibold leading-none">
             <Trophy className="w-3 h-3" />
-            수상
+            {t("Award", "수상")}
           </span>
         )}
 
@@ -86,14 +95,14 @@ export function ProjectCard({ project, wide = false, onClick }: ProjectCardProps
         <div className="flex items-center gap-2">
           <span className={cn("inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[11px] font-semibold uppercase tracking-wide", cat.bg, cat.text)}>
             <span className={cn("w-1.5 h-1.5 rounded-full", cat.dot)} />
-            {CAT_LABEL[project.category]}
+            {lang === "en" ? CAT_LABEL_EN[project.category] : CAT_LABEL[project.category]}
           </span>
         </div>
 
         {/* Title + subtitle */}
         <div>
           <h3 className="font-display font-bold text-base leading-snug text-[#F1F5F9] group-hover:text-blue-300 transition-colors duration-200 line-clamp-2">
-            {project.title}
+            {lang === "en" ? project.titleEn : project.title}
           </h3>
           <p className="text-[#64748B] text-[11px] mt-0.5 font-mono leading-relaxed line-clamp-1">
             {project.subtitle}
@@ -102,7 +111,7 @@ export function ProjectCard({ project, wide = false, onClick }: ProjectCardProps
 
         {/* Description */}
         <p className="text-[#64748B] text-xs leading-relaxed flex-1 line-clamp-3">
-          {project.description}
+          {lang === "en" ? project.descriptionEn : project.description}
         </p>
 
         {/* Metric badges */}
@@ -117,7 +126,7 @@ export function ProjectCard({ project, wide = false, onClick }: ProjectCardProps
                   : "bg-white/5 border border-white/8 text-[#94A3B8]",
               )}
             >
-              <span className="text-[#475569] text-[9px]">{m.label}</span>
+              <span className="text-[#475569] text-[9px]">{lang === "en" ? m.labelEn : m.label}</span>
               <span>{m.value}</span>
             </span>
           ))}
@@ -143,6 +152,17 @@ export function ProjectCard({ project, wide = false, onClick }: ProjectCardProps
         {/* Footer: links + expand hint */}
         <div className="flex items-center justify-between pt-1 border-t border-white/6 mt-auto">
           <div className="flex items-center gap-3" onClick={(e) => e.stopPropagation()}>
+            {project.links.doi && (
+              <a
+                href={project.links.doi}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-[11px] text-rose-400 hover:text-rose-300 transition-colors"
+              >
+                <ExternalLink className="w-3 h-3" />
+                DOI
+              </a>
+            )}
             {hasDemo && (
               <a
                 href={project.links.demo}
@@ -191,7 +211,7 @@ export function ProjectCard({ project, wide = false, onClick }: ProjectCardProps
 
           {/* Expand hint */}
           <span className="inline-flex items-center gap-1 text-[10px] text-[#334155] group-hover:text-blue-500 transition-colors duration-200">
-            자세히
+            {t("Details", "자세히")}
             <ArrowUpRight className="w-3 h-3" />
           </span>
         </div>

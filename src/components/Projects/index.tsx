@@ -16,12 +16,14 @@ import { ProjectCard } from "./ProjectCard";
 import { ProjectModal } from "./ProjectModal";
 import { fadeInUp, staggerContainer, viewportConfig } from "@/lib/animations";
 import { cn } from "@/lib/utils";
+import { useLang } from "@/lib/i18n";
 
 type FilterKey = "all" | Project["category"];
 
 const FILTERS: FilterKey[] = ["all", "ML", "development", "data"];
 
 export default function Projects() {
+  const { lang, t } = useLang();
   const [activeFilter, setActiveFilter] = useState<FilterKey>("all");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
@@ -72,10 +74,13 @@ export default function Projects() {
               variants={fadeInUp}
               className="font-display font-bold text-[clamp(2rem,5vw,3.25rem)] tracking-tight leading-none text-[#F1F5F9] mb-4"
             >
-              주요 프로젝트
+              {t("Selected Projects", "주요 프로젝트")}
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-[#64748B] max-w-xl mx-auto text-base">
-              기후 AI 연구부터 실제 배포 플랫폼까지 — 연구와 개발의 경계를 넘습니다.
+              {t(
+                "From climate-AI research to deployed platforms — crossing the line between research and engineering.",
+                "기후 AI 연구부터 실제 배포 플랫폼까지 — 연구와 개발의 경계를 넘습니다.",
+              )}
             </motion.p>
           </motion.div>
 
@@ -101,7 +106,7 @@ export default function Projects() {
                       : "border border-white/12 text-[#64748B] hover:text-[#F1F5F9] hover:border-white/25 bg-transparent",
                   )}
                 >
-                  {meta.label}
+                  {lang === "en" ? meta.labelEn : meta.label}
                   <span
                     className={cn(
                       "px-1.5 py-0.5 rounded-full text-[10px] font-mono leading-none",
@@ -139,7 +144,7 @@ export default function Projects() {
               animate={{ opacity: 1 }}
               className="text-center text-[#475569] py-16"
             >
-              해당 카테고리의 프로젝트가 없습니다.
+              {t("No projects in this category.", "해당 카테고리의 프로젝트가 없습니다.")}
             </motion.p>
           )}
 
@@ -152,10 +157,10 @@ export default function Projects() {
             className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4"
           >
             {[
-              { value: "7+",       label: "완성 프로젝트",    sub: "연구 + 배포" },
-              { value: "3건",      label: "수상 프로젝트",    sub: "최우수·우수·입상" },
-              { value: "R²=0.97",  label: "최고 모델 성능",   sub: "GAT 기반 XAI" },
-              { value: "250만원",  label: "공모전 수상금",     sub: "환경데이터공모전" },
+              { value: "IF 6.9",  label: t("Journal paper", "저널 논문"),  sub: t("Urban Climate · 1st author", "Urban Climate 1저자") },
+              { value: "3",       label: t("Award-winning", "수상 프로젝트"), sub: t("Best · Excellence · Prize", "최우수·우수·입상") },
+              { value: "R²=0.97", label: t("Best model perf.", "최고 모델 성능"), sub: t("GAT-based XAI", "GAT 기반 XAI") },
+              { value: "₩2.5M",   label: t("Contest prize", "공모전 수상금"),  sub: t("Env. Data Contest", "환경데이터공모전") },
             ].map((stat) => (
               <div
                 key={stat.label}

@@ -2,83 +2,93 @@ export interface Certificate {
   id: string;
   name: string;
   nameEn: string;
-  number: string;
-  date: string;
   issuer: string;
-  type: "national-tech" | "national-approved" | "license";
+  issuerEn: string;
+  date: string;
+  type: "national-tech" | "national-approved" | "license" | "international";
   category: "data" | "environment" | "forest" | "it" | "history" | "drone";
 }
 
 export const certificates: Certificate[] = [
   {
-    id: "bigdata-engineer",
-    name: "빅데이터분석기사",
-    nameEn: "Big Data Analyst Engineer",
-    number: "BAE-011002055",
-    date: "2025.12.19",
-    issuer: "과학기술정보통신부 · 국가데이터처 (한국데이터산업진흥원)",
-    type: "national-tech",
-    category: "data",
+    id: "fao-ghg",
+    name: "온실가스 인벤토리 작성 과정 (ETF 기반)",
+    nameEn: "Preparing a GHG Inventory under the Enhanced Transparency Framework",
+    issuer: "FAO eLearning Academy",
+    issuerEn: "FAO eLearning Academy",
+    date: "2026.04",
+    type: "international",
+    category: "environment",
   },
   {
     id: "greenhouse-gas",
     name: "온실가스관리기사",
-    nameEn: "Greenhouse Gas Management Engineer",
-    number: "25203300034D",
-    date: "2025.12.24",
+    nameEn: "Engineer, Greenhouse Gas Management",
     issuer: "기후에너지환경부 (한국산업인력공단)",
+    issuerEn: "Human Resources Development Service of Korea",
+    date: "2025.12",
     type: "national-tech",
     category: "environment",
   },
   {
+    id: "bigdata-engineer",
+    name: "빅데이터분석기사",
+    nameEn: "Engineer, Big Data Analysis",
+    issuer: "과학기술정보통신부 (한국데이터산업진흥원)",
+    issuerEn: "Korea Data Agency (K-DATA)",
+    date: "2025.12",
+    type: "national-tech",
+    category: "data",
+  },
+  {
     id: "forest-industry",
     name: "산림산업기사",
-    nameEn: "Forest Industry Engineer",
-    number: "25202302024C",
-    date: "2025.09.12",
+    nameEn: "Industrial Engineer, Forest",
     issuer: "산림청 (한국산업인력공단)",
+    issuerEn: "Human Resources Development Service of Korea",
+    date: "2025.09",
     type: "national-tech",
     category: "forest",
   },
   {
     id: "adsp",
     name: "데이터 분석 준전문가 (ADsP)",
-    nameEn: "Associate Data Scientist Professional",
-    number: "ADsP-044007382",
-    date: "2025.03.21",
-    issuer: "한국데이터산업진흥원 (KDATA)",
+    nameEn: "ADsP (Advanced Data Analytics Semi-Professional)",
+    issuer: "한국데이터산업진흥원",
+    issuerEn: "Korea Data Agency (K-DATA)",
+    date: "2025.03",
     type: "national-approved",
     category: "data",
   },
   {
     id: "computer-level1",
     name: "컴퓨터활용능력 1급",
-    nameEn: "Computer Utilization Level 1",
-    number: "24-K9-047524",
-    date: "2024.09.06",
+    nameEn: "Computer Specialist in Spreadsheet & Database, Level 1",
     issuer: "대한상공회의소",
+    issuerEn: "Korea Chamber of Commerce & Industry",
+    date: "2024.09",
     type: "national-tech",
     category: "it",
   },
   {
-    id: "drone",
-    name: "드론 4종 자격증",
-    nameEn: "Drone Pilot License (Type 4)",
-    number: "—",
-    date: "2022.12.02",
-    issuer: "한국교통안전공단",
-    type: "license",
-    category: "drone",
-  },
-  {
     id: "korean-history",
-    name: "한국사능력검정시험",
-    nameEn: "Korean History Proficiency Test",
-    number: "68-104983",
-    date: "2023.12.02",
+    name: "한국사능력검정시험 1급",
+    nameEn: "Korean History Proficiency Test, Level 1",
     issuer: "국사편찬위원회",
+    issuerEn: "National Institute of Korean History",
+    date: "2023.12",
     type: "national-approved",
     category: "history",
+  },
+  {
+    id: "drone",
+    name: "초경량비행장치(드론) 조종자 4종",
+    nameEn: "Ultra-light Vehicle (Drone) Pilot, Class 4",
+    issuer: "한국교통안전공단",
+    issuerEn: "Korea Transportation Safety Authority",
+    date: "2022.12",
+    type: "license",
+    category: "drone",
   },
 ];
 

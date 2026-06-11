@@ -1,9 +1,10 @@
-// ── Conference papers and academic presentations ─────────────────────────
-// Data sourced from: CV, award certificates, poster images, 내경력.txt
+// ── Journal article, conference papers and academic presentations ─────────
+// Data sourced from: CV (2026.06), DOI metadata, award certificates
 // Ordered by date (newest first)
 
 export interface PublicationMetric {
   label: string;
+  labelEn: string;
   value: string;
   highlight?: boolean;
 }
@@ -11,41 +12,101 @@ export interface PublicationMetric {
 export interface Publication {
   id: string;
   title: string;
+  titleEn: string;
   venue: string;
-  venueShort: string;
-  venueType: "conference" | "competition" | "program";
+  venueEn: string;
+  venueType: "journal" | "conference" | "competition" | "program";
   date: string;
   year: number;
   role: string;
+  roleEn: string;
   award?: string;
-  awardNumber?: string;
+  awardEn?: string;
   prizeAmount?: string;
+  prizeAmountEn?: string;
   metrics?: PublicationMetric[];
   tags: string[];
+  doi?: string;
   paper?: string;   // /materials/ 경로 또는 외부 URL
   video?: string;
 }
 
 export const publications: Publication[] = [
-  // ── 2026 ──────────────────────────────────────────────────────────────
+  // ── Journal (SCIE) ──────────────────────────────────────────────────────
+  {
+    id: "urban-climate-2026",
+    title:
+      "설명가능 그래프 신경망을 통한 기후정의: IPCC AR6 프레임워크 기반 시공간 어텐션 도시 열 리스크 평가",
+    titleEn:
+      "Climate justice through explainable graph neural networks: A spatiotemporal attention-based urban heat risk assessment under IPCC AR6 framework",
+    venue: "Urban Climate · Choi, H., Park, J. S., & Lim, C.-H. (2026)",
+    venueEn: "Urban Climate · Choi, H., Park, J. S., & Lim, C.-H. (2026)",
+    venueType: "journal",
+    date: "2026",
+    year: 2026,
+    role: "제1저자 · SCIE 논문",
+    roleEn: "First author · SCIE journal",
+    metrics: [
+      { label: "임팩트 팩터",  labelEn: "Impact Factor", value: "6.9",      highlight: true },
+      { label: "CiteScore",   labelEn: "CiteScore",     value: "12.2",     highlight: true },
+      { label: "분야 순위",    labelEn: "Field rank",    value: "상위 6%" },
+      { label: "논문 번호",    labelEn: "Article",       value: "102981" },
+    ],
+    tags: ["GAT", "XAI", "IPCC AR6", "Urban Climate", "Climate Justice"],
+    doi: "https://doi.org/10.1016/j.uclim.2026.102981",
+  },
+
+  // ── 2026 presentations ──────────────────────────────────────────────────
+  {
+    id: "heatwave-budget",
+    title:
+      "폭염 대응 예산의 사망 감소 효과와 최적 배분: 서울시 25개 자치구를 중심으로",
+    titleEn:
+      "Mortality reduction effects and optimal allocation of heatwave response budgets: the 25 districts of Seoul",
+    venue: "2026 한국기후변화학회 춘계학술대회",
+    venueEn: "KSCCR 2026 Spring Conference",
+    venueType: "conference",
+    date: "2026",
+    year: 2026,
+    role: "제1저자 · 구두 발표",
+    roleEn: "First author · Oral presentation",
+    tags: ["폭염", "예산 최적화", "사망 감소", "서울시 25구"],
+  },
+  {
+    id: "indochina-fire",
+    title:
+      "기후변화가 산불소실면적 추세에 미치는 영향: 인도차이나 반도를 중심으로",
+    titleEn:
+      "Impact of climate change on burned area trends: focusing on the Indochinese Peninsula",
+    venue: "2026 한국기후변화학회 춘계학술대회",
+    venueEn: "KSCCR 2026 Spring Conference",
+    venueType: "conference",
+    date: "2026",
+    year: 2026,
+    role: "제2저자 · 포스터 발표",
+    roleEn: "Second author · Poster",
+    tags: ["산불", "소실면적", "인도차이나", "기후변화 추세"],
+  },
   {
     id: "forest-ews",
     title:
-      "기후변화에 따른 강원도 침엽수림의 회복탄력성 상실 규명: EWS 기반 시계열 분석 및 AR(1) 지표를 중심으로",
+      "강원도 산림 생태계 복원력 분석: EWS 기반 시계열 분석 및 AR(1) 지표를 중심으로",
+    titleEn:
+      "Resilience analysis of forest ecosystems in Gangwon Province: EWS-based time-series analysis with AR(1) indicators",
     venue: "2026 산림과학 공동학술대회",
-    venueShort: "산림과학 공동학술대회 2026",
+    venueEn: "2026 Joint Conference of Korean Forest Science Societies",
     venueType: "conference",
-    date: "2026.02.10",
+    date: "2026.02",
     year: 2026,
     role: "제2저자 · 포스터 발표",
-    award: "우수포스터논문상",
+    roleEn: "Second author · Poster",
     metrics: [
-      { label: "데이터",     value: "Landsat 1990–2025", highlight: true },
-      { label: "공간해상도", value: "30m (GEE)" },
-      { label: "방법론",     value: "STL + EWS + AR(1)" },
-      { label: "대상",       value: "강원도 침엽수림",    highlight: true },
+      { label: "데이터",     labelEn: "Data",       value: "Landsat 1990–2025", highlight: true },
+      { label: "공간해상도", labelEn: "Resolution", value: "30m (GEE)" },
+      { label: "방법론",     labelEn: "Method",     value: "STL + EWS + AR(1)" },
+      { label: "대상",       labelEn: "Region",     value: "강원도 침엽수림",    highlight: true },
     ],
-    tags: ["EWS", "STL 분해", "AR(1)", "산림 생태계", "Google Earth Engine"],
+    tags: ["EWS", "STL", "AR(1)", "Forest Resilience", "Google Earth Engine"],
     paper: "/materials/산림과학회_포스터.pdf",
   },
 
@@ -54,94 +115,112 @@ export const publications: Publication[] = [
     id: "xai-heat",
     title:
       "기후정의를 위한 설명가능 인공지능(XAI): GAT와 AR6 프레임워크 기반 서울시 시공간 열 리스크 평가",
+    titleEn:
+      "Explainable AI (XAI) for climate justice: GAT- and AR6 framework-based spatiotemporal heat risk assessment of Seoul",
     venue:
       "한국기후변화학회 2025년 하반기 학술대회 우수대학원생지원프로그램",
-    venueShort: "한국기후변화학회 2025 하반기",
+    venueEn: "KSCCR 2025 Fall Conference · Outstanding Graduate Student Program",
     venueType: "program",
-    date: "2025.12.05",
+    date: "2025.12",
     year: 2025,
     role: "제1저자 · 구두 발표",
+    roleEn: "First author · Oral presentation",
     award: "입상",
-    awardNumber: "제2025-36호",
+    awardEn: "Prize Winner",
     metrics: [
-      { label: "R²",       value: "0.9681", highlight: true },
-      { label: "RMSE",     value: "0.162" },
-      { label: "관측 수",  value: "13,170" },
-      { label: "XAI 기법", value: "3종",   highlight: true },
+      { label: "R²",       labelEn: "R²",          value: "0.9681", highlight: true },
+      { label: "RMSE",     labelEn: "RMSE",        value: "0.162" },
+      { label: "관측 수",  labelEn: "Observations",value: "13,170" },
+      { label: "XAI 기법", labelEn: "XAI methods", value: "3종",   highlight: true },
     ],
-    tags: ["GAT", "XAI", "SHAP", "AR6", "기후정의"],
+    tags: ["GAT", "XAI", "SHAP", "AR6", "Climate Justice"],
     paper: "/materials/우수대학원생_발표.pdf",
   },
   {
     id: "gat-lstm-comp",
     title:
       "기후 시나리오를 활용한 GAT-LSTM을 통한 기후 취약성 예측: 서울시 읍면동 대상으로",
+    titleEn:
+      "Climate vulnerability prediction using GAT-LSTM with climate scenarios: Seoul administrative dongs",
     venue: "2025 환경데이터 활용 및 분석 공모전 (직접분석 부문)",
-    venueShort: "환경데이터 공모전 2025",
+    venueEn: "2025 Environmental Data Utilization & Analysis Contest",
     venueType: "competition",
     date: "2025.11",
     year: 2025,
     role: "제1저자",
+    roleEn: "First author",
     award: "우수상 (국립공원공단이사장상)",
-    prizeAmount: "250만원",
+    awardEn: "Excellence Award (Korea National Park Service Chairman's Award)",
+    prizeAmount: "상금 250만원",
+    prizeAmountEn: "₩2.5M prize",
     metrics: [
-      { label: "분석 단위",   value: "467 읍면동",  highlight: true },
-      { label: "시나리오",    value: "SSP1 ~ SSP5" },
-      { label: "예측 기간",   value: "~ 2100년" },
-      { label: "앙상블 모델", value: "GAT + LSTM",  highlight: true },
+      { label: "분석 단위",   labelEn: "Units",     value: "467 읍면동",  highlight: true },
+      { label: "시나리오",    labelEn: "Scenarios", value: "SSP1–SSP5" },
+      { label: "예측 기간",   labelEn: "Horizon",   value: "~ 2100" },
+      { label: "앙상블 모델", labelEn: "Model",     value: "GAT + LSTM",  highlight: true },
     ],
-    tags: ["GAT", "LSTM", "SSP", "기후취약성", "공간예측"],
+    tags: ["GAT", "LSTM", "SSP", "Vulnerability", "Spatial Prediction"],
     paper: "/materials/환경데이터공모전_수상작.pdf",
+    video: "https://www.youtube.com/watch?v=jxCs3xLc0wY",
   },
   {
     id: "gcn-uhi",
     title:
       "시공간 그래프 신경망(GCN)을 활용한 서울시의 도시열섬 리스크 평가",
-    venue: "한국기후변화학회 2025년 상반기 학술대회",
-    venueShort: "한국기후변화학회 2025 상반기",
+    titleEn:
+      "Urban heat island risk assessment of Seoul using spatiotemporal graph convolutional networks (GCN)",
+    venue: "한국기후변화학회 2025년 춘계학술대회",
+    venueEn: "KSCCR 2025 Spring Conference",
     venueType: "conference",
-    date: "2025.05",
+    date: "2025.06",
     year: 2025,
     role: "제1저자 · 포스터 발표",
+    roleEn: "First author · Poster",
     award: "최우수포스터논문상",
-    awardNumber: "제2025-29호",
+    awardEn: "Best Poster Paper Award",
     metrics: [
-      { label: "MSE",       value: "0.0397", highlight: true },
-      { label: "Moran's I", value: "0.73",   highlight: true },
-      { label: "클러스터",  value: "5개" },
-      { label: "R² (검증)", value: "0.513" },
+      { label: "MSE",       labelEn: "MSE",        value: "0.0397", highlight: true },
+      { label: "Moran's I", labelEn: "Moran's I",  value: "0.73",   highlight: true },
+      { label: "클러스터",  labelEn: "Clusters",   value: "5" },
+      { label: "R² (검증)", labelEn: "R² (val.)",  value: "0.513" },
     ],
-    tags: ["GCN", "도시열섬", "공간통계", "서울시 25구"],
+    tags: ["GCN", "Urban Heat Island", "Spatial Statistics", "Seoul"],
     paper: "/materials/기후변화학회_발표.pdf",
   },
   {
     id: "flood-inequality",
     title:
       "기후불평등·홍수리스크 완화를 위한 적응의 비용 및 효과 평가: 서울시 자치구를 대상으로",
+    titleEn:
+      "Cost and effectiveness evaluation of adaptation for mitigating climate inequality and flood risk: districts of Seoul",
     venue: "한국기후변화학회 2025년 춘계학술대회",
-    venueShort: "한국기후변화학회 2025 춘계",
+    venueEn: "KSCCR 2025 Spring Conference",
     venueType: "conference",
-    date: "2025.05",
+    date: "2025.06",
     year: 2025,
     role: "제2저자 · 구두 발표",
+    roleEn: "Second author · Oral presentation",
     award: "최우수발표논문상",
+    awardEn: "Best Presentation Paper Award",
     metrics: [
-      { label: "분석 대상", value: "서울 25개 자치구" },
-      { label: "방법론",    value: "비용·효과 분석" },
+      { label: "분석 대상", labelEn: "Scope",  value: "서울 25구" },
+      { label: "방법론",    labelEn: "Method", value: "비용·효과 분석" },
     ],
-    tags: ["기후불평등", "홍수리스크", "적응 비용"],
+    tags: ["Climate Inequality", "Flood Risk", "Adaptation Cost"],
   },
   {
     id: "pcar-biz",
     title: "기후적응플랫폼 PCAR 금융상품",
+    titleEn: "PCAR: a climate-adaptation platform financial product",
     venue: "2025학년도 국민대학교 기후변화대응 비즈니스 아이디어 공모전",
-    venueShort: "국민대 기후비즈니스 공모전",
+    venueEn: "2025 Kookmin University Climate Change Response Business Idea Contest",
     venueType: "competition",
-    date: "2025.12.05",
+    date: "2025.12",
     year: 2025,
     role: "발표자",
+    roleEn: "Presenter",
     award: "장려상",
-    awardNumber: "국민-2025-007호",
-    tags: ["기후금융", "탄소중립"],
+    awardEn: "Encouragement Award",
+    tags: ["Climate Finance", "Carbon Neutrality"],
   },
 ];

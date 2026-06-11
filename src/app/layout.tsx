@@ -33,36 +33,38 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default:  "최희도 | Climate AI Researcher & Developer",
-    template: "%s | 최희도",
+    default:  "Heedo Choi | Climate AI Researcher",
+    template: "%s | Heedo Choi",
   },
   description:
-    "국민대학교 산림환경시스템학과 학부연구생 최희도의 포트폴리오. " +
-    "GAT·GCN·XAI 기반 기후변화 공간 분석 연구, 풀스택 웹 플랫폼 개발, " +
-    "7개 국가자격증 보유. R²=0.9681 최고 모델 성능 달성.",
+    "Heedo Choi — M.S. student at CLIM Lab, Kookmin University. " +
+    "Climate risk assessment with explainable graph neural networks (GAT·GCN·XAI). " +
+    "First-author paper in Urban Climate (IF 6.9). 14 funded research projects, 8 certifications.",
   keywords: [
-    "최희도", "Heedo Choi",
+    "Heedo Choi", "최희도",
     "climate AI", "GAT", "GCN", "XAI", "SHAP",
-    "기후변화", "공간분석", "도시열섬",
-    "빅데이터분석기사", "온실가스관리기사",
-    "국민대학교", "CLIM Lab",
+    "climate change", "spatial analysis", "urban heat island",
+    "Urban Climate", "climate justice",
+    "Kookmin University", "CLIM Lab",
     "포트폴리오", "portfolio",
   ],
-  authors: [{ name: "최희도 (Heedo Choi)", url: "https://github.com/zxsa0716" }],
-  creator: "최희도",
+  authors: [{ name: "Heedo Choi (최희도)", url: "https://github.com/zxsa0716" }],
+  creator: "Heedo Choi",
   openGraph: {
-    title:       "최희도 | Climate AI Researcher & Developer",
+    title:       "Heedo Choi | Climate AI Researcher",
     description:
-      "GAT·GCN·XAI 기반 기후변화 공간 분석 연구 & 풀스택 웹 플랫폼 개발자 · R²=0.9681 · 수상 5건",
+      "Explainable GNNs for climate justice · First-author paper in Urban Climate (IF 6.9) · " +
+      "GAT·GCN·XAI spatial analysis · Full-stack research platforms",
     type:        "website",
-    locale:      "ko_KR",
-    siteName:    "최희도 포트폴리오",
+    locale:      "en_US",
+    alternateLocale: "ko_KR",
+    siteName:    "Heedo Choi — Portfolio",
   },
   twitter: {
     card:        "summary_large_image",
-    title:       "최희도 | Climate AI Researcher & Developer",
+    title:       "Heedo Choi | Climate AI Researcher",
     description:
-      "GAT·GCN·XAI 기반 기후변화 공간 분석 연구 & 풀스택 웹 플랫폼 개발자",
+      "Explainable GNNs for climate justice · Urban Climate (IF 6.9) first-author · Full-stack research platforms",
   },
   robots: {
     index:  true,
@@ -83,7 +85,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ko" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth">
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} ${geistMono.variable} antialiased`}
       >
