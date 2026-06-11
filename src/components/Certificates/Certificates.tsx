@@ -197,7 +197,9 @@ export default function Certificates() {
                   <h4 className="text-[#F1F5F9] font-bold text-sm leading-snug mb-1">
                     {lang === "en" ? cert.nameEn : cert.name}
                   </h4>
-                  <p className="text-[11px] text-[#64748B] mb-3 leading-relaxed">{cert.issuer}</p>
+                  <p className="text-[11px] text-[#64748B] mb-3 leading-relaxed">
+                    {lang === "en" ? cert.issuerEn : cert.issuer}
+                  </p>
 
                   <div className="space-y-1">
                     {cert.period && (
@@ -263,22 +265,24 @@ export default function Certificates() {
                         className="px-2 py-0.5 rounded-md text-[11px] font-semibold"
                         style={{ background: "rgba(245,158,11,0.12)", border: "1px solid rgba(245,158,11,0.25)", color: "#FCD34D" }}
                       >
-                        {award.rank}
+                        {lang === "en" ? award.rankEn : award.rank}
                       </span>
-                      {award.prize && (
+                      {(lang === "en" ? award.prizeEn : award.prize) && (
                         <span
                           className="px-2 py-0.5 rounded-md text-[11px] font-semibold"
                           style={{ background: "rgba(16,185,129,0.12)", border: "1px solid rgba(16,185,129,0.25)", color: "#6EE7B7" }}
                         >
-                          {award.prize}
+                          {lang === "en" ? award.prizeEn : award.prize}
                         </span>
                       )}
                     </div>
-                    <p className="text-[#64748B] text-xs mb-1 leading-relaxed">{award.competition}</p>
-                    {award.paper && (
+                    <p className="text-[#64748B] text-xs mb-1 leading-relaxed">
+                      {lang === "en" ? award.competitionEn : award.competition}
+                    </p>
+                    {(lang === "en" ? award.paperEn : award.paper) && (
                       <p className="text-[#475569] text-[11px]">
                         <span className="text-[#334155]">{t("Work: ", "논문/작품: ")}</span>
-                        {award.paper}
+                        {lang === "en" ? award.paperEn : award.paper}
                       </p>
                     )}
                   </div>

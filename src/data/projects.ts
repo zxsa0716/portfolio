@@ -8,6 +8,7 @@ export interface ProjectMetric {
   label: string;
   labelEn: string;
   value: string;
+  valueEn?: string;
   highlight?: boolean; // renders in accent color
 }
 
@@ -100,11 +101,11 @@ export const projects: Project[] = [
     ],
     category: "ML",
     metrics: [
-      { label: "분석 단위",    labelEn: "Units",       value: "467 동",       highlight: true },
+      { label: "분석 단위",    labelEn: "Units",       value: "467 동", valueEn: "467 dongs",       highlight: true },
       { label: "예측 기간",    labelEn: "Horizon",     value: "~2100" },
       { label: "시나리오",     labelEn: "Scenarios",   value: "SSP1–SSP5" },
       { label: "관련 법령",    labelEn: "Laws",        value: "11" },
-      { label: "수상",         labelEn: "Award",       value: "우수상 ₩2.5M", highlight: true },
+      { label: "수상",         labelEn: "Award",       value: "우수상 ₩2.5M", valueEn: "Excellence ₩2.5M", highlight: true },
     ],
     links: {
       paper: "/materials/환경데이터공모전_수상작.pdf",
@@ -134,10 +135,10 @@ export const projects: Project[] = [
     tech: ["Python", "GCN (Graph Convolutional Network)", "Spatial Analysis", "Climate Data", "Urban Remote Sensing"],
     category: "ML",
     metrics: [
-      { label: "분석 대상", labelEn: "Scope",     value: "서울 25구" },
+      { label: "분석 대상", labelEn: "Scope",     value: "서울 25구", valueEn: "Seoul · 25 districts" },
       { label: "MSE",       labelEn: "MSE",        value: "0.0397",  highlight: true },
       { label: "Moran's I", labelEn: "Moran's I",  value: "0.73" },
-      { label: "수상",      labelEn: "Award",      value: "최우수포스터", highlight: true },
+      { label: "수상",      labelEn: "Award",      value: "최우수포스터", valueEn: "Best Poster", highlight: true },
     ],
     links: { paper: "/materials/기후변화학회_발표.pdf" },
     thumbnail: "linear-gradient(135deg, #0F2347 0%, #2563EB 60%, #60A5FA 100%)",
@@ -192,7 +193,7 @@ export const projects: Project[] = [
     tech: ["React.js", "TypeScript", "Recharts", "Tailwind CSS", "Radar Chart", "Netlify"],
     category: "development",
     metrics: [
-      { label: "1위 자치구",   labelEn: "Top district", value: "관악 76점",  highlight: true },
+      { label: "1위 자치구",   labelEn: "Top district", value: "관악 76점", valueEn: "Gwanak · 76 pts",  highlight: true },
       { label: "분석 자치구",  labelEn: "Districts",    value: "25" },
       { label: "1인가구 수",   labelEn: "Households",   value: "136,255" },
       { label: "분석 뷰",      labelEn: "Views",        value: "6" },
@@ -220,7 +221,7 @@ export const projects: Project[] = [
     tech: ["HTML5", "CSS3", "JavaScript", "Leaflet.js", "D3.js", "Chart.js", "GeoJSON"],
     category: "data",
     metrics: [
-      { label: "시각화 라이브러리", labelEn: "Libraries", value: "3종" },
+      { label: "시각화 라이브러리", labelEn: "Libraries", value: "3종", valueEn: "3 libs" },
       { label: "분석 자치구",       labelEn: "Districts", value: "25" },
       { label: "지도 유형",         labelEn: "Map type",  value: "Choropleth" },
     ],

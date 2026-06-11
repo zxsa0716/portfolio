@@ -6,6 +6,7 @@ export interface PublicationMetric {
   label: string;
   labelEn: string;
   value: string;
+  valueEn?: string;
   highlight?: boolean;
 }
 
@@ -49,7 +50,7 @@ export const publications: Publication[] = [
     metrics: [
       { label: "임팩트 팩터",  labelEn: "Impact Factor", value: "6.9",      highlight: true },
       { label: "CiteScore",   labelEn: "CiteScore",     value: "12.2",     highlight: true },
-      { label: "분야 순위",    labelEn: "Field rank",    value: "상위 6%" },
+      { label: "분야 순위",    labelEn: "Field rank",    value: "상위 6%", valueEn: "Top 6%" },
       { label: "논문 번호",    labelEn: "Article",       value: "102981" },
     ],
     tags: ["GAT", "XAI", "IPCC AR6", "Urban Climate", "Climate Justice"],
@@ -104,7 +105,7 @@ export const publications: Publication[] = [
       { label: "데이터",     labelEn: "Data",       value: "Landsat 1990–2025", highlight: true },
       { label: "공간해상도", labelEn: "Resolution", value: "30m (GEE)" },
       { label: "방법론",     labelEn: "Method",     value: "STL + EWS + AR(1)" },
-      { label: "대상",       labelEn: "Region",     value: "강원도 침엽수림",    highlight: true },
+      { label: "대상",       labelEn: "Region",     value: "강원도 침엽수림", valueEn: "Gangwon conifers",   highlight: true },
     ],
     tags: ["EWS", "STL", "AR(1)", "Forest Resilience", "Google Earth Engine"],
     paper: "/materials/산림과학회_포스터.pdf",
@@ -131,7 +132,7 @@ export const publications: Publication[] = [
       { label: "R²",       labelEn: "R²",          value: "0.9681", highlight: true },
       { label: "RMSE",     labelEn: "RMSE",        value: "0.162" },
       { label: "관측 수",  labelEn: "Observations",value: "13,170" },
-      { label: "XAI 기법", labelEn: "XAI methods", value: "3종",   highlight: true },
+      { label: "XAI 기법", labelEn: "XAI methods", value: "3종", valueEn: "3 methods",   highlight: true },
     ],
     tags: ["GAT", "XAI", "SHAP", "AR6", "Climate Justice"],
     paper: "/materials/우수대학원생_발표.pdf",
@@ -154,7 +155,7 @@ export const publications: Publication[] = [
     prizeAmount: "상금 250만원",
     prizeAmountEn: "₩2.5M prize",
     metrics: [
-      { label: "분석 단위",   labelEn: "Units",     value: "467 읍면동",  highlight: true },
+      { label: "분석 단위",   labelEn: "Units",     value: "467 읍면동", valueEn: "467 dongs",  highlight: true },
       { label: "시나리오",    labelEn: "Scenarios", value: "SSP1–SSP5" },
       { label: "예측 기간",   labelEn: "Horizon",   value: "~ 2100" },
       { label: "앙상블 모델", labelEn: "Model",     value: "GAT + LSTM",  highlight: true },
@@ -203,8 +204,8 @@ export const publications: Publication[] = [
     award: "최우수발표논문상",
     awardEn: "Best Presentation Paper Award",
     metrics: [
-      { label: "분석 대상", labelEn: "Scope",  value: "서울 25구" },
-      { label: "방법론",    labelEn: "Method", value: "비용·효과 분석" },
+      { label: "분석 대상", labelEn: "Scope",  value: "서울 25구", valueEn: "Seoul · 25 districts" },
+      { label: "방법론",    labelEn: "Method", value: "비용·효과 분석", valueEn: "Cost–benefit analysis" },
     ],
     tags: ["Climate Inequality", "Flood Risk", "Adaptation Cost"],
   },

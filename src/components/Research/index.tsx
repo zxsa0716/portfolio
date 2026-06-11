@@ -148,7 +148,7 @@ function PublicationCard({ pub, index }: { pub: Publication; index: number }) {
                   className="font-display font-bold text-sm"
                   style={{ color: m.highlight ? "#93C5FD" : "#F1F5F9" }}
                 >
-                  {m.value}
+                  {lang === "en" ? m.valueEn ?? m.value : m.value}
                 </span>
               </div>
             ))}

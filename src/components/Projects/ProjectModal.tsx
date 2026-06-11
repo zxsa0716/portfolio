@@ -155,7 +155,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                           "font-display font-bold text-base leading-tight",
                           m.highlight ? "text-blue-400" : "text-[#F1F5F9]",
                         )}>
-                          {m.value}
+                          {lang === "en" ? m.valueEn ?? m.value : m.value}
                         </span>
                       </div>
                     ))}

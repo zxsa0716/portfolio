@@ -127,7 +127,7 @@ export function ProjectCard({ project, wide = false, onClick }: ProjectCardProps
               )}
             >
               <span className="text-[#475569] text-[9px]">{lang === "en" ? m.labelEn : m.label}</span>
-              <span>{m.value}</span>
+              <span>{lang === "en" ? m.valueEn ?? m.value : m.value}</span>
             </span>
           ))}
         </div>

@@ -147,37 +147,6 @@ export default function Projects() {
               {t("No projects in this category.", "해당 카테고리의 프로젝트가 없습니다.")}
             </motion.p>
           )}
-
-          {/* ── Stats footer ───────────────────────── */}
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4"
-          >
-            {[
-              { value: "IF 6.9",  label: t("Journal paper", "저널 논문"),  sub: t("Urban Climate · 1st author", "Urban Climate 1저자") },
-              { value: "3",       label: t("Award-winning", "수상 프로젝트"), sub: t("Best · Excellence · Prize", "최우수·우수·입상") },
-              { value: "R²=0.97", label: t("Best model perf.", "최고 모델 성능"), sub: t("GAT-based XAI", "GAT 기반 XAI") },
-              { value: "₩2.5M",   label: t("Contest prize", "공모전 수상금"),  sub: t("Env. Data Contest", "환경데이터공모전") },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="flex flex-col items-center py-4 rounded-2xl text-center"
-                style={{
-                  background: "rgba(255,255,255,0.025)",
-                  border: "1px solid rgba(255,255,255,0.07)",
-                }}
-              >
-                <span className="font-display font-bold text-xl text-blue-400 mb-0.5">
-                  {stat.value}
-                </span>
-                <span className="text-xs text-[#F1F5F9] font-medium">{stat.label}</span>
-                <span className="text-[10px] text-[#334155] mt-0.5">{stat.sub}</span>
-              </div>
-            ))}
-          </motion.div>
         </div>
       </section>
 

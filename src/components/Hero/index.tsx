@@ -1,12 +1,13 @@
 "use client";
 
 /**
- * Hero — Academic researcher homepage style
- * Clean, typography-forward. No particles, no stat cards, no gradient text.
+ * Hero — Academic researcher homepage.
+ * Clean, typography-forward. Bilingual (EN default / KO toggle).
  */
 
 import { motion } from "framer-motion";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download, Github, Linkedin, GraduationCap, Mail } from "lucide-react";
+import { useLang, LINKS } from "@/lib/i18n";
 
 const fade = (delay = 0) => ({
   initial: { opacity: 0, y: 14 },
@@ -15,6 +16,18 @@ const fade = (delay = 0) => ({
 });
 
 export default function Hero() {
+  const { lang, t } = useLang();
+
+  const socials = [
+    { href: LINKS.scholar,           icon: GraduationCap, label: "Google Scholar" },
+    { href: LINKS.linkedin,          icon: Linkedin,      label: "LinkedIn" },
+    { href: LINKS.github,            icon: Github,        label: "GitHub" },
+    { href: `mailto:${LINKS.emailAcademic}`, icon: Mail,  label: "Email" },
+  ];
+
+  const cvHref = lang === "en" ? "/Huido_Choi_CV_EN.pdf" : "/최희도_CV_국문.pdf";
+  const cvName = lang === "en" ? "Huido_Choi_CV.pdf" : "최희도_CV.pdf";
+
   return (
     <section
       id="hero"
@@ -29,22 +42,25 @@ export default function Hero() {
           className="text-xs font-mono tracking-widest uppercase mb-10"
           style={{ color: "#475569" }}
         >
-          국민대학교 산림환경시스템학과 · CLIM Lab
+          {t(
+            "M.S. · Climate Technology Convergence, Kookmin University · CLIM Lab",
+            "국민대학교 기후기술융합학과 기후환경학전공 석사과정 · CLIM Lab",
+          )}
         </motion.p>
 
         {/* Name */}
         <motion.div {...fade(0.1)} className="mb-3 select-none">
           <h1
             className="font-bold leading-none tracking-tight text-white"
-            style={{ fontSize: "clamp(4rem, 13vw, 9rem)" }}
+            style={{ fontSize: "clamp(3.25rem, 11vw, 8rem)" }}
           >
-            최희도
+            {t("Heedo Choi", "최희도")}
           </h1>
           <p
             className="font-light tracking-[0.28em] uppercase mt-3"
             style={{ fontSize: "clamp(0.875rem, 2.5vw, 1.25rem)", color: "#334155" }}
           >
-            Heedo&nbsp;Choi
+            {t("최희도", "Heedo Choi")}
           </p>
         </motion.div>
 
@@ -63,38 +79,69 @@ export default function Hero() {
           className="text-sm font-medium tracking-wide mb-5"
           style={{ color: "#3B82F6" }}
         >
-          Urban Climate &amp; Machine Learning Researcher
+          {t(
+            "Urban Climate & Machine Learning Researcher",
+            "도시기후 · 머신러닝 연구자",
+          )}
         </motion.p>
 
         {/* Statement */}
         <motion.p
           {...fade(0.38)}
-          className="max-w-[38rem] text-base leading-relaxed mb-12"
+          className="max-w-[40rem] text-base leading-relaxed mb-8"
           style={{ color: "#64748B" }}
         >
-          위성 데이터와 그래프 신경망으로 도시 기후 위험을 모델링하고,
-          실제 배포 플랫폼으로 정책 결정을 지원합니다.
+          {t(
+            "I model urban climate risk with satellite data and graph neural networks, and support policy decisions through deployed platforms. First-author work published in Urban Climate (IF 6.9).",
+            "위성 데이터와 그래프 신경망으로 도시 기후 위험을 모델링하고, 실제 배포 플랫폼으로 정책 결정을 지원합니다. 제1저자 논문을 Urban Climate (IF 6.9)에 게재했습니다.",
+          )}
         </motion.p>
+
+        {/* Social links */}
+        <motion.div {...fade(0.44)} className="flex items-center gap-2.5 mb-9">
+          {socials.map((s) => (
+            <a
+              key={s.label}
+              href={s.href}
+              target={s.href.startsWith("mailto") ? undefined : "_blank"}
+              rel="noopener noreferrer"
+              aria-label={s.label}
+              title={s.label}
+              className="w-9 h-9 flex items-center justify-center transition-colors duration-150"
+              style={{ color: "#64748B", border: "1px solid #1E293B" }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.color = "#93C5FD";
+                (e.currentTarget as HTMLElement).style.borderColor = "#2563EB";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.color = "#64748B";
+                (e.currentTarget as HTMLElement).style.borderColor = "#1E293B";
+              }}
+            >
+              <s.icon className="w-[17px] h-[17px]" />
+            </a>
+          ))}
+        </motion.div>
 
         {/* CTAs */}
         <motion.div
-          {...fade(0.46)}
+          {...fade(0.5)}
           className="flex flex-col sm:flex-row items-center gap-3"
         >
           <a
-            href="#projects"
+            href="#research"
             className="inline-flex items-center gap-2 px-7 py-2.5 text-sm font-medium text-white transition-colors duration-150"
             style={{ background: "#1D4ED8", border: "1px solid #2563EB" }}
             onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#2563EB"; }}
             onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#1D4ED8"; }}
           >
-            View Projects
+            {t("View Research", "연구 보기")}
             <ArrowRight className="w-3.5 h-3.5" />
           </a>
 
           <a
-            href="/최희도_CV.pdf"
-            download="최희도_CV.pdf"
+            href={cvHref}
+            download={cvName}
             className="inline-flex items-center gap-2 px-7 py-2.5 text-sm font-medium transition-colors duration-150"
             style={{ color: "#64748B", border: "1px solid #1E293B" }}
             onMouseEnter={(e) => {
@@ -107,7 +154,7 @@ export default function Hero() {
             }}
           >
             <Download className="w-3.5 h-3.5" />
-            Download CV
+            {t("Download CV", "이력서 다운로드")}
           </a>
         </motion.div>
       </div>
