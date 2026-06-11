@@ -18,7 +18,7 @@ import { useLang } from "@/lib/i18n";
 import SectionHeader from "@/components/ui/SectionHeader";
 
 // ── Single skill tag ──────────────────────────────────────────────────────
-function SkillTag({ skill, cluster }: { skill: SkillNode; cluster: SkillCluster }) {
+function SkillTag({ skill, cluster, isEn }: { skill: SkillNode; cluster: SkillCluster; isEn: boolean }) {
   const bgAlpha   = skill.tier === "expert" ? 0.18 : skill.tier === "advanced" ? 0.10 : 0.05;
   const bdrAlpha  = skill.tier === "expert" ? 0.40 : skill.tier === "advanced" ? 0.22 : 0.12;
   const textAlpha = skill.tier === "expert" ? 1.00 : skill.tier === "advanced" ? 0.72 : 0.45;
@@ -32,7 +32,7 @@ function SkillTag({ skill, cluster }: { skill: SkillNode; cluster: SkillCluster 
         color:      `rgba(255,255,255,${textAlpha})`,
       }}
     >
-      {skill.name}
+      {isEn ? skill.nameEn : skill.name}
     </span>
   );
 }
@@ -50,15 +50,17 @@ function ClusterRow({ cluster, isEn }: { cluster: SkillCluster; isEn: boolean })
         <p className={`text-xs font-semibold uppercase tracking-widest ${cluster.textColor}`}>
           {isEn ? cluster.labelEn : cluster.label}
         </p>
-        <p className="text-[10px] mt-1" style={{ color: "#334155" }}>
-          {isEn ? cluster.label : cluster.labelEn}
-        </p>
+        {!isEn && (
+          <p className="text-[10px] mt-1" style={{ color: "#334155" }}>
+            {cluster.labelEn}
+          </p>
+        )}
       </div>
 
       {/* Right: skill tags */}
       <div className="flex flex-wrap gap-2">
         {cluster.skills.map((skill) => (
-          <SkillTag key={skill.name} skill={skill} cluster={cluster} />
+          <SkillTag key={skill.name} skill={skill} cluster={cluster} isEn={isEn} />
         ))}
       </div>
     </motion.div>

@@ -6,6 +6,7 @@ export type SkillTier = "expert" | "advanced" | "intermediate";
 
 export interface SkillNode {
   name: string;
+  nameEn: string;
   level: number;
   tier: SkillTier;
 }
@@ -20,28 +21,29 @@ export interface SkillCluster {
   skills: SkillNode[];
 }
 
-function node(name: string, level: number): SkillNode {
+// node(ko, en, level) — pass one string when the term is identical in both.
+function node(name: string, nameEn: string, level: number): SkillNode {
   const tier: SkillTier =
     level >= 85 ? "expert" : level >= 70 ? "advanced" : "intermediate";
-  return { name, level, tier };
+  return { name, nameEn, level, tier };
 }
 
 export const skillClusters: SkillCluster[] = [
   {
     id: "ml-ai",
-    label: "ML / AI",
+    label: "ML · AI",
     labelEn: "Machine Learning & AI",
     textColor: "text-blue-400",
     rawRgb: "59,130,246",
     glowColor: "rgba(59,130,246,0.5)",
     skills: [
-      node("Graph Attention Network (GAT)", 90),
-      node("Graph Convolutional Network (GCN)", 88),
-      node("Long Short-Term Memory (LSTM)", 85),
-      node("SHAP", 85),
-      node("GNNExplainer", 82),
-      node("Integrated Gradients", 80),
-      node("Random Forest / XGBoost", 75),
+      node("Graph Attention Network (GAT)", "Graph Attention Network (GAT)", 90),
+      node("Graph Convolutional Network (GCN)", "Graph Convolutional Network (GCN)", 88),
+      node("Long Short-Term Memory (LSTM)", "Long Short-Term Memory (LSTM)", 85),
+      node("SHAP", "SHAP", 85),
+      node("GNNExplainer", "GNNExplainer", 82),
+      node("Integrated Gradients", "Integrated Gradients", 80),
+      node("Random Forest / XGBoost", "Random Forest / XGBoost", 75),
     ],
   },
   {
@@ -52,13 +54,13 @@ export const skillClusters: SkillCluster[] = [
     rawRgb: "6,182,212",
     glowColor: "rgba(6,182,212,0.5)",
     skills: [
-      node("Google Earth Engine (GEE)", 83),
-      node("GIS 공간 분석", 82),
-      node("시공간 통계 (Moran's I, LISA)", 82),
-      node("Spatial Block CV", 82),
-      node("공간 클러스터링 (K-means)", 80),
-      node("원격탐사 (NDVI, EVI, LST)", 78),
-      node("QGIS / ArcGIS", 72),
+      node("Google Earth Engine (GEE)", "Google Earth Engine (GEE)", 83),
+      node("GIS 공간 분석", "GIS spatial analysis", 82),
+      node("시공간 통계 (Moran's I, LISA)", "Spatiotemporal statistics (Moran's I, LISA)", 82),
+      node("Spatial Block CV", "Spatial Block CV", 82),
+      node("공간 클러스터링 (K-means)", "Spatial clustering (K-means)", 80),
+      node("원격탐사 (NDVI, EVI, LST)", "Remote sensing (NDVI, EVI, LST)", 78),
+      node("QGIS / ArcGIS", "QGIS / ArcGIS", 72),
     ],
   },
   {
@@ -69,12 +71,12 @@ export const skillClusters: SkillCluster[] = [
     rawRgb: "16,185,129",
     glowColor: "rgba(16,185,129,0.5)",
     skills: [
-      node("Python (pandas, numpy, scikit-learn)", 88),
-      node("HTML / CSS / JavaScript", 88),
-      node("React / Next.js", 80),
-      node("R (통계 분석)", 75),
-      node("TypeScript", 75),
-      node("C++", 65),
+      node("Python (pandas, numpy, scikit-learn)", "Python (pandas, numpy, scikit-learn)", 88),
+      node("HTML / CSS / JavaScript", "HTML / CSS / JavaScript", 88),
+      node("React / Next.js", "React / Next.js", 80),
+      node("R (통계 분석)", "R (statistical analysis)", 75),
+      node("TypeScript", "TypeScript", 75),
+      node("C++", "C++", 65),
     ],
   },
   {
@@ -85,12 +87,12 @@ export const skillClusters: SkillCluster[] = [
     rawRgb: "245,158,11",
     glowColor: "rgba(245,158,11,0.5)",
     skills: [
-      node("기후변화 영향·적응 평가", 88),
-      node("기후정의 / 취약성 분석", 85),
-      node("기후 시나리오 (SSP / IPCC AR6)", 85),
-      node("STL 시계열 분해", 82),
-      node("온실가스 관리", 80),
-      node("산림환경 시스템", 82),
+      node("기후변화 영향·적응 평가", "Climate impact & adaptation assessment", 88),
+      node("기후정의 / 취약성 분석", "Climate justice / vulnerability analysis", 85),
+      node("기후 시나리오 (SSP / IPCC AR6)", "Climate scenarios (SSP / IPCC AR6)", 85),
+      node("STL 시계열 분해", "STL time-series decomposition", 82),
+      node("온실가스 관리", "Greenhouse-gas management", 80),
+      node("산림환경 시스템", "Forestry & environmental systems", 82),
     ],
   },
   {
@@ -101,12 +103,12 @@ export const skillClusters: SkillCluster[] = [
     rawRgb: "100,116,139",
     glowColor: "rgba(100,116,139,0.5)",
     skills: [
-      node("D3.js", 72),
-      node("Leaflet.js", 78),
-      node("Chart.js / Recharts", 80),
-      node("Tailwind CSS", 78),
-      node("Git / GitHub", 78),
-      node("Netlify / Vercel", 75),
+      node("D3.js", "D3.js", 72),
+      node("Leaflet.js", "Leaflet.js", 78),
+      node("Chart.js / Recharts", "Chart.js / Recharts", 80),
+      node("Tailwind CSS", "Tailwind CSS", 78),
+      node("Git / GitHub", "Git / GitHub", 78),
+      node("Netlify / Vercel", "Netlify / Vercel", 75),
     ],
   },
 ];
