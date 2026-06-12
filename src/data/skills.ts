@@ -222,7 +222,7 @@ export const researchProjects: ResearchProject[] = [
     title: "기후리스크(물리적·전환)에 따른 기업의 재무적 영향도 분석 기술개발",
     titleEn: "Technology for Analyzing Corporate Financial Impacts of Physical and Transition Climate Risks",
     kind: "rnd",
-    period: "2026.04 – ",
+    period: "2026.06 – ",
     funder: "기후에너지환경부 · 한국환경산업기술원",
     funderEn: "Ministry of Climate, Energy and Environment · KEITI",
     role: "연구보조원",
