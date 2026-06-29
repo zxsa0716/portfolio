@@ -125,6 +125,7 @@ export interface ResearchProject {
   funderEn: string;
   role: string;
   roleEn: string;
+  link?: string;   // 연구계획서 등 관련 자료 (/materials/...)
 }
 
 export const researchProjects: ResearchProject[] = [
@@ -272,6 +273,7 @@ export const researchProjects: ResearchProject[] = [
     funderEn: "National Institute of Biological Resources",
     role: "연구책임자",
     roleEn: "Principal Investigator",
+    link: "/materials/생물기후_연구계획서.pdf",
   },
   {
     id: "compound-disaster",

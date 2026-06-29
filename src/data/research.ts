@@ -59,6 +59,30 @@ export const publications: Publication[] = [
 
   // ── 2026 presentations ──────────────────────────────────────────────────
   {
+    id: "ax-ghg-disclosure",
+    title:
+      "위성 영상을 활용한 온실가스 공시 4중 검증",
+    titleEn:
+      "Quadruple verification of greenhouse-gas disclosure using satellite imagery",
+    venue: "2026 기후에너지환경부 AX 아이디어 경진대회 (한전KDN·한국남동발전)",
+    venueEn: "2026 MCEE AX Idea Competition (KEPCO KDN · KOEN)",
+    venueType: "competition",
+    date: "2026.07.02",
+    year: 2026,
+    role: "우수상",
+    roleEn: "Excellence Award",
+    award: "우수상",
+    awardEn: "Excellence Award",
+    prizeAmount: "상금 300만원",
+    prizeAmountEn: "₩3M prize",
+    metrics: [
+      { label: "검증 체계", labelEn: "Verification", value: "위성 기반 4중 검증", valueEn: "4-layer satellite", highlight: true },
+      { label: "주최",      labelEn: "Host",         value: "기후에너지환경부", valueEn: "MCEE" },
+    ],
+    tags: ["위성영상", "온실가스 공시", "MRV", "AX"],
+    paper: "/materials/AX경진대회_수상작.pdf",
+  },
+  {
     id: "heatwave-budget",
     title:
       "폭염 대응 예산의 사망 감소 효과와 최적 배분: 서울시 25개 자치구를 중심으로",
@@ -72,6 +96,7 @@ export const publications: Publication[] = [
     role: "제1저자 · 구두 발표",
     roleEn: "First author · Oral presentation",
     tags: ["폭염", "예산 최적화", "사망 감소", "서울시 25구"],
+    paper: "/materials/폭염예산_구두발표.pdf",
   },
   {
     id: "indochina-fire",

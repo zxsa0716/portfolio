@@ -184,6 +184,17 @@ export default function Skills() {
                         <span style={{ color: "#CBD5E1" }}>
                           {lang === "en" ? rp.titleEn : rp.title}
                         </span>
+                        {rp.link && (
+                          <a
+                            href={rp.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="ml-2 inline-flex items-center gap-0.5 text-[10px] font-medium align-middle"
+                            style={{ color: "#FCD34D" }}
+                          >
+                            ↗ {t("Proposal", "연구계획서")}
+                          </a>
+                        )}
                       </td>
                       <td className="px-6 py-4 text-xs hidden md:table-cell leading-relaxed" style={{ color: "#475569" }}>
                         {lang === "en" ? rp.funderEn : rp.funder}

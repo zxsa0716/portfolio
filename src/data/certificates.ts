@@ -205,6 +205,22 @@ export interface Award {
 
 export const awards: Award[] = [
   {
+    id: "ax-idea-competition",
+    title: "2026 기후에너지환경부 AX 아이디어 경진대회 우수상",
+    titleEn: "Excellence Award — 2026 MCEE AX Idea Competition",
+    competition: "2026 기후에너지환경부 AX 아이디어 경진대회 (한전KDN·한국남동발전)",
+    competitionEn: "2026 MCEE AX Idea Competition (KEPCO KDN · KOEN)",
+    rank: "우수상",
+    rankEn: "Excellence Award",
+    date: "2026.07",
+    organizer: "기후에너지환경부 (한전KDN·한국남동발전)",
+    organizerEn: "Ministry of Climate, Energy and Environment (KEPCO KDN · KOEN)",
+    prize: "상금 300만원",
+    prizeEn: "₩3M prize",
+    paper: "위성 영상을 활용한 온실가스 공시 4중 검증",
+    paperEn: "Quadruple verification of greenhouse-gas disclosure using satellite imagery",
+  },
+  {
     id: "env-data-competition",
     title: "2025 환경데이터 활용 및 분석 공모전 우수상",
     titleEn: "Excellence Award — 2025 Environmental Data Utilization & Analysis Contest",
