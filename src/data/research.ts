@@ -116,6 +116,7 @@ export const publications: Publication[] = [
     roleEn: "Second author · Poster",
     tags: ["산불", "소실면적", "인도차이나", "기후변화 추세"],
     tagsEn: ["Wildfire", "Burned area", "Indochina", "Climate trend"],
+    paper: "/materials/인도차이나산불_포스터.pdf",
   },
   {
     id: "forest-ews",
