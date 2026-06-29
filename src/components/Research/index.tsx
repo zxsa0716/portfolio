@@ -158,7 +158,7 @@ function PublicationCard({ pub, index }: { pub: Publication; index: number }) {
 
         {/* Tags */}
         <div className="flex flex-wrap gap-1.5">
-          {pub.tags.map((tag) => (
+          {(lang === "en" ? pub.tagsEn ?? pub.tags : pub.tags).map((tag) => (
             <span
               key={tag}
               className="px-2 py-0.5 rounded text-[10px] font-mono text-[#64748B]"

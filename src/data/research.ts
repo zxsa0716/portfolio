@@ -27,6 +27,7 @@ export interface Publication {
   prizeAmountEn?: string;
   metrics?: PublicationMetric[];
   tags: string[];
+  tagsEn?: string[];   // EN 모드 태그(없으면 tags 사용)
   doi?: string;
   paper?: string;   // /materials/ 경로 또는 외부 URL
   video?: string;
@@ -80,6 +81,7 @@ export const publications: Publication[] = [
       { label: "주최",      labelEn: "Host",         value: "기후에너지환경부", valueEn: "MCEE" },
     ],
     tags: ["위성영상", "온실가스 공시", "MRV", "AX"],
+    tagsEn: ["Satellite imagery", "GHG disclosure", "MRV", "AX"],
     paper: "/materials/AX경진대회_수상작.pdf",
   },
   {
@@ -96,6 +98,7 @@ export const publications: Publication[] = [
     role: "제1저자 · 구두 발표",
     roleEn: "First author · Oral presentation",
     tags: ["폭염", "예산 최적화", "사망 감소", "서울시 25구"],
+    tagsEn: ["Heatwave", "Budget optimization", "Mortality reduction", "Seoul 25 districts"],
     paper: "/materials/폭염예산_구두발표.pdf",
   },
   {
@@ -112,6 +115,7 @@ export const publications: Publication[] = [
     role: "제2저자 · 포스터 발표",
     roleEn: "Second author · Poster",
     tags: ["산불", "소실면적", "인도차이나", "기후변화 추세"],
+    tagsEn: ["Wildfire", "Burned area", "Indochina", "Climate trend"],
   },
   {
     id: "forest-ews",
