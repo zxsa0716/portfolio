@@ -60,6 +60,29 @@ export const publications: Publication[] = [
 
   // ── 2026 presentations ──────────────────────────────────────────────────
   {
+    id: "forest-ai-competition",
+    title: "다목적 산림경영 의사결정 지원 AI",
+    titleEn: "Multi-objective forest management decision-support AI",
+    venue: "제1회 산림과학 AI활용 경진대회 (국립산림과학원) · 팀 ‘산림의 국민’",
+    venueEn: "1st Forest Science AI Competition (NIFoS) · Team",
+    venueType: "competition",
+    date: "2026",
+    year: 2026,
+    role: "대상 (AI서비스창출상) · 팀장",
+    roleEn: "Grand Prize (AI Service Creation) · Team lead",
+    award: "대상 (AI서비스창출상)",
+    awardEn: "Grand Prize (AI Service Creation)",
+    metrics: [
+      { label: "위성 바이오매스", labelEn: "Satellite biomass", value: "R² 0.479 · 90% PI 0.916", highlight: true },
+      { label: "경영 시나리오",   labelEn: "Scenarios",         value: "6개 NPV 비교", valueEn: "6 NPV scenarios", highlight: true },
+      { label: "처리 모듈",       labelEn: "Modules",           value: "5모듈 (A–E)", valueEn: "5 (A–E)" },
+      { label: "학습 라벨",       labelEn: "Training labels",   value: "NASA GEDI 11,026" },
+    ],
+    tags: ["위성 바이오매스", "산림경영 의사결정", "GEDI", "탄소중립", "LLM"],
+    tagsEn: ["Satellite biomass", "Forest management", "GEDI", "Carbon neutrality", "LLM"],
+    paper: "/materials/산림AI경진대회_수상작.pdf",
+  },
+  {
     id: "ax-ghg-disclosure",
     title:
       "위성 영상을 활용한 온실가스 공시 4중 검증",

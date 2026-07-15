@@ -205,6 +205,21 @@ export interface Award {
 
 export const awards: Award[] = [
   {
+    id: "forest-ai-competition",
+    title: "제1회 산림과학 AI활용 경진대회 대상 (AI서비스창출상)",
+    titleEn: "Grand Prize (AI Service Creation Award) — 1st Forest Science AI Competition",
+    competition: "제1회 산림과학 AI활용 경진대회 (현안해결·서비스 창출 부문)",
+    competitionEn: "1st Forest Science AI Utilization Competition (Problem-solving & Service Creation)",
+    rank: "대상 (AI서비스창출상)",
+    rankEn: "Grand Prize (AI Service Creation Award)",
+    date: "2026",
+    organizer: "국립산림과학원",
+    organizerEn: "National Institute of Forest Science (NIFoS)",
+    paper: "다목적 산림경영 의사결정 지원 AI — 위성으로 임분을 읽고 30년 생장·6개 경영 시나리오를 견주어 산주의 의사결정을 지원하는 서비스 (팀 '산림의 국민', 팀장)",
+    paperEn:
+      "Multi-objective forest management decision-support AI — reads stand condition from satellite, projects 30-year growth and compares 6 management scenarios to support landowner decisions (Team lead)",
+  },
+  {
     id: "ax-idea-competition",
     title: "2026 기후에너지환경부 AX 아이디어 경진대회 우수상",
     titleEn: "Excellence Award — 2026 MCEE AX Idea Competition",
