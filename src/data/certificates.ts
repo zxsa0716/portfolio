@@ -212,9 +212,11 @@ export const awards: Award[] = [
     competitionEn: "1st Forest Science AI Utilization Competition (Problem-solving & Service Creation)",
     rank: "대상 (AI서비스창출상)",
     rankEn: "Grand Prize (AI Service Creation Award)",
-    date: "2026",
+    date: "2026.07",
     organizer: "국립산림과학원",
     organizerEn: "National Institute of Forest Science (NIFoS)",
+    prize: "상금 200만원",
+    prizeEn: "₩2M prize",
     paper: "다목적 산림경영 의사결정 지원 AI — 위성으로 임분을 읽고 30년 생장·6개 경영 시나리오를 견주어 산주의 의사결정을 지원하는 서비스 (팀 '산림의 국민', 팀장)",
     paperEn:
       "Multi-objective forest management decision-support AI — reads stand condition from satellite, projects 30-year growth and compares 6 management scenarios to support landowner decisions (Team lead)",
