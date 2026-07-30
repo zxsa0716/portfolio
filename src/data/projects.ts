@@ -80,6 +80,137 @@ export const projects: Project[] = [
     year: 2026,
   },
 
+  /* ── Forest Science AI Competition — Grand Prize (MOFOM) ── */
+  {
+    id: "forest-mofom",
+    title: "다목적 산림경영 의사결정 지원 AI (MOFOM)",
+    titleEn: "Multi-objective Forest Management Decision-Support AI (MOFOM)",
+    subtitle: "1st Forest Science AI Competition — Grand Prize · Team Lead",
+    description:
+      "산주가 필지번호를 입력하면 위성으로 임분을 읽고 30년 생장을 예측해 6개 경영 시나리오의 가치를 견주어 산림경영을 데이터 기반으로 지원하는 AI 서비스. 제1회 산림과학 AI활용 경진대회 대상.",
+    descriptionEn:
+      "An AI service that reads stand condition from satellite for a given parcel, projects 30-year growth, and compares the value of six management scenarios to support data-driven forest management. Grand Prize at the 1st Forest Science AI Competition.",
+    longDescription:
+      "필지번호 하나로 위성 추정부터 산주 UI까지 잇는 A~E 5개 모듈을 병렬 실행하는 서비스입니다. (A) NASA GEDI 라이다 바이오매스(표본 11,026곳)를 라벨로 위성 광학·레이더·지형 25개 정보로 입목축적·탄소량을 예측(교차검증 R² 0.479, 90% 예측구간 포함률 0.916), (B) 30년 생장 예측, (C) 6개 경영 시나리오 NPV·파레토 경제성, (D) 시장·법령·배출권·산림탄소상쇄, (E) LLM은 계산 결과의 해석만 맡아 환각을 방지합니다. 총 234개 테스트로 검증했습니다. 팀 '산림의 국민' 팀장.",
+    longDescriptionEn:
+      "A service running five parallel modules (A–E) from satellite estimation to a landowner UI, driven by a single parcel number. (A) Standing-stock and carbon are predicted from 25 optical/radar/terrain inputs, labeled by NASA GEDI lidar biomass (11,026 samples; CV R² 0.479, 90% prediction-interval coverage 0.916); (B) 30-year growth projection; (C) NPV and Pareto economics across six management scenarios; (D) market, law, emission trading, and forest-carbon offset; (E) an LLM only interprets pre-computed results to prevent hallucination. Validated with 234 tests. Team lead, 'Forest of Citizens.'",
+    tech: ["Python", "Satellite Remote Sensing", "NASA GEDI", "Google Earth Engine", "LLM (interpretation)", "NPV / Pareto", "Vercel"],
+    category: "ML",
+    metrics: [
+      { label: "위성 바이오매스", labelEn: "Satellite biomass", value: "R² 0.479 · 90% PI 0.916", highlight: true },
+      { label: "경영 시나리오",   labelEn: "Scenarios",         value: "6개 NPV 비교", valueEn: "6 NPV scenarios", highlight: true },
+      { label: "처리 모듈",       labelEn: "Modules",           value: "5모듈 (A–E)", valueEn: "5 (A–E)" },
+      { label: "수상",            labelEn: "Award",             value: "대상 ₩2M", valueEn: "Grand Prize ₩2M", highlight: true },
+    ],
+    links: {
+      github: "https://github.com/jwn6174-crypto/forest-ai-agent",
+      demo: "https://mofom-ai.vercel.app",
+      paper: "/materials/산림AI경진대회_수상작.pdf",
+    },
+    thumbnail: "linear-gradient(135deg, #14532D 0%, #16A34A 55%, #4ADE80 100%)",
+    featured: true,
+    award: "제1회 산림과학 AI활용 경진대회 대상 (상금 200만원)",
+    awardEn: "1st Forest Science AI Competition — Grand Prize (₩2M)",
+    year: 2026,
+  },
+
+  /* ── Soop Starter — Forest Public-Data & AI Startup Competition ── */
+  {
+    id: "soop-starter",
+    title: "숲 스타터 — 청년 산촌 진입 의사결정 지원",
+    titleEn: "Soop Starter — Young Foresters' Rural-Settlement Decision Support",
+    subtitle: "Forest Public-Data & AI Startup Competition — Excellence Award · Team Lead",
+    description:
+      "자연어 한 문장을 입력하면 AI가 27개 결정변수를 추출해 11개 모듈을 병렬 실행하고 14초 안에 마을·임산물·자본·정부지원을 아우르는 통합 의사결정을 제시하는 서비스. 산림청 창업경진대회 우수상.",
+    descriptionEn:
+      "From a single natural-language sentence, the AI extracts 27 decision variables, runs 11 parallel modules, and returns an integrated decision (village, forest products, capital, government support) within 14 seconds. Excellence Award at the KFS startup competition.",
+    longDescription:
+      "산림청·임업진흥원·기상청·국토부의 공공데이터 25종 이상을 행정코드·기상격자로 결합하여 전국 466개 공식 산촌 전수를 분석합니다. 청년의 몇 주짜리 조사를 14초로 단축(병렬 응답 10.3초)하며, 임산물 적합도 R² 0.580, 추천 P@5 0.857, 소득 예측 오차 -22.3%p, 정책 답변 출처 일치 100%(환각 0%)를 달성했습니다. 정책 문서 13종을 7,992개 조각으로 인덱싱해 답변에 원문 출처를 강제합니다. 라이브 데모·전체 코드(MIT) 공개. 팀 '숲스타터' 팀장.",
+    longDescriptionEn:
+      "Combines 25+ public datasets from the Korea Forest Service, KOFPI, KMA, and MOLIT via administrative codes and weather grids to analyze all 466 official mountain villages nationwide. It compresses weeks of research into 14 seconds (10.3 s parallel response), achieving forest-product suitability R² 0.580, recommendation P@5 0.857, income-forecast error −22.3%p, and 100% policy-answer citation match (0% hallucination). 13 policy documents are indexed into 7,992 chunks, enforcing source citation on every answer. Live demo and full code (MIT) are public. Team lead, 'Soop Starter.'",
+    tech: ["Python", "Streamlit", "LLM (RAG)", "Public-Data OpenAPI", "Parallel modules", "Semantic + keyword search"],
+    category: "ML",
+    metrics: [
+      { label: "의사결정 시간", labelEn: "Decision time",        value: "1주~1개월 → 14초", valueEn: "weeks → 14s", highlight: true },
+      { label: "분석 대상",     labelEn: "Coverage",             value: "전국 466개 산촌", valueEn: "466 villages", highlight: true },
+      { label: "공공데이터",    labelEn: "Public datasets",      value: "4기관 25종+", valueEn: "25+ / 4 agencies" },
+      { label: "정책 출처일치", labelEn: "Citation match",       value: "100% (환각 0%)", valueEn: "100% (0% hallu.)", highlight: true },
+    ],
+    links: {
+      github: "https://github.com/zxsa0716/soop-starter",
+      demo: "https://soop-starter.streamlit.app",
+      paper: "/materials/숲스타터_수상작.pdf",
+    },
+    thumbnail: "linear-gradient(135deg, #134E4A 0%, #0D9488 50%, #5EEAD4 100%)",
+    featured: true,
+    award: "2026 산림 공공데이터·AI 창업경진대회 우수상",
+    awardEn: "2026 Forest Public-Data & AI Startup Competition — Excellence Award",
+    year: 2026,
+  },
+
+  /* ── AX Contest — satellite GHG disclosure verification ── */
+  {
+    id: "ax-ghg-verification",
+    title: "위성 영상 기반 온실가스 공시 4중 검증",
+    titleEn: "Quadruple Verification of GHG Disclosure via Satellite Imagery",
+    subtitle: "2026 MCEE AX Idea Competition — Excellence Award (₩3M)",
+    description:
+      "기업이 공시하는 온실가스 배출량을 위성 영상 기반으로 4중 교차검증하는 MRV 아이디어. 2026 기후에너지환경부 AX 아이디어 경진대회 우수상.",
+    descriptionEn:
+      "An MRV concept that cross-verifies corporate greenhouse-gas disclosures four ways using satellite imagery. Excellence Award at the 2026 MCEE AX Idea Competition.",
+    longDescription:
+      "기업 온실가스 공시의 신뢰성을 높이기 위해 위성 영상을 활용한 4중 검증 체계를 제안했습니다. 한전KDN·한국남동발전이 주관한 2026 기후에너지환경부 AX 아이디어 경진대회에서 우수상(상금 300만원)을 수상했습니다.",
+    longDescriptionEn:
+      "A four-layer satellite-imagery verification scheme to raise the reliability of corporate GHG disclosures. Excellence Award (₩3M) at the 2026 MCEE AX Idea Competition, hosted by KEPCO KDN and KOEN.",
+    tech: ["Satellite Remote Sensing", "Google Earth Engine", "MRV", "GHG disclosure", "Python"],
+    category: "data",
+    metrics: [
+      { label: "검증 체계", labelEn: "Verification", value: "위성 4중 검증", valueEn: "4-layer satellite", highlight: true },
+      { label: "주최",      labelEn: "Host",         value: "기후에너지환경부", valueEn: "MCEE" },
+      { label: "수상",      labelEn: "Award",        value: "우수상 ₩3M", valueEn: "Excellence ₩3M", highlight: true },
+    ],
+    links: {
+      github: "https://github.com/zxsa0716/AX_Contest",
+      paper: "/materials/AX경진대회_수상작.pdf",
+    },
+    thumbnail: "linear-gradient(135deg, #0C4A6E 0%, #0284C7 50%, #38BDF8 100%)",
+    featured: false,
+    award: "2026 AX 아이디어 경진대회 우수상 (상금 300만원)",
+    awardEn: "2026 AX Idea Competition — Excellence Award (₩3M)",
+    year: 2026,
+  },
+
+  /* ── CINA — Climate Issue-Network Analysis ── */
+  {
+    id: "cina",
+    title: "CINA — 기후 이슈 네트워크 분석",
+    titleEn: "CINA — Climate Issue-Network Analysis",
+    subtitle: "LLM → Graph → LLM pipeline for climate-negotiation intelligence",
+    description:
+      "UNFCCC·COP 기후협상 인텔리전스를 위한 LLM→그래프→LLM 3단 파이프라인. COP30 벨렘 적응지표 결과로 사후 검증한 연구 프레임워크.",
+    descriptionEn:
+      "An end-to-end LLM → Graph → LLM pipeline for climate-negotiation intelligence, retrospectively validated on the COP30 Belém adaptation-indicators outcome.",
+    longDescription:
+      "3단 파이프라인으로 구성됩니다. (1단계) 다중 LLM으로 각국·연합의 입장(stance)을 추출, (2단계) 관계형 그래프 어텐션(R-GAT)과 Leiden 커뮤니티 탐지로 이슈 네트워크를 구조화, (3단계) 그래프에 근거한 협상 브리핑을 생성합니다. Task A Spearman ρ 0.658, Task C P@3 1.00, Cross-LLM 신뢰도 α 0.93, 225개 문서 manifest로 검증했으며, 6페이지 인터랙티브 웹으로 공개했습니다.",
+    longDescriptionEn:
+      "A three-stage pipeline: (1) multi-LLM stance extraction across countries and coalitions; (2) issue-network structuring with relational graph attention (R-GAT) and Leiden community detection; (3) graph-grounded negotiation briefings. Validated with Task A Spearman ρ 0.658, Task C P@3 1.00, cross-LLM reliability α 0.93, and a 225-document manifest, released as a 6-page interactive web program.",
+    tech: ["Python", "PyTorch", "R-GAT", "Leiden community detection", "Multi-LLM", "Graph analysis"],
+    category: "research",
+    metrics: [
+      { label: "Task A Spearman ρ", labelEn: "Task A Spearman ρ", value: "0.658", highlight: true },
+      { label: "Task C P@3",        labelEn: "Task C P@3",        value: "1.00",  highlight: true },
+      { label: "Cross-LLM α",       labelEn: "Cross-LLM α",       value: "0.93" },
+      { label: "코퍼스",            labelEn: "Corpus",            value: "225 docs" },
+    ],
+    links: {
+      github: "https://github.com/zxsa0716/cina",
+      demo: "https://zxsa0716.github.io/cina/web/index.html",
+    },
+    thumbnail: "linear-gradient(135deg, #312E81 0%, #4F46E5 50%, #818CF8 100%)",
+    featured: true,
+    year: 2025,
+  },
+
   /* ── 2. GAT-LSTM vulnerability prediction ── */
   {
     id: "gat-lstm-vulnerability",
