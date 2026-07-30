@@ -222,6 +222,21 @@ export const awards: Award[] = [
       "Multi-objective forest management decision-support AI — reads stand condition from satellite, projects 30-year growth and compares 6 management scenarios to support landowner decisions (Team lead)",
   },
   {
+    id: "forest-startup-competition",
+    title: "2026 산림 공공데이터·AI 활용 창업경진대회 우수상 (한국등산·트레킹지원센터 이사장상)",
+    titleEn: "Excellence Award — 2026 Forest Public-Data & AI Startup Competition",
+    competition: "2026 산림 공공데이터·AI 활용 창업경진대회 (제품·서비스 개발 부문)",
+    competitionEn: "2026 Forest Public Data & AI Startup Competition (Product & Service Development)",
+    rank: "우수상 (한국등산·트레킹지원센터 이사장상)",
+    rankEn: "Excellence Award (Korea Hiking & Trekking Support Center Chairman's Award)",
+    date: "2026.07",
+    organizer: "산림청",
+    organizerEn: "Korea Forest Service",
+    paper: "숲 스타터(Soop Starter) — 자연어 한 줄로 14초 만에 청년 임업인의 산촌 진입(마을·임산물·자본·정부지원) 통합 의사결정을 지원하는 서비스 (팀장)",
+    paperEn:
+      "Soop Starter — a system that guides young foresters' rural-village settlement (village · forest products · capital · government support) from a single natural-language sentence in 14 seconds (Team lead)",
+  },
+  {
     id: "ax-idea-competition",
     title: "2026 기후에너지환경부 AX 아이디어 경진대회 우수상",
     titleEn: "Excellence Award — 2026 MCEE AX Idea Competition",
