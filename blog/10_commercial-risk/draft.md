@@ -1,0 +1,52 @@
+---
+title: "5개 모듈로 서울 상권의 위험을 실시간으로 본다 — 상권 위험도 통합 플랫폼"
+category: climate / with python (web)
+tags: [상권 위험도, 정책 시뮬레이션, Sankey, 인터랙티브 맵, 풀스택]
+figures_source: 데모 스크린샷 (아래 촬영 목록 참조)
+links:
+  demo: https://seoul-commercial-district-risk.netlify.app
+---
+
+# 5개 모듈로 서울 상권의 위험을 실시간으로 본다 — 상권 위험도 통합 플랫폼
+
+## 1. 여는 글
+상권의 위기는 개별 점포만의 문제가 아니라 지역·업종·정책이 얽힌 구조적 문제입니다. 이 플랫폼은 서울시 상권 위험도를 실시간으로 모니터링하고 정책 효과를 시뮬레이션하는 통합 도구입니다.
+
+> ⚠️ **피규어 촬영 필요(데모에서 캡처)** — 아래 `figures/`에 저장:
+> 1. `p01_dashboard.png` — 메인 대시보드(종합)
+> 2. `p02_policy_sim.png` — 정책 시뮬레이션 모듈
+> 3. `p03_alert.png` — 위험도 알림 모니터링
+> 4. `p04_sankey.png` — Sankey 경제 파급효과
+> 5. `p05_sector.png` — 업종별 리스크 프로파일
+> 6. `p06_map.png` — 지역별 인터랙티브 맵
+> (데모: https://seoul-commercial-district-risk.netlify.app)
+
+## 2. 문제 정의
+25개 자치구 상권의 위험을 한눈에 비교하고, 정책이 상권에 미치는 파급을 사전에 가늠할 수단이 필요합니다.
+
+## 3. 구성 — 5개 분석 모듈
+① 정책 시뮬레이션 · ② 위험도 알림 모니터링 · ③ Sankey 기반 경제 파급효과 · ④ 업종별 리스크 프로파일 · ⑤ 지역별 인터랙티브 맵.
+
+![메인 대시보드](figures/p01_dashboard.png)
+*다섯 모듈을 하나의 대시보드에서 탐색할 수 있습니다.*
+
+![정책 시뮬레이션](figures/p02_policy_sim.png)
+*정책 변수를 바꾸면 상권 위험도가 어떻게 변하는지 즉시 확인합니다.*
+
+![Sankey 경제 파급효과](figures/p04_sankey.png)
+*한 업종·지역의 충격이 어디로 번지는지 흐름으로 시각화합니다.*
+
+![지역별 인터랙티브 맵](figures/p06_map.png)
+*25개 자치구를 색상 단계 지도로 표현해 위험 지역을 즉시 식별합니다.*
+
+## 4. 기술
+HTML5·CSS3·JavaScript, Sankey Diagram, 인터랙티브 맵, Netlify 배포.
+
+## 5. 의미
+데이터가 흩어져 있던 상권 정보를 하나의 의사결정 화면으로 통합해, 정책·상권 담당자가 근거 기반으로 판단하도록 돕습니다.
+
+## 6. 맺음말
+라이브 데모에서 직접 다섯 모듈을 조작해 보실 수 있습니다. 긴 글 읽어주셔서 감사합니다.
+
+---
+**링크** · 데모: https://seoul-commercial-district-risk.netlify.app · 포트폴리오: https://portfolio-eight-ruddy-87.vercel.app
