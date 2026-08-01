@@ -16,6 +16,12 @@ links:
 ![연구 포스터 전체](figures/p01.png)
 *STL 분해 → EWS 3종(AR(1)·분산·Flickering) → 기후요인 상관까지의 전체 흐름과 결과를 한 장에 담았습니다.*
 
+![STL 분해와 EWS 지표 시계열(결과 상단)](figures/panel_right_STL_EWS.png)
+*산림 유형별 STL 분해와 AR(1)·분산·Flickering 시계열. 침엽수림의 AR(1)이 뚜렷이 상승합니다.*
+
+![기후요인 민감도와 AR(1) 상관(결과 하단)](figures/panel_right_climate.png)
+*수종별 기온·강수 민감도. 침엽수림은 기온과 양(+)의 상관 — 기온 상승이 회복력 악화와 연결됩니다.*
+
 ## 2. 데이터 & 방법
 - **데이터**: Landsat(5/7/8/9) 위성영상(1990–2025, 30m, Google Earth Engine), 임상도(수종), 월별 기상.
 - **방법**: 분광지수(NDVI·NDMI·NIRv)를 STL로 추세·계절·잔차로 분해하고, 잔차에서 **조기경보신호(EWS)** 3종을 계산합니다.
