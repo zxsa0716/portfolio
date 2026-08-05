@@ -1,0 +1,15 @@
+# 그림 업로드 순서 (본문에 나오는 순서)
+# 붙여넣기로 이미지가 함께 옮겨지지 않을 때, 아래 순서대로 올리세요.
+
+그림  1  figures/fig_map_odiac_korea.png
+그림  2  figures/fig_concept_4channel.png
+그림  3  figures/fig_gir_heatmap.png
+그림  4  figures/fig_s5p_4species_korea.png
+그림  5  figures/fig_odiac_change_2019_2023.png
+그림  6  figures/fig_industrial_no2_timeseries.png
+그림  7  figures/fig_pattern_distribution.png
+그림  8  figures/fig_mk_tau_forest.png
+그림  9  figures/fig_posco_4channel_detail.png
+그림 10  figures/fig_all23_normalized.png
+그림 11  figures/fig_heckman_forest.png
+그림 12  figures/fig_shap_summary.png

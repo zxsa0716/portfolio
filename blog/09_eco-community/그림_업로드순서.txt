@@ -1,0 +1,15 @@
+# 그림 업로드 순서 (본문에 나오는 순서)
+# 붙여넣기로 이미지가 함께 옮겨지지 않을 때, 아래 순서대로 올리세요.
+
+그림  1  figures/p01.png
+그림  2  figures/p03.png
+그림  3  figures/p04.png
+그림  4  figures/p06.png
+그림  5  figures/p07.png
+그림  6  figures/p08.png
+그림  7  figures/p09.png
+그림  8  figures/p10.png
+그림  9  figures/p17.png
+그림 10  figures/p20.png
+그림 11  figures/p22.png
+그림 12  figures/p27.png

@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-블로그 원고 마크다운 → Word(.docx) 변환기
-- 이미지 자동 삽입 + '그림 N.' 자동 번호 + 캡션 스타일
-- 티스토리 복붙을 전제로 한 깔끔한 서식(맑은 고딕)
-사용: python md2docx.py            (blog/*/post.md 전부 변환)
+블로그 원고 마크다운 → Word(.docx) 변환기  (2종 동시 생성)
+
+1) NN_슬러그.docx          ← 티스토리 붙여넣기용. 본문을 **마크다운 원문 그대로** 담는다.
+                             제목(#/##/###), 굵게(**), 기울임(*), 밑줄(<u>), 구분선(---),
+                             표(|...|), 인용(>), 목록(-) 모두 마크다운 문법을 문자로 유지.
+                             글자 서식을 일절 입히지 않아 붙여넣을 때 문법이 깨지지 않는다.
+                             이미지는 캡션 위치에 실제로 삽입 → 붙여넣으면 함께 업로드된다.
+
+2) NN_슬러그_미리보기.docx  ← 사람이 읽고 검토하는 용도. 서식을 적용해 보기 좋게 조판.
+
+사용: python md2docx.py
 """
 import os, re, glob
 from docx import Document
@@ -22,6 +29,7 @@ DARK = RGBColor(0x26, 0x26, 0x26)
 MAXW_CM = 15.5
 
 
+# ────────────────────────────── 공통 유틸 ──────────────────────────────
 def _font(run, size, bold=False, italic=False, color=DARK):
     run.font.name = FONT
     run.font.size = Pt(size)
@@ -47,8 +55,8 @@ def _para(doc, before=0, after=6, line=1.6, indent=0.0, align=None):
 
 
 def _inline(p, text, size=11, base_bold=False):
-    """**bold** 인라인 처리"""
-    for i, seg in enumerate(re.split(r'(\*\*[^*]+\*\*)', text)):
+    """**bold** 인라인 처리 (미리보기용)"""
+    for seg in re.split(r'(\*\*[^*]+\*\*)', text):
         if not seg: continue
         if seg.startswith('**') and seg.endswith('**'):
             _font(p.add_run(seg[2:-2]), size, bold=True)
@@ -68,71 +76,30 @@ def _shade(p, fill="F4F7F4"):
     sh.set(qn('w:val'), 'clear'); sh.set(qn('w:fill'), fill); pPr.append(sh)
 
 
-def setup(doc):
+def setup(doc, narrow=False):
     s = doc.sections[0]
     s.top_margin = Cm(2.0); s.bottom_margin = Cm(2.0)
-    s.left_margin = Cm(2.4); s.right_margin = Cm(2.4)
+    m = Cm(1.8) if narrow else Cm(2.4)
+    s.left_margin = m; s.right_margin = m
 
 
-def add_image(doc, path, caption, num):
-    if not os.path.exists(path):
-        p = _para(doc, after=4)
-        _font(p.add_run(f"[이미지 없음: {os.path.basename(path)}]"), 9.5, color=RGBColor(0xC0, 0x39, 0x39))
-        return
+def _img_width(path, scale=1.0):
     try:
         w, h = Image.open(path).size
-        width = Cm(MAXW_CM)
-        # 지나치게 긴 세로 이미지는 폭을 줄여 페이지를 넘지 않게
-        if h / max(w, 1) > 2.2:
-            width = Cm(MAXW_CM * 0.62)
+        width = MAXW_CM
+        if h / max(w, 1) > 2.2:          # 지나치게 긴 세로 이미지는 폭을 줄임
+            width = MAXW_CM * 0.62
     except Exception:
-        width = Cm(MAXW_CM)
-    p = _para(doc, before=8, after=2, align=WD_ALIGN_PARAGRAPH.CENTER)
-    p.add_run().add_picture(path, width=width)
-    cp = _para(doc, before=0, after=12, line=1.35, align=WD_ALIGN_PARAGRAPH.CENTER)
-    _font(cp.add_run(f"그림 {num}. "), 9.5, bold=True, color=GREEN)
-    _font(cp.add_run(caption), 9.5, color=GRAY)
+        width = MAXW_CM
+    return Cm(width * scale)
 
 
-def add_table(doc, rows):
-    """마크다운 표 → Word 표. rows[0]이 머리글."""
-    ncol = max(len(r) for r in rows)
-    t = doc.add_table(rows=len(rows), cols=ncol)
-    t.style = 'Table Grid'
-    t.alignment = WD_TABLE_ALIGNMENT.CENTER
-    for ri, row in enumerate(rows):
-        trPr = t.rows[ri]._tr.get_or_add_trPr()
-        cs = OxmlElement('w:cantSplit'); trPr.append(cs)   # 행이 페이지에서 쪼개지지 않게
-        if ri == 0:
-            th = OxmlElement('w:tblHeader'); trPr.append(th)  # 머리글 행 반복
-        for ci in range(ncol):
-            cell = t.cell(ri, ci)
-            cell.text = ''
-            p = cell.paragraphs[0]
-            pf = p.paragraph_format
-            pf.space_before = Pt(2); pf.space_after = Pt(2)
-            pf.line_spacing_rule = WD_LINE_SPACING.MULTIPLE; pf.line_spacing = 1.15
-            p.alignment = WD_ALIGN_PARAGRAPH.LEFT if ci == 0 else WD_ALIGN_PARAGRAPH.CENTER
-            txt = row[ci] if ci < len(row) else ''
-            if ri == 0:
-                _shade(p, "EDF2ED")
-                _font(p.add_run(re.sub(r'\*\*', '', txt)), 10, bold=True, color=GREEN)
-            else:
-                _inline(p, txt, 10)
-    # 표 아래 여백
-    _para(doc, before=0, after=10)
-
-
-def convert(md_path, out_path):
-    base = os.path.dirname(md_path)
-    doc = Document(); setup(doc)
+def _blocks(md_path):
+    """post.md를 블록 목록으로 파싱. front matter는 버린다."""
     lines = open(md_path, encoding='utf-8').read().split('\n')
-    fignum = 0
-    i = 0
-    in_front = False
+    out, i, in_front = [], 0, False
     while i < len(lines):
         ln = lines[i].rstrip()
-        # front matter 무시
         if i == 0 and ln.strip() == '---':
             in_front = True; i += 1; continue
         if in_front:
@@ -140,77 +107,175 @@ def convert(md_path, out_path):
             i += 1; continue
 
         if not ln.strip():
-            i += 1; continue
+            out.append(('blank', '')); i += 1; continue
 
-        # 이미지
         m = re.match(r'!\[(.*?)\]\((.*?)\)', ln.strip())
         if m:
-            fignum += 1
-            add_image(doc, os.path.join(base, m.group(2)), m.group(1), fignum)
-            i += 1; continue
+            out.append(('image', (m.group(1), m.group(2)))); i += 1; continue
 
-        # 제목
-        if ln.startswith('#### '):
-            p = _para(doc, before=10, after=3)
-            _font(p.add_run(ln[5:].strip()), 11.5, bold=True, color=DARK); i += 1; continue
-        if ln.startswith('### '):
-            p = _para(doc, before=12, after=4)
-            _font(p.add_run(ln[4:].strip()), 12.5, bold=True, color=GREEN); i += 1; continue
-        if ln.startswith('## '):
-            p = _para(doc, before=18, after=6)
-            _font(p.add_run(ln[3:].strip()), 14, bold=True, color=GREEN)
-            _botborder(p); i += 1; continue
-        if ln.startswith('# '):
-            p = _para(doc, before=0, after=4, align=WD_ALIGN_PARAGRAPH.LEFT)
-            _font(p.add_run(ln[2:].strip()), 18, bold=True, color=GREEN); i += 1; continue
-
-        # 표 (| a | b | 형식, 둘째 줄이 구분행)
+        # 표: 둘째 줄이 |---|---| 구분행
         if ln.strip().startswith('|') and i + 1 < len(lines) \
            and re.match(r'^\|[\s:\-|]+\|$', lines[i + 1].strip()):
-            rows = []
-            def cells(s):
-                return [c.strip() for c in s.strip().strip('|').split('|')]
-            rows.append(cells(lines[i])); i += 2
+            rows = [lines[i].rstrip(), lines[i + 1].rstrip()]
+            i += 2
             while i < len(lines) and lines[i].strip().startswith('|'):
-                rows.append(cells(lines[i])); i += 1
-            add_table(doc, rows)
+                rows.append(lines[i].rstrip()); i += 1
+            out.append(('table', rows)); continue
+
+        out.append(('line', ln)); i += 1
+    return out
+
+
+# ─────────────────── 1) 티스토리 붙여넣기용: 마크다운 원문 ───────────────────
+def _md_para(doc, text):
+    """마크다운 한 줄을 서식 없는 순수 텍스트로. 붙여넣을 때 문법이 보존된다."""
+    p = doc.add_paragraph()
+    pf = p.paragraph_format
+    pf.space_before = Pt(0); pf.space_after = Pt(0)
+    pf.line_spacing_rule = WD_LINE_SPACING.MULTIPLE; pf.line_spacing = 1.35
+    pf.first_line_indent = Cm(0)
+    p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    if text:
+        _font(p.add_run(text), 10.5)      # 굵게·색·기울임 일절 없음
+    return p
+
+
+def build_markdown_docx(md_path, out_path):
+    """본문 전체를 마크다운 문법 그대로 담고, 그림은 캡션 자리에 실제 삽입."""
+    base = os.path.dirname(md_path)
+    doc = Document(); setup(doc, narrow=True)
+    fignum = 0
+
+    for kind, val in _blocks(md_path):
+        if kind == 'blank':
+            _md_para(doc, ''); continue
+
+        if kind == 'line':
+            _md_para(doc, val); continue
+
+        if kind == 'table':
+            for row in val:
+                _md_para(doc, row)
             continue
 
-        # 구분선
+        # 이미지: 실제 그림 + 그 아래 마크다운 기울임 캡션
+        caption, rel = val
+        fignum += 1
+        path = os.path.join(base, rel)
+        if os.path.exists(path):
+            ip = doc.add_paragraph()
+            ipf = ip.paragraph_format
+            ipf.space_before = Pt(0); ipf.space_after = Pt(0)
+            ipf.line_spacing_rule = WD_LINE_SPACING.SINGLE
+            ip.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            ip.add_run().add_picture(path, width=_img_width(path))
+        else:
+            _md_para(doc, f'[이미지 없음: {rel}]')
+        _md_para(doc, '')
+        _md_para(doc, f'*그림 {fignum}. {caption}*')
+
+    doc.save(out_path)
+    return fignum
+
+
+# ─────────────────── 2) 검토용 미리보기: 서식 적용 ───────────────────
+def _prev_table(doc, rows):
+    def cells(s): return [c.strip() for c in s.strip().strip('|').split('|')]
+    data = [cells(rows[0])] + [cells(r) for r in rows[2:]]
+    ncol = max(len(r) for r in data)
+    t = doc.add_table(rows=len(data), cols=ncol)
+    t.style = 'Table Grid'; t.alignment = WD_TABLE_ALIGNMENT.CENTER
+    for ri, row in enumerate(data):
+        trPr = t.rows[ri]._tr.get_or_add_trPr()
+        trPr.append(OxmlElement('w:cantSplit'))
+        if ri == 0: trPr.append(OxmlElement('w:tblHeader'))
+        for ci in range(ncol):
+            cell = t.cell(ri, ci); cell.text = ''
+            p = cell.paragraphs[0]; pf = p.paragraph_format
+            pf.space_before = Pt(2); pf.space_after = Pt(2)
+            pf.line_spacing_rule = WD_LINE_SPACING.MULTIPLE; pf.line_spacing = 1.15
+            p.alignment = WD_ALIGN_PARAGRAPH.LEFT if ci == 0 else WD_ALIGN_PARAGRAPH.CENTER
+            txt = row[ci] if ci < len(row) else ''
+            if ri == 0:
+                _shade(p, "EDF2ED"); _font(p.add_run(re.sub(r'\*\*', '', txt)), 10, bold=True, color=GREEN)
+            else:
+                _inline(p, txt, 10)
+    _para(doc, before=0, after=10)
+
+
+def build_preview_docx(md_path, out_path):
+    base = os.path.dirname(md_path)
+    doc = Document(); setup(doc)
+    fignum = 0
+    blocks = _blocks(md_path)
+    k = 0
+    while k < len(blocks):
+        kind, val = blocks[k]; k += 1
+        if kind == 'blank':
+            continue
+
+        if kind == 'table':
+            _prev_table(doc, val); continue
+
+        if kind == 'image':
+            caption, rel = val
+            fignum += 1
+            path = os.path.join(base, rel)
+            if not os.path.exists(path):
+                p = _para(doc, after=4)
+                _font(p.add_run(f"[이미지 없음: {rel}]"), 9.5, color=RGBColor(0xC0, 0x39, 0x39))
+                continue
+            p = _para(doc, before=8, after=2, align=WD_ALIGN_PARAGRAPH.CENTER)
+            p.add_run().add_picture(path, width=_img_width(path))
+            cp = _para(doc, before=0, after=12, line=1.35, align=WD_ALIGN_PARAGRAPH.CENTER)
+            _font(cp.add_run(f"그림 {fignum}. "), 9.5, bold=True, color=GREEN)
+            _font(cp.add_run(caption), 9.5, color=GRAY)
+            continue
+
+        ln = val
+        if ln.startswith('#### '):
+            p = _para(doc, before=10, after=3); _font(p.add_run(ln[5:].strip()), 11.5, bold=True, color=DARK); continue
+        if ln.startswith('### '):
+            p = _para(doc, before=12, after=4); _font(p.add_run(ln[4:].strip()), 12.5, bold=True, color=GREEN); continue
+        if ln.startswith('## '):
+            p = _para(doc, before=18, after=6)
+            _font(p.add_run(ln[3:].strip()), 14, bold=True, color=GREEN); _botborder(p); continue
+        if ln.startswith('# '):
+            p = _para(doc, before=0, after=4); _font(p.add_run(ln[2:].strip()), 18, bold=True, color=GREEN); continue
         if re.match(r'^-{3,}$', ln.strip()):
-            p = _para(doc, before=6, after=6); _botborder(p, "CCCCCC", 4); i += 1; continue
-
-        # 인용/콜아웃
+            p = _para(doc, before=6, after=6); _botborder(p, "CCCCCC", 4); continue
         if ln.startswith('> '):
-            buf = []
-            while i < len(lines) and lines[i].startswith('> '):
-                buf.append(lines[i][2:].strip()); i += 1
-            p = _para(doc, before=8, after=10, line=1.5, indent=0.0)
-            _shade(p)
-            _inline(p, ' '.join(buf), 10.5)
-            continue
-
-        # 불릿
+            buf = [ln[2:].strip()]
+            while k < len(blocks) and blocks[k][0] == 'line' and blocks[k][1].startswith('> '):
+                buf.append(blocks[k][1][2:].strip()); k += 1
+            p = _para(doc, before=8, after=10, line=1.5); _shade(p); _inline(p, ' '.join(buf), 10.5); continue
         if re.match(r'^[-*] ', ln.strip()):
             p = _para(doc, before=0, after=4, line=1.5)
             p.paragraph_format.left_indent = Cm(0.6)
-            _font(p.add_run('· '), 11, bold=True, color=GREEN)
-            _inline(p, ln.strip()[2:], 11)
-            i += 1; continue
+            _font(p.add_run('· '), 11, bold=True, color=GREEN); _inline(p, ln.strip()[2:], 11); continue
         if re.match(r'^\d+\. ', ln.strip()):
             p = _para(doc, before=0, after=4, line=1.5)
-            p.paragraph_format.left_indent = Cm(0.6)
-            _inline(p, ln.strip(), 11)
-            i += 1; continue
+            p.paragraph_format.left_indent = Cm(0.6); _inline(p, ln.strip(), 11); continue
 
-        # 일반 문단
-        p = _para(doc, before=0, after=9, line=1.65, indent=0.3,
-                  align=WD_ALIGN_PARAGRAPH.JUSTIFY)
+        p = _para(doc, before=0, after=9, line=1.65, indent=0.3, align=WD_ALIGN_PARAGRAPH.JUSTIFY)
         _inline(p, ln.strip(), 11)
-        i += 1
 
     doc.save(out_path)
-    return out_path, fignum
+    return fignum
+
+
+def write_upload_order(md_path, out_path):
+    """그림이 본문에 나오는 순서대로 파일명을 적어 둔다. 이미지가 붙여넣기로
+    옮겨지지 않을 때 이 순서대로 직접 올리면 된다."""
+    rows = [(i, rel) for i, (k, v) in
+            enumerate([b for b in _blocks(md_path) if b[0] == 'image'], 1)
+            for rel in [v[1]]]
+    with open(out_path, 'w', encoding='utf-8') as f:
+        f.write('# 그림 업로드 순서 (본문에 나오는 순서)\n')
+        f.write('# 붙여넣기로 이미지가 함께 옮겨지지 않을 때, 아래 순서대로 올리세요.\n\n')
+        for i, rel in rows:
+            f.write(f'그림 {i:2d}  {rel}\n')
+    return len(rows)
 
 
 def main():
@@ -219,11 +284,13 @@ def main():
         print('post.md 없음'); return
     for t in targets:
         folder = os.path.basename(os.path.dirname(t))
-        out = os.path.join(os.path.dirname(t), f'{folder}.docx')
+        d = os.path.dirname(t)
         try:
-            path, n = convert(t, out)
+            n = build_markdown_docx(t, os.path.join(d, f'{folder}.docx'))
+            build_preview_docx(t, os.path.join(d, f'{folder}_미리보기.docx'))
+            write_upload_order(t, os.path.join(d, '그림_업로드순서.txt'))
             chars = len(re.sub(r'\s', '', open(t, encoding='utf-8').read()))
-            print(f'OK  {folder:24s} 그림 {n:2d}개 · 본문 {chars:,}자 → {os.path.basename(path)}')
+            print(f'OK  {folder:24s} 그림 {n:2d}개 · 본문 {chars:,}자 → {folder}.docx + _미리보기.docx')
         except Exception as e:
             print(f'ERR {folder}: {e}')
 

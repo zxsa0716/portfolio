@@ -1,0 +1,13 @@
+# 그림 업로드 순서 (본문에 나오는 순서)
+# 붙여넣기로 이미지가 함께 옮겨지지 않을 때, 아래 순서대로 올리세요.
+
+그림  1  figures/paper_fig1_study_area.png
+그림  2  figures/paper_fig2_framework.png
+그림  3  figures/paper_tab1_variables.png
+그림  4  figures/paper_fig3_architecture.png
+그림  5  figures/paper_fig4_risk_maps.png
+그림  6  figures/paper_tab8_importance.png
+그림  7  figures/paper_fig5_stability.png
+그림  8  figures/paper_fig6_regional.png
+그림  9  figures/paper_fig7_dcor.png
+그림 10  figures/paper_tab10_health.png

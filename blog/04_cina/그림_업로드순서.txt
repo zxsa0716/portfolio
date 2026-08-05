@@ -1,0 +1,16 @@
+# 그림 업로드 순서 (본문에 나오는 순서)
+# 붙여넣기로 이미지가 함께 옮겨지지 않을 때, 아래 순서대로 올리세요.
+
+그림  1  figures/web01.png
+그림  2  figures/fig9_cross_llm_alpha.png
+그림  3  figures/fig1_country_issue_heatmap.png
+그림  4  figures/fig5_similarity_network.png
+그림  5  figures/fig12_modularity_pvalue.png
+그림  6  figures/fig3_frame_consistency.png
+그림  7  figures/fig2_procedural_authority.png
+그림  8  figures/fig7_translation_gap_brazil.png
+그림  9  figures/fig6_hedging_density_2d.png
+그림 10  figures/fig14_chance_baseline.png
+그림 11  figures/fig8_rgat_training.png
+그림 12  figures/site_programv2.png
+그림 13  figures/site_corpus.png

@@ -1,0 +1,11 @@
+# 그림 업로드 순서 (본문에 나오는 순서)
+# 붙여넣기로 이미지가 함께 옮겨지지 않을 때, 아래 순서대로 올리세요.
+
+그림  1  figures/p00_platform.png
+그림  2  figures/p01_dashboard.png
+그림  3  figures/p02_policy_sim.png
+그림  4  figures/p03_alert.png
+그림  5  figures/p04_sankey.png
+그림  6  figures/p05_sector.png
+그림  7  figures/p06_map.png
+그림  8  figures/p07_map_detail.png
