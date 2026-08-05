@@ -267,15 +267,15 @@ def build_preview_docx(md_path, out_path):
 def write_upload_order(md_path, out_path):
     """그림이 본문에 나오는 순서대로 파일명을 적어 둔다. 이미지가 붙여넣기로
     옮겨지지 않을 때 이 순서대로 직접 올리면 된다."""
-    rows = [(i, rel) for i, (k, v) in
-            enumerate([b for b in _blocks(md_path) if b[0] == 'image'], 1)
-            for rel in [v[1]]]
+    imgs = [v for k, v in _blocks(md_path) if k == 'image']
     with open(out_path, 'w', encoding='utf-8') as f:
         f.write('# 그림 업로드 순서 (본문에 나오는 순서)\n')
-        f.write('# 붙여넣기로 이미지가 함께 옮겨지지 않을 때, 아래 순서대로 올리세요.\n\n')
-        for i, rel in rows:
-            f.write(f'그림 {i:2d}  {rel}\n')
-    return len(rows)
+        f.write('# 파일명 번호 = 본문 등장 순서입니다. 붙여넣기로 이미지가 함께\n')
+        f.write('# 옮겨지지 않으면 01부터 차례대로 해당 캡션 위에 올리면 됩니다.\n\n')
+        for i, (caption, rel) in enumerate(imgs, 1):
+            head = re.sub(r'\s+', ' ', caption)[:52]
+            f.write(f'그림 {i:2d}  {os.path.basename(rel):<10}  {head}…\n')
+    return len(imgs)
 
 
 def main():
