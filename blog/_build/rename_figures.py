@@ -3,14 +3,14 @@
 
 - post.md의 이미지 경로도 함께 고친다.
 - 본문에서 쓰지 않는 그림은 삭제하지 않고 figures/_미사용/ 으로 옮긴다.
-- 04_cina는 원래 파일명을 유지하므로 대상에서 제외한다.
+- 04_cina*는 원래 파일명을 유지하므로 대상에서 제외한다(접미어 무관).
 
 사용: python rename_figures.py
 """
 import os, re, glob, shutil
 
 BLOG = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SKIP = {'04_cina'}
+SKIP_PREFIX = ('04_cina',)   # 접미어(_완료 등)가 붙어도 걸러지도록 접두어로 판정
 
 
 def renumber(folder):
@@ -49,7 +49,7 @@ def renumber(folder):
 def main():
     for d in sorted(os.listdir(BLOG)):
         p = os.path.join(BLOG, d)
-        if not (os.path.isdir(p) and re.match(r'^\d\d_', d)) or d in SKIP:
+        if not (os.path.isdir(p) and re.match(r'^\d\d_', d)) or d.startswith(SKIP_PREFIX):
             continue
         n, moved = renumber(p)
         print(f'OK  {d:22s} 그림 {n:2d}개 → 01~{n:02d} · 미참조 {moved}개 _미사용/ 이동')

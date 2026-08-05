@@ -283,8 +283,9 @@ def main():
     if not targets:
         print('post.md 없음'); return
     for t in targets:
-        folder = os.path.basename(os.path.dirname(t))
         d = os.path.dirname(t)
+        # 폴더에 붙은 상태 표시 접미어(_완료 등)는 산출물 이름에서 뺀다
+        folder = re.sub(r'_(완료|보류|초안)$', '', os.path.basename(d))
         try:
             n = build_markdown_docx(t, os.path.join(d, f'{folder}.docx'))
             build_preview_docx(t, os.path.join(d, f'{folder}_미리보기.docx'))
