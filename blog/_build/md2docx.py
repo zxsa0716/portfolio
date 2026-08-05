@@ -9,6 +9,7 @@ import os, re, glob
 from docx import Document
 from docx.shared import Pt, Cm, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_LINE_SPACING
+from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 from PIL import Image
@@ -93,6 +94,35 @@ def add_image(doc, path, caption, num):
     _font(cp.add_run(caption), 9.5, color=GRAY)
 
 
+def add_table(doc, rows):
+    """마크다운 표 → Word 표. rows[0]이 머리글."""
+    ncol = max(len(r) for r in rows)
+    t = doc.add_table(rows=len(rows), cols=ncol)
+    t.style = 'Table Grid'
+    t.alignment = WD_TABLE_ALIGNMENT.CENTER
+    for ri, row in enumerate(rows):
+        trPr = t.rows[ri]._tr.get_or_add_trPr()
+        cs = OxmlElement('w:cantSplit'); trPr.append(cs)   # 행이 페이지에서 쪼개지지 않게
+        if ri == 0:
+            th = OxmlElement('w:tblHeader'); trPr.append(th)  # 머리글 행 반복
+        for ci in range(ncol):
+            cell = t.cell(ri, ci)
+            cell.text = ''
+            p = cell.paragraphs[0]
+            pf = p.paragraph_format
+            pf.space_before = Pt(2); pf.space_after = Pt(2)
+            pf.line_spacing_rule = WD_LINE_SPACING.MULTIPLE; pf.line_spacing = 1.15
+            p.alignment = WD_ALIGN_PARAGRAPH.LEFT if ci == 0 else WD_ALIGN_PARAGRAPH.CENTER
+            txt = row[ci] if ci < len(row) else ''
+            if ri == 0:
+                _shade(p, "EDF2ED")
+                _font(p.add_run(re.sub(r'\*\*', '', txt)), 10, bold=True, color=GREEN)
+            else:
+                _inline(p, txt, 10)
+    # 표 아래 여백
+    _para(doc, before=0, after=10)
+
+
 def convert(md_path, out_path):
     base = os.path.dirname(md_path)
     doc = Document(); setup(doc)
@@ -133,6 +163,18 @@ def convert(md_path, out_path):
         if ln.startswith('# '):
             p = _para(doc, before=0, after=4, align=WD_ALIGN_PARAGRAPH.LEFT)
             _font(p.add_run(ln[2:].strip()), 18, bold=True, color=GREEN); i += 1; continue
+
+        # 표 (| a | b | 형식, 둘째 줄이 구분행)
+        if ln.strip().startswith('|') and i + 1 < len(lines) \
+           and re.match(r'^\|[\s:\-|]+\|$', lines[i + 1].strip()):
+            rows = []
+            def cells(s):
+                return [c.strip() for c in s.strip().strip('|').split('|')]
+            rows.append(cells(lines[i])); i += 2
+            while i < len(lines) and lines[i].strip().startswith('|'):
+                rows.append(cells(lines[i])); i += 1
+            add_table(doc, rows)
+            continue
 
         # 구분선
         if re.match(r'^-{3,}$', ln.strip()):
