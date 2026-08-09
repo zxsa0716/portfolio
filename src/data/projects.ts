@@ -42,44 +42,6 @@ export interface Project {
 }
 
 export const projects: Project[] = [
-  /* ── Journal: XAI for Climate Justice (Urban Climate) ── */
-  {
-    id: "urban-climate-paper",
-    title: "기후정의를 위한 설명가능 GNN (Urban Climate 게재)",
-    titleEn: "Explainable GNNs for Climate Justice — Published in Urban Climate",
-    subtitle: "First-author SCIE paper · Urban Climate (IF 6.9)",
-    description:
-      "GAT와 IPCC AR6 프레임워크 기반 서울시 시공간 열 리스크 평가 연구를 SCIE 저널 Urban Climate(IF 6.9, 상위 6%)에 제1저자로 게재.",
-    descriptionEn:
-      "First-author paper in Urban Climate (IF 6.9, top 6%): a spatiotemporal attention-based urban heat risk assessment for Seoul, built on GAT and the IPCC AR6 framework.",
-    longDescription:
-      "기존 열 취약성 지수(HVI) 연구의 한계(주관적 가중치·블랙박스·검증 부재)를 극복하기 위해 IPCC AR6 위험 프레임워크의 4요소(Hazard·Exposure·Vulnerability·Adaptive Capacity)를 GAT 아키텍처에 직접 구현했습니다. 13,170개 시공간 관측값으로 학습했고, SHAP·GNNExplainer·Integrated Gradients 3종 XAI로 모델 해석을 교차검증했습니다. Choi, H., Park, J. S., & Lim, C.-H. (2026), Urban Climate, Article 102981.",
-    longDescriptionEn:
-      "To overcome the limits of conventional heat-vulnerability indices (subjective weighting, black-box models, lack of validation), the four components of the IPCC AR6 risk framework (Hazard, Exposure, Vulnerability, Adaptive Capacity) were embedded directly into a GAT architecture. Trained on 13,170 spatiotemporal observations and interpreted via three XAI methods (SHAP, GNNExplainer, Integrated Gradients). Choi, H., Park, J. S., & Lim, C.-H. (2026), Urban Climate, Article 102981.",
-    tech: [
-      "Python", "PyTorch", "GAT (Graph Attention Network)",
-      "SHAP", "GNNExplainer", "Integrated Gradients",
-      "IPCC AR6 Framework", "NASA LP DAAC", "LISA / Getis-Ord G*",
-    ],
-    category: "ML",
-    metrics: [
-      { label: "임팩트 팩터", labelEn: "Impact Factor", value: "6.9",    highlight: true },
-      { label: "R²",          labelEn: "R²",            value: "0.9681", highlight: true },
-      { label: "관측 수",     labelEn: "Observations",  value: "13,170" },
-      { label: "XAI 기법",    labelEn: "XAI methods",   value: "3" },
-      { label: "분야 순위",   labelEn: "Field rank",    value: "Top 6%" },
-    ],
-    links: {
-      doi: "https://doi.org/10.1016/j.uclim.2026.102981",
-      paper: "/materials/우수대학원생_발표.pdf",
-    },
-    thumbnail: "linear-gradient(135deg, #9F1239 0%, #E11D48 45%, #FB7185 100%)",
-    featured: true,
-    award: "Urban Climate (IF 6.9) 제1저자 게재",
-    awardEn: "Published in Urban Climate (IF 6.9)",
-    year: 2026,
-  },
-
   /* ── Forest Science AI Competition — Grand Prize (MOFOM) ── */
   {
     id: "forest-mofom",
@@ -246,36 +208,6 @@ export const projects: Project[] = [
     featured: true,
     award: "2025 환경데이터 공모전 우수상 (상금 250만원)",
     awardEn: "2025 Environmental Data Contest — Excellence Award (₩2.5M)",
-    year: 2025,
-  },
-
-  /* ── 3. GCN urban heat island ── */
-  {
-    id: "gcn-urban-heat",
-    title: "시공간 GCN을 활용한 도시열섬 리스크 평가",
-    titleEn: "Urban Heat Island Risk Assessment (Spatiotemporal GCN)",
-    subtitle: "Spatiotemporal GCN — Seoul Urban Heat Island",
-    description:
-      "시공간 그래프 신경망(GCN)으로 서울시 자치구 도시열섬 리스크를 정량화. 2025 한국기후변화학회 춘계 최우수포스터논문상 수상.",
-    descriptionEn:
-      "Quantifying urban heat island risk across Seoul's districts with a spatiotemporal GCN. Best Poster Paper Award at the KSCCR 2025 Spring Conference.",
-    longDescription:
-      "도시열섬 현상의 복잡한 시공간 패턴을 그래프 신경망으로 모델링하여 서울시 25개 자치구 단위의 열 리스크를 분석했습니다. 취약 지역과 취약 시기를 정량적으로 규명하고 선제적 대응 방안을 제안했습니다. 2025 한국기후변화학회 춘계학술대회 최우수포스터논문상을 수상했습니다.",
-    longDescriptionEn:
-      "Modeling the complex spatiotemporal patterns of the urban heat island effect with graph neural networks to assess heat risk across Seoul's 25 districts. The study identifies vulnerable areas and periods quantitatively and proposes proactive responses. Best Poster Paper Award at the KSCCR 2025 Spring Conference.",
-    tech: ["Python", "GCN (Graph Convolutional Network)", "Spatial Analysis", "Climate Data", "Urban Remote Sensing"],
-    category: "ML",
-    metrics: [
-      { label: "분석 대상", labelEn: "Scope",     value: "서울 25구", valueEn: "Seoul · 25 districts" },
-      { label: "MSE",       labelEn: "MSE",        value: "0.0397",  highlight: true },
-      { label: "Moran's I", labelEn: "Moran's I",  value: "0.73" },
-      { label: "수상",      labelEn: "Award",      value: "최우수포스터", valueEn: "Best Poster", highlight: true },
-    ],
-    links: { paper: "/materials/기후변화학회_발표.pdf" },
-    thumbnail: "linear-gradient(135deg, #0F2347 0%, #2563EB 60%, #60A5FA 100%)",
-    featured: false,
-    award: "한국기후변화학회 2025 최우수포스터논문상",
-    awardEn: "KSCCR 2025 — Best Poster Paper Award",
     year: 2025,
   },
 
