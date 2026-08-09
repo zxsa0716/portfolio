@@ -33,12 +33,22 @@ export interface Publication {
   video?: string;
 }
 
+// ── 표기 원칙 (Language policy for titles) ────────────────────────────────
+// 영어로 발표·게재된 성과는 국문 모드에서도 원 제목(영문)을 그대로 쓴다.
+//   → 국제학술지 논문, 국제학회 발표. 제목을 번역하면 다른 성과처럼 보이고
+//     인용·검색이 불가능해지므로 학술 관행상 번역하지 않는다.
+// 국내 학회에서 한국어로 발표한 성과는 국문 모드에서 원 제목(한글)을 쓰고,
+//   영문 모드에서는 번역 제목을 쓰되 venueEn에 "(in Korean)"을 표시해
+//   영어 발표물이 아님을 밝힌다.
+// ──────────────────────────────────────────────────────────────────────────
+
 export const publications: Publication[] = [
   // ── Journal (SCIE) ──────────────────────────────────────────────────────
   {
     id: "urban-climate-2026",
+    // 영문 게재 논문 → 국문 모드에서도 원 제목 유지 (번역 금지)
     title:
-      "설명가능 그래프 신경망을 통한 기후정의: IPCC AR6 프레임워크 기반 시공간 어텐션 도시 열 리스크 평가",
+      "Climate justice through explainable graph neural networks: A spatiotemporal attention-based urban heat risk assessment under IPCC AR6 framework",
     titleEn:
       "Climate justice through explainable graph neural networks: A spatiotemporal attention-based urban heat risk assessment under IPCC AR6 framework",
     venue: "Urban Climate · Choi, H., Park, J. S., & Lim, C.-H. (2026)",
@@ -58,13 +68,43 @@ export const publications: Publication[] = [
     doi: "https://doi.org/10.1016/j.uclim.2026.102981",
   },
 
+  // ── International conference (presented in English) ─────────────────────
+  {
+    id: "sfem-2026",
+    // 국제학회 영어 구두발표 → 국·영문 모드 모두 원 제목(영문) 유지
+    title:
+      "AI-Driven Climate-Resilient Adaptation Model of Korean Forests (CRAFT): Grid-scale Integration of Growth, Carbon, Habitat, and Disaster",
+    titleEn:
+      "AI-Driven Climate-Resilient Adaptation Model of Korean Forests (CRAFT): Grid-scale Integration of Growth, Carbon, Habitat, and Disaster",
+    venue:
+      "Joint International Symposium on Sustainable Forest Ecosystem Management 2026 (SFEM 2026) · Daegu, Republic of Korea · Choi, H., Park, J. S., & Lim, C.-H.",
+    venueEn:
+      "Joint International Symposium on Sustainable Forest Ecosystem Management 2026 (SFEM 2026) · Daegu, Republic of Korea · Choi, H., Park, J. S., & Lim, C.-H.",
+    venueType: "conference",
+    date: "2026.08",
+    year: 2026,
+    role: "제1저자 · 국제학회 구두 발표",
+    roleEn: "First author · Oral presentation, international symposium",
+    metrics: [
+      { label: "격자",        labelEn: "Grid",          value: "1 km · 88,000 셀", valueEn: "1 km · 88,000 cells", highlight: true },
+      { label: "탄소 재현",    labelEn: "Carbon R²",     value: "0.88–0.93",        highlight: true },
+      { label: "연간 루프 검증", labelEn: "Loop validation", value: "r 0.86–0.88",   valueEn: "r 0.86–0.88" },
+      { label: "서식지 AUC",   labelEn: "Habitat AUC",   value: "0.91 (14종 중 9종 >0.70)", valueEn: "0.91 (9 of 14 species >0.70)" },
+      { label: "재해 PR-AUC",  labelEn: "Disaster PR-AUC", value: "0.72 / 0.87",    valueEn: "0.72 / 0.87 (fire / landslide)" },
+      { label: "2100 전망",    labelEn: "2100 projection", value: "177 [154–206] tC/ha", valueEn: "177 [154–206] tC/ha" },
+    ],
+    tags: ["CRAFT", "산림 탄소", "서식지 적합도", "산불·산사태", "1km 격자", "SSP 2100"],
+    tagsEn: ["CRAFT", "Forest carbon", "Habitat suitability", "Wildfire & landslide", "1 km grid", "SSP to 2100"],
+    paper: "/materials/SFEM2026_국제학회_구두발표.pdf",
+  },
+
   // ── 2026 presentations ──────────────────────────────────────────────────
   {
     id: "forest-ai-competition",
     title: "다목적 산림경영 의사결정 지원 AI",
     titleEn: "Multi-objective forest management decision-support AI",
     venue: "제1회 산림과학 AI활용 경진대회 (국립산림과학원) · 팀 ‘산림의 국민’",
-    venueEn: "1st Forest Science AI Competition (NIFoS) · Team",
+    venueEn: "1st Forest Science AI Competition (NIFoS)",
     venueType: "competition",
     date: "2026.07.24",
     year: 2026,
@@ -89,7 +129,7 @@ export const publications: Publication[] = [
     title: "숲 스타터 (Soop Starter) — 청년 산촌 진입 의사결정 지원 시스템",
     titleEn: "Soop Starter — decision-support system for young foresters' rural settlement",
     venue: "2026 산림 공공데이터·AI 활용 창업경진대회 (산림청) · 팀 ‘숲스타터’",
-    venueEn: "2026 Forest Public Data & AI Startup Competition (KFS) · Team",
+    venueEn: "2026 Forest Public Data & AI Startup Competition (KFS)",
     venueType: "competition",
     date: "2026.07",
     year: 2026,
@@ -139,7 +179,7 @@ export const publications: Publication[] = [
     titleEn:
       "Mortality reduction effects and optimal allocation of heatwave response budgets: the 25 districts of Seoul",
     venue: "2026 한국기후변화학회 춘계학술대회",
-    venueEn: "KSCCR 2026 Spring Conference",
+    venueEn: "KSCCR 2026 Spring Conference (in Korean)",
     venueType: "conference",
     date: "2026",
     year: 2026,
@@ -156,7 +196,7 @@ export const publications: Publication[] = [
     titleEn:
       "Impact of climate change on burned area trends: focusing on the Indochinese Peninsula",
     venue: "2026 한국기후변화학회 춘계학술대회",
-    venueEn: "KSCCR 2026 Spring Conference",
+    venueEn: "KSCCR 2026 Spring Conference (in Korean)",
     venueType: "conference",
     date: "2026",
     year: 2026,
@@ -173,7 +213,7 @@ export const publications: Publication[] = [
     titleEn:
       "Resilience analysis of forest ecosystems in Gangwon Province: EWS-based time-series analysis with AR(1) indicators",
     venue: "2026 산림과학 공동학술대회",
-    venueEn: "2026 Joint Conference of Korean Forest Science Societies",
+    venueEn: "2026 Joint Conference of Korean Forest Science Societies (in Korean)",
     venueType: "conference",
     date: "2026.02",
     year: 2026,
@@ -198,7 +238,7 @@ export const publications: Publication[] = [
       "Explainable AI (XAI) for climate justice: GAT- and AR6 framework-based spatiotemporal heat risk assessment of Seoul",
     venue:
       "한국기후변화학회 2025년 하반기 학술대회 우수대학원생지원프로그램",
-    venueEn: "KSCCR 2025 Fall Conference · Outstanding Graduate Student Program",
+    venueEn: "KSCCR 2025 Fall Conference · Outstanding Graduate Student Program (in Korean)",
     venueType: "program",
     date: "2025.12",
     year: 2025,
@@ -249,7 +289,7 @@ export const publications: Publication[] = [
     titleEn:
       "Urban heat island risk assessment of Seoul using spatiotemporal graph convolutional networks (GCN)",
     venue: "한국기후변화학회 2025년 춘계학술대회",
-    venueEn: "KSCCR 2025 Spring Conference",
+    venueEn: "KSCCR 2025 Spring Conference (in Korean)",
     venueType: "conference",
     date: "2025.06",
     year: 2025,
@@ -273,7 +313,7 @@ export const publications: Publication[] = [
     titleEn:
       "Cost and effectiveness evaluation of adaptation for mitigating climate inequality and flood risk: districts of Seoul",
     venue: "한국기후변화학회 2025년 춘계학술대회",
-    venueEn: "KSCCR 2025 Spring Conference",
+    venueEn: "KSCCR 2025 Spring Conference (in Korean)",
     venueType: "conference",
     date: "2025.06",
     year: 2025,

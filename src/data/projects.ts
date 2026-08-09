@@ -80,6 +80,46 @@ export const projects: Project[] = [
     year: 2026,
   },
 
+  /* ── 2. International symposium: CRAFT (SFEM 2026, first author, oral) ── */
+  {
+    id: "craft-forest-model",
+    // 국제학회 영어 발표 성과 → 제목은 원문(영문) 유지, 설명만 국문 제공
+    title: "CRAFT — AI-Driven Climate-Resilient Adaptation Model of Korean Forests",
+    titleEn: "CRAFT — AI-Driven Climate-Resilient Adaptation Model of Korean Forests",
+    subtitle: "First-author oral presentation · SFEM 2026 (international)",
+    description:
+      "전국 산림을 1km 격자 약 88,000셀로 재구성해 탄소·서식지·재해를 하나의 격자와 하나의 연간 루프에서 함께 계산하고, 두 SSP 경로로 2100년까지 전망한 통합 모형입니다.",
+    descriptionEn:
+      "An integrated model that reconstructs Korea's forests on ~88,000 cells of a 1 km grid and advances carbon, habitat and disaster together in one annual loop, projected to 2100 under two SSP pathways.",
+    longDescription:
+      "탄소·서식지·재해는 국내에서 각각 잘 모형화되어 있지만 서로 다른 공간 단위와 기준연도에서 만들어져 한쪽의 변화가 다른 쪽에 미치는 영향을 추적할 수 없었습니다. CRAFT는 공간 단위와 달력을 먼저 고정하는 방식으로 이 문제에 접근합니다. 국가산림자원조사 44,928개 표본점으로 계수를 한 번 보정한 뒤(Layer 0), 탄소는 임령에서 재적을 거쳐 탄소로 가는 공정 사슬로, 서식지와 재해는 각각 앙상블 모형으로 학습합니다(Layer 1). Layer 2는 이 세 모듈을 연간 루프로 결합해 생장·고사·교란·분해·갱신을 같은 해 같은 셀에서 해결하며, 재측정 표본점 9,593개에 대해 상관 0.86~0.88을 재현했습니다. 공표 통계 대비 2.2배 과대추정이던 재적 사슬을 계수 적용 기준을 바로잡아 1.00~1.10으로 닫은 것이 방법론적 핵심입니다. 2100년 전망에서 탄소 저장량은 2079년 192 tC/ha로 정점을 지나고 순흡수는 2081년경 0에 도달합니다. 불확실성 분해에서 2100년 구간 변동의 96.5%가 모수 추정에서 왔습니다. 공간 보정을 담당하는 Layer 3(합성곱 순환 신경망)은 설계와 파이프라인 검증까지 완료했고 학습은 다음 단계입니다.",
+    longDescriptionEn:
+      "Carbon, habitat and disaster are each well modelled in Korea, but on different spatial units and reference years, so the effect of one on another cannot be traced. CRAFT fixes the spatial unit and the calendar first. Parameters are calibrated once on 44,928 National Forest Inventory plots (Layer 0); carbon is then derived through a process chain from stand age to volume to carbon, while habitat and disaster are fitted as ensembles (Layer 1). Layer 2 couples the three modules in an annual loop that resolves growth, mortality, disturbance, decay and establishment in the same year for the same cell, reproducing 9,593 remeasured plots at r 0.86–0.88. Methodologically the central result is closing a 2.2-fold overstatement of reconstructed volume against published national statistics to 1.00–1.10, by reading each coefficient on the basis it was fitted on. Projected to 2100, the carbon stock peaks in 2079 at 192 tC/ha while net uptake reaches zero around 2081. Variance decomposition attributes 96.5% of the 2100 interval to parameter estimates. Layer 3, a convolutional recurrent network for spatial correction, is designed and pipeline-verified but not yet fitted.",
+    tech: [
+      "Python", "1 km national grid", "National Forest Inventory (44,928 plots)",
+      "Process-based carbon chain", "Ensemble SDM (biomod2 design)",
+      "Isotonic calibration", "Spatial block CV", "SSP2-4.5 / SSP5-8.5",
+      "ConvRNN (designed)",
+    ],
+    category: "research",
+    metrics: [
+      { label: "격자",         labelEn: "Grid",            value: "1km · 88,000셀", valueEn: "1 km · 88,000 cells", highlight: true },
+      { label: "탄소 재현 R²",  labelEn: "Carbon R²",       value: "0.88–0.93",       highlight: true },
+      { label: "루프 검증",     labelEn: "Loop validation", value: "r 0.86–0.88" },
+      { label: "서식지 AUC",    labelEn: "Habitat AUC",     value: "0.91" },
+      { label: "재해 PR-AUC",   labelEn: "Disaster PR-AUC", value: "0.72 / 0.87" },
+      { label: "2100 전망",     labelEn: "2100 projection", value: "177 [154–206] tC/ha" },
+    ],
+    links: {
+      paper: "/materials/SFEM2026_국제학회_구두발표.pdf",
+    },
+    thumbnail: "linear-gradient(135deg, #14532D 0%, #16A34A 45%, #86EFAC 100%)",
+    featured: true,
+    award: "SFEM 2026 국제학회 제1저자 구두 발표",
+    awardEn: "First-author oral presentation, SFEM 2026",
+    year: 2026,
+  },
+
   /* ── Forest Science AI Competition — Grand Prize (MOFOM) ── */
   {
     id: "forest-mofom",
