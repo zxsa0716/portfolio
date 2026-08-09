@@ -231,6 +231,32 @@ export const publications: Publication[] = [
 
   // ── 2025 ──────────────────────────────────────────────────────────────
   {
+    id: "eco-community-center",
+    title:
+      "기후취약 계층 고령자 보호를 위한 정릉3동 빈집 활용 무더위쉼터 조성 방안",
+    titleEn:
+      "Using vacant houses in Jeongneung 3-dong as heat shelters to protect climate-vulnerable older adults",
+    venue:
+      "2025 HUSS 환경컨소시엄 컨퍼런스 「Climate Future: 산업 전환과 지역·사회의 대응」 · 최희도, 정민주",
+    venueEn:
+      "2025 HUSS Environmental Consortium Conference “Climate Future” · Choi, H. & Chung, M. (in Korean)",
+    venueType: "conference",
+    date: "2025.11",
+    year: 2025,
+    role: "제1저자 · 구두 발표",
+    roleEn: "First author · Oral presentation",
+    metrics: [
+      { label: "고령자 인터뷰",  labelEn: "Older adults interviewed", value: "11명", valueEn: "11 residents", highlight: true },
+      { label: "경로당 이용 경험", labelEn: "Had used the senior center", value: "1명 / 11명 (9.1%)", valueEn: "1 of 11 (9.1%)", highlight: true },
+      { label: "무더위쉼터",     labelEn: "Heat shelters in the district", value: "3곳", valueEn: "3 shelters" },
+      { label: "활용 가능 빈집", labelEn: "Usable vacant houses", value: "1~2등급 63%", valueEn: "63% in grades 1–2" },
+      { label: "폭염일수 증가",  labelEn: "Heatwave days trend", value: "10년당 +1.55일", valueEn: "+1.55 days per decade" },
+    ],
+    tags: ["폭염 취약성", "빈집 활용", "무더위쉼터", "현장조사", "제로에너지"],
+    tagsEn: ["Heat vulnerability", "Vacant housing reuse", "Heat shelters", "Field survey", "Zero-energy retrofit"],
+    paper: "/materials/에코커뮤니티_발표.pdf",
+  },
+  {
     id: "xai-heat",
     title:
       "기후정의를 위한 설명가능 인공지능(XAI): GAT와 AR6 프레임워크 기반 서울시 시공간 열 리스크 평가",
