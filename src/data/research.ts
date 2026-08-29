@@ -98,6 +98,33 @@ export const publications: Publication[] = [
     paper: "/materials/SFEM2026_국제학회_구두발표.pdf",
   },
 
+  // ── Domestic conference (presented in Korean) ──────────────────────────
+  {
+    id: "forest-road-optimization",
+    title: "다목적 최적화 기반 전국 임도망 개설 우선순위 평가 프레임워크 개발",
+    titleEn:
+      "A Multi-Objective Optimization Framework for Forest Road Network Installation Prioritization: A Pareto Frontier Approach",
+    venue:
+      "2026년 한국산림과학회 하계총회 및 학술연구발표회 · 여수 · 이하은, 최희도, 임철희",
+    venueEn:
+      "2026 Summer Conference of the Korean Society of Forest Science · Yeosu, Republic of Korea (in Korean) · Lee, H.-E., Choi, H., & Lim, C.-H.",
+    venueType: "conference",
+    date: "2026.08",
+    year: 2026,
+    role: "제2저자 · 구두 발표",
+    roleEn: "Second author · Oral presentation",
+    metrics: [
+      { label: "평가 축",     labelEn: "Evaluation axes", value: "경제성·환경성·안전성", valueEn: "Productivity · Environment · Safety", highlight: true },
+      { label: "최적화",      labelEn: "Optimization",    value: "Grid search · 파레토 최적해", valueEn: "Grid search · Pareto frontier", highlight: true },
+      { label: "전국 임도밀도", labelEn: "Road density",    value: "4.3 m/ha", valueEn: "4.3 m/ha (national avg.)" },
+      { label: "가중치 비교",  labelEn: "Weighting schemes", value: "등가중 · 파레토 · 축 특화", valueEn: "Equal · Pareto-optimal · axis-specialised" },
+      { label: "대상",        labelEn: "Extent",          value: "전국 매핑", valueEn: "Nationwide mapping" },
+    ],
+    tags: ["임도망", "다목적 최적화", "파레토 최적", "공간 의사결정", "산림 인프라"],
+    tagsEn: ["Forest roads", "Multi-objective optimization", "Pareto frontier", "Spatial decision support", "Forest infrastructure"],
+    paper: "/materials/산림과학회_임도망_초록.pdf",
+  },
+
   // ── 2026 presentations ──────────────────────────────────────────────────
   {
     id: "forest-ai-competition",

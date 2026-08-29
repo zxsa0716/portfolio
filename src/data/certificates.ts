@@ -345,3 +345,60 @@ export const awards: Award[] = [
     paperEn: "\"Learning Climate Big Data\" (essay)",
   },
 ];
+
+// ── Research fellowships & scholarships ──────────────────────────────────
+// The Forest Pioneer fellowship is a competitive, multi-year research grant
+// (5 graduate researchers nationwide), not a tuition award — kept separate
+// from the university scholarships below.
+
+export interface Scholarship {
+  id: string;
+  title: string;
+  titleEn: string;
+  organizer: string;
+  organizerEn: string;
+  period: string;
+  amount?: string;
+  amountEn?: string;
+  note?: string;
+  noteEn?: string;
+  /** Nationally competitive selection — rendered with emphasis. */
+  competitive?: boolean;
+  link?: string;
+}
+
+export const scholarships: Scholarship[] = [
+  {
+    id: "forest-pioneer-5th",
+    title: "제5기 산림 Pioneer 육성 장학생",
+    titleEn: "Forest Pioneer Research Fellow (5th cohort)",
+    organizer: "정인욱학술장학재단 (삼표그룹) · 한국산림과학회 심사",
+    organizerEn:
+      "Chung In-wook Academic Scholarship Foundation (Sampyo Group) · reviewed by the Korean Society of Forest Science",
+    period: "2026 – 2028",
+    amount: "월 100만원 × 최대 24개월 (최대 2,400만원)",
+    amountEn: "₩1M / month for up to 24 months (up to ₩24M)",
+    note:
+      "산림·임업 현장에 곧바로 적용할 수 있는 실질기술 연구자를 지원하는 연구장학. 전국 석·박사 연구자 중 5명 선발(총 1억 2,000만원), 서류·면접 심사. 2026.08.25 여수 수여식.",
+    noteEn:
+      "A research fellowship for graduate researchers developing forest and forestry technology that can be applied directly in the field. Five researchers selected nationwide (₩120M in total) through document and interview review; awarded 25 August 2026 in Yeosu.",
+    competitive: true,
+    link: "https://chunginwookfoundation.org/",
+  },
+  {
+    id: "seonggok",
+    title: "성곡장학금",
+    titleEn: "Seonggok Scholarship",
+    organizer: "국민대학교 대학원",
+    organizerEn: "Kookmin University Graduate School",
+    period: "2025 – 2027",
+  },
+  {
+    id: "top-student",
+    title: "수석장학금 (등록금 70%)",
+    titleEn: "Top Student Scholarship (70% of tuition)",
+    organizer: "국민대학교",
+    organizerEn: "Kookmin University",
+    period: "2024 – 2025",
+  },
+];

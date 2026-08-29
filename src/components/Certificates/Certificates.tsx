@@ -6,8 +6,8 @@
  */
 
 import { motion } from "framer-motion";
-import { Award, Medal, CheckCircle } from "lucide-react";
-import { certificates, activityCerts, awards } from "@/data/certificates";
+import { Award, Medal, CheckCircle, GraduationCap } from "lucide-react";
+import { certificates, activityCerts, awards, scholarships } from "@/data/certificates";
 import { fadeInUp, staggerContainer, scaleIn, viewportConfig } from "@/lib/animations";
 import { useLang } from "@/lib/i18n";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -63,12 +63,118 @@ export default function Certificates() {
         <SectionHeader
           index="04"
           kicker="Credentials"
-          title={t("Certifications, training & awards", "자격 · 수료 · 수상")}
+          title={t("Fellowships, certifications & awards", "장학 · 자격 · 수상")}
           description={t(
-            `${certificates.length} certifications · ${activityCerts.length} training records · ${awards.length} awards`,
-            `자격증 ${certificates.length}개 · 활동수료 ${activityCerts.length}개 · 수상 ${awards.length}건`,
+            `${scholarships.length} scholarships · ${certificates.length} certifications · ${activityCerts.length} training records · ${awards.length} awards`,
+            `장학 ${scholarships.length}건 · 자격증 ${certificates.length}개 · 활동수료 ${activityCerts.length}개 · 수상 ${awards.length}건`,
           )}
         />
+
+        {/* SECTION 0 — Research fellowships & scholarships */}
+        <motion.div
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+          className="mb-16"
+        >
+          <h3 className="font-display font-bold text-xl text-[#F1F5F9] mb-6 flex items-center gap-2">
+            <GraduationCap className="w-5 h-5 text-emerald-400" />
+            {t("Fellowships & scholarships", "장학")}
+            <span className="text-emerald-400 text-base font-normal">({scholarships.length})</span>
+          </h3>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            className="space-y-4"
+          >
+            {scholarships.map((s) =>
+              s.competitive ? (
+                /* Competitive research fellowship — featured treatment */
+                <motion.div
+                  key={s.id}
+                  variants={fadeInUp}
+                  className="p-6 rounded-2xl"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, rgba(16,185,129,0.09) 0%, rgba(12,20,38,0.9) 55%)",
+                    border: "1px solid rgba(16,185,129,0.3)",
+                  }}
+                >
+                  <span
+                    className="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-semibold uppercase tracking-wider mb-3"
+                    style={{ background: "rgba(16,185,129,0.15)", color: "#6EE7B7" }}
+                  >
+                    {t("Competitive research fellowship", "연구장학 · 전국 선발")}
+                  </span>
+
+                  <div className="flex flex-col md:flex-row md:items-start gap-4">
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-[#F1F5F9] font-bold text-base leading-snug mb-2">
+                        {lang === "en" ? s.titleEn : s.title}
+                      </h4>
+
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {(lang === "en" ? s.amountEn : s.amount) && (
+                          <span
+                            className="px-2 py-0.5 rounded-md text-[11px] font-semibold"
+                            style={{
+                              background: "rgba(16,185,129,0.12)",
+                              border: "1px solid rgba(16,185,129,0.25)",
+                              color: "#6EE7B7",
+                            }}
+                          >
+                            {lang === "en" ? s.amountEn : s.amount}
+                          </span>
+                        )}
+                        <span
+                          className="px-2 py-0.5 rounded-md text-[11px] font-semibold"
+                          style={{
+                            background: "rgba(245,158,11,0.12)",
+                            border: "1px solid rgba(245,158,11,0.25)",
+                            color: "#FCD34D",
+                          }}
+                        >
+                          {t("5 selected nationwide", "전국 5명 선발")}
+                        </span>
+                      </div>
+
+                      <p className="text-[#64748B] text-xs mb-2 leading-relaxed">
+                        {lang === "en" ? s.organizerEn : s.organizer}
+                      </p>
+                      {(lang === "en" ? s.noteEn : s.note) && (
+                        <p className="text-[#475569] text-[11px] leading-relaxed">
+                          {lang === "en" ? s.noteEn : s.note}
+                        </p>
+                      )}
+                    </div>
+
+                    <span className="font-mono text-[#334155] text-xs shrink-0">{s.period}</span>
+                  </div>
+                </motion.div>
+              ) : (
+                /* University scholarships — compact rows */
+                <motion.div
+                  key={s.id}
+                  variants={fadeInUp}
+                  className="px-6 py-4 rounded-2xl flex flex-col sm:flex-row sm:items-center gap-2"
+                  style={{ background: "rgba(12,20,38,0.85)", border: "1px solid rgba(255,255,255,0.07)" }}
+                >
+                  <span className="text-[#E2E8F0] font-semibold text-sm">
+                    {lang === "en" ? s.titleEn : s.title}
+                  </span>
+                  <span className="text-[#475569] text-xs sm:ml-auto">
+                    {lang === "en" ? s.organizerEn : s.organizer}
+                  </span>
+                  <span className="font-mono text-[#334155] text-xs shrink-0">{s.period}</span>
+                </motion.div>
+              ),
+            )}
+          </motion.div>
+        </motion.div>
 
         {/* SECTION 1 — Certifications */}
         <motion.div

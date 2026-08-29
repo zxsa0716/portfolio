@@ -198,8 +198,8 @@ export const researchProjects: ResearchProject[] = [
   },
   {
     id: "forest-road",
-    title: "AI 기반 광역 임도망 배치 기술 개발",
-    titleEn: "AI-Based Regional Forest Road Network Planning Technology",
+    title: "AI 기반 임도 노선 선정 및 설계 기술개발",
+    titleEn: "Development of AI-Based Forest Road Route Selection and Design Technology",
     kind: "rnd",
     period: "2026.04 – ",
     funder: "산림청 · 한국임업진흥원",
