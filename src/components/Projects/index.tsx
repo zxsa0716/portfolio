@@ -1,27 +1,26 @@
 "use client";
 
 /**
- * Projects — Filterable grid with glassmorphism cards and animated modal.
+ * Projects — a catalogue of built work, read as an index rather than a stack.
  *
- * Filter tabs: 전체 / AI·ML / 웹 개발 / 데이터 분석
- * Featured projects span 2 columns in "all" view.
- * Smooth Framer Motion layout animations on filter switch.
- * Project modal with full detail on card click.
+ * Earlier this section rendered eight tall cards, six of which spanned two
+ * columns, so reaching the end took most of a screen each. One compact row per
+ * project keeps the whole catalogue in about a screen and a half, and lines the
+ * headline figures up in a column the eye can run down. Detail stays in the modal.
  */
 
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects, CATEGORY_META, type Project } from "@/data/projects";
-import { ProjectCard } from "./ProjectCard";
+import { ProjectRow } from "./ProjectRow";
 import { ProjectModal } from "./ProjectModal";
-import { fadeInUp, staggerContainer, viewportConfig } from "@/lib/animations";
-import { cn } from "@/lib/utils";
+import { fadeInUp, viewportConfig } from "@/lib/animations";
 import { useLang } from "@/lib/i18n";
 import SectionHeader from "@/components/ui/SectionHeader";
 
 type FilterKey = "all" | Project["category"];
 
-const FILTERS: FilterKey[] = ["all", "ML", "development", "data"];
+const FILTERS: FilterKey[] = ["all", "ML", "development", "data", "research"];
 
 export default function Projects() {
   const { lang, t } = useLang();
@@ -38,29 +37,12 @@ export default function Projects() {
 
   return (
     <>
-      {/* ══════════════════════════════════════════════
-          SECTION
-          ══════════════════════════════════════════════ */}
       <section
         id="projects"
-        className="relative py-28"
-        style={{ backgroundColor: "#080E1C" }}
+        className="section-pad band-top relative"
+        style={{ background: "var(--paper)" }}
       >
-        {/* Faint grid background */}
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage: [
-              "linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px)",
-              "linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px)",
-            ].join(", "),
-            backgroundSize: "64px 64px",
-          }}
-        />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-6">
-          {/* ── Section header ─────────────────────── */}
+        <div className="measure">
           <SectionHeader
             index="02"
             kicker="Projects"
@@ -71,13 +53,16 @@ export default function Projects() {
             )}
           />
 
-          {/* ── Filter tabs ────────────────────────── */}
+          {/* ── Filter — text tabs on a rule, as a catalogue would index ── */}
           <motion.div
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
             viewport={viewportConfig}
-            className="flex flex-wrap justify-center gap-2 mb-10"
+            className="scroll-x -mb-px flex items-center gap-6"
+            style={{ borderBottom: "1px solid var(--rule)" }}
+            role="tablist"
+            aria-label={t("Filter projects by category", "분야별 프로젝트 필터")}
           >
             {FILTERS.map((f) => {
               const meta = CATEGORY_META[f];
@@ -85,59 +70,50 @@ export default function Projects() {
               return (
                 <button
                   key={f}
+                  role="tab"
+                  aria-selected={isActive}
                   onClick={() => setActiveFilter(f)}
-                  className={cn(
-                    "inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200",
-                    isActive
-                      ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25 border border-blue-500/50"
-                      : "border border-white/12 text-[#64748B] hover:text-[#F1F5F9] hover:border-white/25 bg-transparent",
-                  )}
+                  className="relative shrink-0 pb-2.5 text-[13px] font-medium transition-colors duration-150"
+                  style={{ color: isActive ? "var(--accent)" : "var(--muted)" }}
                 >
                   {lang === "en" ? meta.labelEn : meta.label}
-                  <span
-                    className={cn(
-                      "px-1.5 py-0.5 rounded-full text-[10px] font-mono leading-none",
-                      isActive ? "bg-white/20 text-white" : "bg-white/8 text-[#475569]",
-                    )}
-                  >
+                  <span className="font-mono tabular ml-1.5 text-[10px]" style={{ color: "var(--faint)" }}>
                     {meta.count}
                   </span>
+                  {isActive && (
+                    <motion.span
+                      layoutId="project-filter-underline"
+                      className="absolute inset-x-0 -bottom-px h-0.5"
+                      style={{ background: "var(--accent)" }}
+                    />
+                  )}
                 </button>
               );
             })}
           </motion.div>
 
-          {/* ── Project grid ───────────────────────── */}
-          <motion.div
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
-          >
+          {/* ── Catalogue ──────────────────────────────────────── */}
+          <motion.div layout style={{ borderBottom: "1px solid var(--rule)" }}>
             <AnimatePresence mode="popLayout">
               {filtered.map((project) => (
-                <ProjectCard
-                  key={project.id}
-                  project={project}
-                  wide={project.featured && activeFilter === "all"}
-                  onClick={handleSelect}
-                />
+                <ProjectRow key={project.id} project={project} onClick={handleSelect} />
               ))}
             </AnimatePresence>
           </motion.div>
 
-          {/* ── Empty state ────────────────────────── */}
           {filtered.length === 0 && (
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-center text-[#475569] py-16"
+              className="py-16 text-center text-sm"
+              style={{ color: "var(--muted)" }}
             >
-              {t("No projects in this category.", "해당 카테고리의 프로젝트가 없습니다.")}
+              {t("No projects in this category.", "해당 분야의 프로젝트가 없습니다.")}
             </motion.p>
           )}
         </div>
       </section>
 
-      {/* ── Project detail modal ─────────────────── */}
       <ProjectModal project={selectedProject} onClose={handleClose} />
     </>
   );

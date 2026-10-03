@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk, Geist_Mono, Newsreader } from "next/font/google";
+import { Inter, Geist_Mono, Newsreader } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import Providers from "@/components/Providers";
@@ -15,17 +15,9 @@ const inter = Inter({
   weight:    ["400", "500", "600", "700"],
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable:  "--font-space-grotesk",
-  subsets:   ["latin"],
-  display:   "swap",
-  preload:   true,
-  weight:    ["500", "600", "700"],
-});
-
 // Academic-journal serif — used for section titles & display accents (EN).
 const newsreader = Newsreader({
-  variable:  "--font-serif",
+  variable:  "--font-serif-latin",
   subsets:   ["latin"],
   display:   "swap",
   preload:   true,
@@ -107,8 +99,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor:  "#080E1C",
-  colorScheme: "dark",
+  themeColor:  "#FFFFFF",
+  colorScheme: "light",
   width:       "device-width",
   initialScale: 1,
 };
@@ -121,7 +113,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${newsreader.variable} ${geistMono.variable} ${kopubDotum.variable} ${kopubBatang.variable} antialiased`}
+        className={`${inter.variable} ${newsreader.variable} ${geistMono.variable} ${kopubDotum.variable} ${kopubBatang.variable} antialiased`}
       >
         <Providers>{children}</Providers>
       </body>

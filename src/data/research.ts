@@ -111,8 +111,8 @@ export const publications: Publication[] = [
     venueType: "conference",
     date: "2026.08",
     year: 2026,
-    role: "제2저자 · 구두 발표",
-    roleEn: "Second author · Oral presentation",
+    role: "제2저자 · 포스터 발표",
+    roleEn: "Second author · Poster presentation",
     metrics: [
       { label: "평가 축",     labelEn: "Evaluation axes", value: "경제성·환경성·안전성", valueEn: "Productivity · Environment · Safety", highlight: true },
       { label: "최적화",      labelEn: "Optimization",    value: "Grid search · 파레토 최적해", valueEn: "Grid search · Pareto frontier", highlight: true },
@@ -122,7 +122,7 @@ export const publications: Publication[] = [
     ],
     tags: ["임도망", "다목적 최적화", "파레토 최적", "공간 의사결정", "산림 인프라"],
     tagsEn: ["Forest roads", "Multi-objective optimization", "Pareto frontier", "Spatial decision support", "Forest infrastructure"],
-    paper: "/materials/산림과학회_임도망_초록.pdf",
+    paper: "/materials/산림과학회_임도망_포스터.pdf",
   },
 
   // ── 2026 presentations ──────────────────────────────────────────────────

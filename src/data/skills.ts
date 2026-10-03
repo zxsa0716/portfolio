@@ -15,9 +15,8 @@ export interface SkillCluster {
   id: string;
   label: string;
   labelEn: string;
-  textColor: string;
-  rawRgb: string;
-  glowColor: string;
+  /** Design-system colour token: var(--<token>), --<token>-soft, --<token>-line */
+  token: "accent" | "data" | "code" | "award" | "neutral";
   skills: SkillNode[];
 }
 
@@ -33,9 +32,7 @@ export const skillClusters: SkillCluster[] = [
     id: "ml-ai",
     label: "ML · AI",
     labelEn: "Machine Learning & AI",
-    textColor: "text-blue-400",
-    rawRgb: "59,130,246",
-    glowColor: "rgba(59,130,246,0.5)",
+    token: "accent",
     skills: [
       node("Graph Attention Network (GAT)", "Graph Attention Network (GAT)", 90),
       node("Graph Convolutional Network (GCN)", "Graph Convolutional Network (GCN)", 88),
@@ -50,9 +47,7 @@ export const skillClusters: SkillCluster[] = [
     id: "spatial",
     label: "공간 분석",
     labelEn: "Spatial Analysis / GIS",
-    textColor: "text-cyan-400",
-    rawRgb: "6,182,212",
-    glowColor: "rgba(6,182,212,0.5)",
+    token: "data",
     skills: [
       node("Google Earth Engine (GEE)", "Google Earth Engine (GEE)", 83),
       node("GIS 공간 분석", "GIS spatial analysis", 82),
@@ -67,9 +62,7 @@ export const skillClusters: SkillCluster[] = [
     id: "programming",
     label: "프로그래밍",
     labelEn: "Programming",
-    textColor: "text-emerald-400",
-    rawRgb: "16,185,129",
-    glowColor: "rgba(16,185,129,0.5)",
+    token: "code",
     skills: [
       node("Python (pandas, numpy, scikit-learn)", "Python (pandas, numpy, scikit-learn)", 88),
       node("HTML / CSS / JavaScript", "HTML / CSS / JavaScript", 88),
@@ -83,9 +76,7 @@ export const skillClusters: SkillCluster[] = [
     id: "climate",
     label: "기후과학",
     labelEn: "Climate Science",
-    textColor: "text-amber-400",
-    rawRgb: "245,158,11",
-    glowColor: "rgba(245,158,11,0.5)",
+    token: "award",
     skills: [
       node("기후변화 영향·적응 평가", "Climate impact & adaptation assessment", 88),
       node("기후정의 / 취약성 분석", "Climate justice / vulnerability analysis", 85),
@@ -99,9 +90,7 @@ export const skillClusters: SkillCluster[] = [
     id: "tools",
     label: "도구",
     labelEn: "Tools & Frameworks",
-    textColor: "text-slate-400",
-    rawRgb: "100,116,139",
-    glowColor: "rgba(100,116,139,0.5)",
+    token: "neutral",
     skills: [
       node("D3.js", "D3.js", 72),
       node("Leaflet.js", "Leaflet.js", 78),

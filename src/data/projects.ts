@@ -33,8 +33,6 @@ export interface Project {
   category: "research" | "development" | "ML" | "data";
   metrics: ProjectMetric[];
   links: ProjectLinks;
-  /** CSS gradient string used as visual thumbnail placeholder */
-  thumbnail: string;
   featured: boolean;
   award?: string;
   awardEn?: string;
@@ -69,7 +67,6 @@ export const projects: Project[] = [
       demo: "https://mofom-ai.vercel.app",
       paper: "/materials/산림AI경진대회_수상작.pdf",
     },
-    thumbnail: "linear-gradient(135deg, #14532D 0%, #16A34A 55%, #4ADE80 100%)",
     featured: true,
     award: "제1회 산림과학 AI활용 경진대회 대상 (상금 200만원)",
     awardEn: "1st Forest Science AI Competition — Grand Prize (₩2M)",
@@ -103,7 +100,6 @@ export const projects: Project[] = [
       demo: "https://soop-starter.streamlit.app",
       paper: "/materials/숲스타터_수상작.pdf",
     },
-    thumbnail: "linear-gradient(135deg, #134E4A 0%, #0D9488 50%, #5EEAD4 100%)",
     featured: true,
     award: "2026 산림 공공데이터·AI 창업경진대회 우수상",
     awardEn: "2026 Forest Public-Data & AI Startup Competition — Excellence Award",
@@ -135,7 +131,6 @@ export const projects: Project[] = [
       github: "https://github.com/zxsa0716/AX_Contest",
       paper: "/materials/AX경진대회_수상작.pdf",
     },
-    thumbnail: "linear-gradient(135deg, #0C4A6E 0%, #0284C7 50%, #38BDF8 100%)",
     featured: false,
     award: "2026 AX 아이디어 경진대회 우수상 (상금 300만원)",
     awardEn: "2026 AX Idea Competition — Excellence Award (₩3M)",
@@ -168,7 +163,6 @@ export const projects: Project[] = [
       github: "https://github.com/zxsa0716/cina",
       demo: "https://zxsa0716.github.io/cina/web/index.html",
     },
-    thumbnail: "linear-gradient(135deg, #312E81 0%, #4F46E5 50%, #818CF8 100%)",
     featured: true,
     year: 2025,
   },
@@ -204,7 +198,6 @@ export const projects: Project[] = [
       paper: "/materials/환경데이터공모전_수상작.pdf",
       video: "https://www.youtube.com/watch?v=jxCs3xLc0wY",
     },
-    thumbnail: "linear-gradient(135deg, #065F46 0%, #059669 50%, #34D399 100%)",
     featured: true,
     award: "2025 환경데이터 공모전 우수상 (상금 250만원)",
     awardEn: "2025 Environmental Data Contest — Excellence Award (₩2.5M)",
@@ -234,7 +227,6 @@ export const projects: Project[] = [
       { label: "시각화",        labelEn: "Viz",        value: "Sankey" },
     ],
     links: { demo: "https://seoul-commercial-district-risk.netlify.app" },
-    thumbnail: "linear-gradient(135deg, #1E3A8A 0%, #1E40AF 50%, #3B82F6 100%)",
     featured: true,
     year: 2025,
   },
@@ -262,7 +254,6 @@ export const projects: Project[] = [
       { label: "분석 뷰",      labelEn: "Views",        value: "6" },
     ],
     links: { demo: "https://seoul-youth-platform.netlify.app" },
-    thumbnail: "linear-gradient(135deg, #0F172A 0%, #1E40AF 40%, #7C3AED 100%)",
     featured: true,
     year: 2025,
   },
@@ -289,7 +280,6 @@ export const projects: Project[] = [
       { label: "지도 유형",         labelEn: "Map type",  value: "Choropleth" },
     ],
     links: { demo: "https://zxsa0716.github.io/vulnerability_seoul/seoul_vulnerability_dashboard.html" },
-    thumbnail: "linear-gradient(135deg, #064E3B 0%, #047857 50%, #34D399 100%)",
     featured: false,
     year: 2025,
   },

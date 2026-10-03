@@ -1,8 +1,8 @@
 "use client";
 
 /**
- * SectionHeader — editorial / research-journal section opener.
- * Monospace index (§0X) + kicker, large serif title, hairline rule.
+ * SectionHeader — the opener of a journal section.
+ * Mono index (§0X) + kicker on one rule, serif title beneath, hairline, standfirst.
  */
 
 import { motion } from "framer-motion";
@@ -24,31 +24,35 @@ export default function SectionHeader({
   align = "left",
 }: SectionHeaderProps) {
   const centered = align === "center";
+
   return (
     <motion.div
       variants={staggerContainer}
       initial="hidden"
       whileInView="visible"
       viewport={viewportConfig}
-      className={`mb-14 ${centered ? "text-center max-w-2xl mx-auto" : "max-w-3xl"}`}
+      className={`mb-12 ${centered ? "text-center max-w-2xl mx-auto" : "max-w-3xl"}`}
     >
       {/* Index + kicker */}
       <motion.div
         variants={fadeInUp}
-        className={`flex items-center gap-3 mb-5 ${centered ? "justify-center" : ""}`}
+        className={`flex items-center gap-3 mb-4 ${centered ? "justify-center" : ""}`}
       >
         <span className="section-index">§{index}</span>
-        <span className="w-8 h-px" style={{ background: "rgba(59,130,246,0.45)" }} />
-        <span className="section-index" style={{ color: "#64748B", letterSpacing: "0.18em" }}>
-          {kicker}
-        </span>
+        <span className="w-7 h-px" style={{ background: "var(--accent-line)" }} />
+        <span className="label">{kicker}</span>
       </motion.div>
 
       {/* Serif title */}
       <motion.h2
         variants={fadeInUp}
-        className="font-serif font-normal text-[#F1F5F9] mb-5"
-        style={{ fontSize: "clamp(2rem, 4.5vw, 3.25rem)", lineHeight: 1.08 }}
+        className="font-serif mb-5"
+        style={{
+          fontSize: "clamp(1.875rem, 4vw, 2.875rem)",
+          lineHeight: 1.1,
+          fontWeight: 500,
+          color: "var(--ink)",
+        }}
       >
         {title}
       </motion.h2>
@@ -57,13 +61,14 @@ export default function SectionHeader({
       <motion.div
         variants={fadeInUp}
         className={centered ? "hairline mx-auto" : "hairline"}
-        style={{ maxWidth: centered ? "8rem" : "100%" }}
+        style={{ maxWidth: centered ? "7rem" : "100%" }}
       />
 
       {description && (
         <motion.p
           variants={fadeInUp}
-          className="text-[#64748B] text-base leading-relaxed mt-5"
+          className="measure-text mt-5"
+          style={{ color: "var(--muted)", fontSize: "0.9375rem" }}
         >
           {description}
         </motion.p>

@@ -1,8 +1,9 @@
 "use client";
 
 /**
- * Hero — Academic researcher homepage.
- * Clean, typography-forward. Bilingual (EN default / KO toggle).
+ * Hero — the title page of the dossier.
+ * Affiliation rule, name, the one-line claim, the citation that backs it,
+ * then a mono strip of the figures a reader would otherwise scroll to find.
  */
 
 import { motion } from "framer-motion";
@@ -10,7 +11,7 @@ import { ArrowRight, Download, Github, Linkedin, GraduationCap, Mail } from "luc
 import { useLang, LINKS } from "@/lib/i18n";
 
 const fade = (delay = 0) => ({
-  initial: { opacity: 0, y: 14 },
+  initial: { opacity: 0, y: 12 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.5, delay, ease: "easeOut" as const },
 });
@@ -19,29 +20,44 @@ export default function Hero() {
   const { lang, t } = useLang();
 
   const socials = [
-    { href: LINKS.scholar,           icon: GraduationCap, label: "Google Scholar" },
-    { href: LINKS.linkedin,          icon: Linkedin,      label: "LinkedIn" },
-    { href: LINKS.github,            icon: Github,        label: "GitHub" },
-    { href: `mailto:${LINKS.emailAcademic}`, icon: Mail,  label: "Email" },
+    { href: LINKS.scholar,                   icon: GraduationCap, label: "Google Scholar" },
+    { href: LINKS.linkedin,                  icon: Linkedin,      label: "LinkedIn" },
+    { href: LINKS.github,                    icon: Github,        label: "GitHub" },
+    { href: `mailto:${LINKS.emailAcademic}`, icon: Mail,          label: "Email" },
   ];
 
   const cvHref = lang === "en" ? "/Huido_Choi_CV_EN.pdf" : "/최희도_CV_국문.pdf";
   const cvName = lang === "en" ? "Huido_Choi_CV.pdf" : "최희도_CV.pdf";
 
+  /* The four figures that establish standing, in the order a reviewer reads them. */
+  const facts = [
+    { k: t("First-author SCIE", "SCIE 1저자"),     v: t("Urban Climate · IF 6.9", "Urban Climate · IF 6.9") },
+    { k: t("Funded projects", "참여 연구과제"),     v: t("14", "14건") },
+    { k: t("Competition awards", "공모전 수상"),    v: t("4", "4건") },
+    { k: t("Research fellowship", "연구장학"),      v: t("Forest Pioneer, 5th", "산림 Pioneer 5기") },
+  ];
+
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center"
-      style={{ backgroundColor: "#0B1120" }}
+      className="relative flex flex-col items-center justify-center"
+      style={{ background: "var(--paper)", minHeight: "92vh" }}
     >
-      <div className="max-w-3xl mx-auto px-6 pt-24 pb-20 flex flex-col items-center text-center">
+      {/* Graph-paper ruling, fading out before it meets the text */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none ledger-fine"
+        style={{
+          WebkitMaskImage: "radial-gradient(ellipse 65% 55% at 50% 42%, transparent 35%, black 100%)",
+          maskImage: "radial-gradient(ellipse 65% 55% at 50% 42%, transparent 35%, black 100%)",
+          opacity: 0.85,
+        }}
+      />
+
+      <div className="relative z-10 measure pt-28 pb-20 flex flex-col items-center text-center">
 
         {/* Affiliation */}
-        <motion.p
-          {...fade(0)}
-          className="text-xs font-mono tracking-widest uppercase mb-10"
-          style={{ color: "#475569" }}
-        >
+        <motion.p {...fade(0)} className="label mb-9" style={{ letterSpacing: "0.16em" }}>
           {t(
             "M.S. · Climate Technology Convergence, Kookmin University · CLIM Lab",
             "국민대학교 기후기술융합학과 기후환경학전공 석사과정 · CLIM Lab",
@@ -49,18 +65,29 @@ export default function Hero() {
         </motion.p>
 
         {/* Name */}
-        <motion.div {...fade(0.1)} className="mb-3 select-none">
+        <motion.div {...fade(0.08)} className="select-none">
           <h1
-            className="font-bold leading-none tracking-tight text-white"
-            style={{ fontSize: "clamp(3.25rem, 11vw, 8rem)" }}
+            className="font-serif"
+            style={{
+              fontSize: "clamp(3rem, 10vw, 7rem)",
+              lineHeight: 0.98,
+              fontWeight: 600,
+              letterSpacing: "-0.035em",
+              color: "var(--ink)",
+            }}
           >
             {t("Heedo Choi", "최희도")}
           </h1>
           <p
-            className="font-light tracking-[0.28em] uppercase mt-3"
-            style={{ fontSize: "clamp(0.875rem, 2.5vw, 1.25rem)", color: "#334155" }}
+            className="font-mono mt-4"
+            style={{
+              fontSize: "clamp(0.75rem, 1.6vw, 0.9375rem)",
+              letterSpacing: "0.3em",
+              textTransform: "uppercase",
+              color: "var(--faint)",
+            }}
           >
-            {t("최희도", "Heedo Choi")}
+            {t("최희도", "Heedo Choi")}
           </p>
         </motion.div>
 
@@ -68,28 +95,30 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, scaleX: 0 }}
           animate={{ opacity: 1, scaleX: 1 }}
-          transition={{ duration: 0.5, delay: 0.22, ease: "easeOut" as const }}
-          className="w-12 h-px my-8"
-          style={{ background: "#1E3A5F" }}
+          transition={{ duration: 0.55, delay: 0.2, ease: "easeOut" as const }}
+          className="w-14 h-px my-8"
+          style={{ background: "var(--accent)" }}
         />
 
-        {/* Research label */}
+        {/* Role */}
         <motion.p
-          {...fade(0.3)}
+          {...fade(0.28)}
           className="text-sm font-medium tracking-wide mb-5"
-          style={{ color: "#3B82F6" }}
+          style={{ color: "var(--accent)" }}
         >
-          {t(
-            "Urban Climate & Machine Learning Researcher",
-            "도시기후 · 머신러닝 연구자",
-          )}
+          {t("Urban Climate & Machine Learning Researcher", "도시기후 · 머신러닝 연구자")}
         </motion.p>
 
         {/* Statement */}
         <motion.p
-          {...fade(0.38)}
-          className="max-w-[40rem] text-lg leading-relaxed mb-7 font-serif italic"
-          style={{ color: "#94A3B8" }}
+          {...fade(0.34)}
+          className="font-serif mb-8"
+          style={{
+            maxWidth: "38rem",
+            fontSize: "clamp(1.0625rem, 2vw, 1.3125rem)",
+            lineHeight: 1.55,
+            color: "var(--body)",
+          }}
         >
           {t(
             "I model urban climate risk with satellite data and graph neural networks, and turn it into platforms that support policy decisions.",
@@ -97,31 +126,38 @@ export default function Hero() {
           )}
         </motion.p>
 
-        {/* Featured publication citation */}
+        {/* The citation that backs the claim */}
         <motion.a
-          {...fade(0.44)}
+          {...fade(0.4)}
           href={LINKS.paperDoi}
           target="_blank"
           rel="noopener noreferrer"
-          className="group inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 mb-9 px-4 py-2 rounded-full transition-colors duration-200"
-          style={{ background: "rgba(244,63,94,0.06)", border: "1px solid rgba(244,63,94,0.22)" }}
+          className="group inline-flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 mb-9 px-4 py-2 transition-colors duration-200"
+          style={{
+            background: "var(--surface)",
+            border: "1px solid var(--rule)",
+            borderRadius: 3,
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--accent-line)"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--rule)"; }}
         >
-          <span className="font-mono text-[10px] uppercase tracking-wider" style={{ color: "#FDA4AF" }}>
+          <span className="label" style={{ color: "var(--accent)" }}>
             {t("Latest", "최신 논문")}
           </span>
-          <span className="text-[12px]" style={{ color: "#CBD5E1" }}>
-            Choi, H. et al. (2026)
-          </span>
-          <span className="font-serif italic text-[12px]" style={{ color: "#94A3B8" }}>
+          <span style={{ fontSize: 12.5, color: "var(--ink)" }}>Choi, H. et al. (2026)</span>
+          <span className="font-serif italic" style={{ fontSize: 13, color: "var(--body)" }}>
             Urban Climate
           </span>
-          <span className="font-mono text-[10px] group-hover:text-rose-300 transition-colors" style={{ color: "#64748B" }}>
+          <span
+            className="font-mono"
+            style={{ fontSize: 10.5, color: "var(--muted)" }}
+          >
             doi:10.1016/j.uclim.2026.102981 ↗
           </span>
         </motion.a>
 
         {/* Social links */}
-        <motion.div {...fade(0.5)} className="flex items-center gap-2.5 mb-9">
+        <motion.div {...fade(0.46)} className="flex items-center gap-2 mb-8">
           {socials.map((s) => (
             <a
               key={s.label}
@@ -131,14 +167,14 @@ export default function Hero() {
               aria-label={s.label}
               title={s.label}
               className="w-9 h-9 flex items-center justify-center transition-colors duration-150"
-              style={{ color: "#64748B", border: "1px solid #1E293B" }}
+              style={{ color: "var(--muted)", border: "1px solid var(--rule)", borderRadius: 3 }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.color = "#93C5FD";
-                (e.currentTarget as HTMLElement).style.borderColor = "#2563EB";
+                e.currentTarget.style.color = "var(--accent)";
+                e.currentTarget.style.borderColor = "var(--accent-line)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.color = "#64748B";
-                (e.currentTarget as HTMLElement).style.borderColor = "#1E293B";
+                e.currentTarget.style.color = "var(--muted)";
+                e.currentTarget.style.borderColor = "var(--rule)";
               }}
             >
               <s.icon className="w-[17px] h-[17px]" />
@@ -147,51 +183,47 @@ export default function Hero() {
         </motion.div>
 
         {/* CTAs */}
-        <motion.div
-          {...fade(0.56)}
-          className="flex flex-col sm:flex-row items-center gap-3"
-        >
-          <a
-            href="#research"
-            className="inline-flex items-center gap-2 px-7 py-2.5 text-sm font-medium text-white transition-colors duration-150"
-            style={{ background: "#1D4ED8", border: "1px solid #2563EB" }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#2563EB"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#1D4ED8"; }}
-          >
+        <motion.div {...fade(0.52)} className="flex flex-col sm:flex-row items-center gap-3">
+          <a href="#research" className="btn btn-primary">
             {t("View Research", "연구 보기")}
             <ArrowRight className="w-3.5 h-3.5" />
           </a>
-
-          <a
-            href={cvHref}
-            download={cvName}
-            className="inline-flex items-center gap-2 px-7 py-2.5 text-sm font-medium transition-colors duration-150"
-            style={{ color: "#64748B", border: "1px solid #1E293B" }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.color = "#94A3B8";
-              (e.currentTarget as HTMLElement).style.borderColor = "#334155";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.color = "#64748B";
-              (e.currentTarget as HTMLElement).style.borderColor = "#1E293B";
-            }}
-          >
+          <a href={cvHref} download={cvName} className="btn btn-ghost">
             <Download className="w-3.5 h-3.5" />
             {t("Download CV", "이력서 다운로드")}
           </a>
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        style={{ color: "#1E293B" }}
+      {/* Standing, in figures — the strip a reviewer would otherwise scroll for */}
+      <motion.div
+        {...fade(0.6)}
+        className="relative z-10 w-full"
+        style={{ borderTop: "1px solid var(--rule)", background: "var(--surface-sunk)" }}
       >
-        <span className="text-[9px] font-mono tracking-[0.2em] uppercase" style={{ color: "#334155" }}>
-          scroll
-        </span>
-        <div className="w-px h-8" style={{ background: "linear-gradient(to bottom, #334155, transparent)" }} />
-      </div>
+        <div className="measure">
+          <dl className="grid grid-cols-2 md:grid-cols-4">
+            {facts.map((f, i) => (
+              <div
+                key={f.k}
+                className="py-5 px-1"
+                style={{
+                  borderLeft: i === 0 ? "none" : "1px solid var(--rule)",
+                  paddingLeft: i === 0 ? 0 : "1.25rem",
+                }}
+              >
+                <dt className="label mb-1.5">{f.k}</dt>
+                <dd
+                  className="tabular"
+                  style={{ color: "var(--ink)", fontSize: "0.9375rem", fontWeight: 500 }}
+                >
+                  {f.v}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </motion.div>
     </section>
   );
 }
