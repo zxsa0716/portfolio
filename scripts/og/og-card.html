@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: "KoPubBatang";
+    src: url("FONTDIR/KoPubBatang-Bold.woff2") format("woff2");
+    font-weight: 700;
+  }
+
+  :root {
+    --paper:  #FFFFFF;
+    --ink:    #14181A;
+    --body:   #3E474E;
+    --muted:  #5E6871;
+    --faint:  #67727C;
+    --rule:   #E2E2DB;
+    --accent: #1F4E36;
+    --accent-soft: #EDF3EF;
+    --accent-line: #BCD3C6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    width: 1200px; height: 630px;
+    background: var(--paper);
+    font-family: Inter, system-ui, sans-serif;
+    position: relative; overflow: hidden;
+  }
+
+  /* Graph-paper ruling, fading in from the right so the name sits on clean stock */
+  .ledger {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(31,78,54,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(31,78,54,0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    -webkit-mask-image: linear-gradient(100deg, transparent 42%, black 92%);
+            mask-image: linear-gradient(100deg, transparent 42%, black 92%);
+  }
+
+  /* The spine — the single bold element, and the only place the accent shouts */
+  .spine { position: absolute; left: 0; top: 0; bottom: 0; width: 20px; background: var(--accent); }
+
+  .plate { position: absolute; left: 86px; right: 70px; top: 62px; }
+
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 15px; letter-spacing: 0.165em; text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .name {
+    font-family: Newsreader, Georgia, serif;
+    font-optical-sizing: auto;
+    font-weight: 600; font-size: 122px; line-height: 0.95;
+    letter-spacing: -0.038em; color: var(--ink);
+    margin-top: 24px;
+  }
+
+  .ko {
+    font-family: KoPubBatang, serif;
+    font-weight: 700; font-size: 33px; letter-spacing: 0.3em;
+    color: var(--faint); margin-top: 20px;
+  }
+
+  .rule { height: 3px; width: 96px; background: var(--accent); margin: 30px 0 24px; }
+
+  .role {
+    font-family: Newsreader, Georgia, serif;
+    font-size: 32px; font-weight: 500; line-height: 1.32;
+    color: var(--body); max-width: 830px;
+  }
+
+  /* The figures, as a ruled band anchoring the foot of the card */
+  .band {
+    position: absolute; left: 20px; right: 0; bottom: 0; height: 156px;
+    background: var(--accent-soft);
+    border-top: 2px solid var(--accent);
+    display: flex; align-items: center;
+    padding: 0 70px 0 66px;
+  }
+  .facts { display: grid; grid-template-columns: repeat(4, 1fr); width: 100%; }
+  .fact { padding-right: 22px; }
+  .fact + .fact { border-left: 1px solid var(--accent-line); padding-left: 24px; }
+  .fact dt {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11.5px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 8px;
+  }
+  .fact dd {
+    font-size: 20px; font-weight: 600; color: var(--ink);
+    line-height: 1.2; font-variant-numeric: tabular-nums;
+  }
+  .fact dd span {
+    display: block; font-size: 13.5px; font-weight: 500;
+    color: var(--muted); margin-top: 4px; letter-spacing: -0.005em;
+  }
+
+  .url {
+    position: absolute; right: 70px; top: 68px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px; letter-spacing: 0.04em; color: var(--faint);
+    text-align: right; line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+  <div class="ledger"></div>
+  <div class="spine"></div>
+
+  <p class="url">portfolio-eight-ruddy-87<br>.vercel.app</p>
+
+  <div class="plate">
+    <p class="eyebrow">M.S. · Climate Technology Convergence · Kookmin University</p>
+    <h1 class="name">Heedo Choi</h1>
+    <p class="ko">최희도</p>
+    <div class="rule"></div>
+    <p class="role">Climate risk modelling with satellite data and explainable graph neural networks.</p>
+  </div>
+
+  <div class="band">
+    <dl class="facts">
+      <div class="fact">
+        <dt>First-author SCIE</dt>
+        <dd>Urban Climate<span>IF 6.9 · top 6%</span></dd>
+      </div>
+      <div class="fact">
+        <dt>Funded projects</dt>
+        <dd>14<span>R&amp;D 10 · commissioned 4</span></dd>
+      </div>
+      <div class="fact">
+        <dt>Research fellowship</dt>
+        <dd>Forest Pioneer<span>5th cohort · 5 nationwide</span></dd>
+      </div>
+      <div class="fact">
+        <dt>Competition awards</dt>
+        <dd>4<span>incl. 1 Grand Prize</span></dd>
+      </div>
+    </dl>
+  </div>
+</body>
+</html>

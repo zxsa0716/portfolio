@@ -57,7 +57,14 @@ const kopubBatang = localFont({
 
 // ── Metadata ──────────────────────────────────────────────────────────────
 
+// One place to change if the site ever moves to a custom domain: this constant,
+// the JSON_LD ids below, and the URL printed on public/og.png (regenerate from
+// scripts/og/og-card.html).
+const SITE_URL = "https://portfolio-eight-ruddy-87.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  alternates: { canonical: "/" },
   title: {
     default:  "Heedo Choi | Climate AI Researcher",
     template: "%s | Heedo Choi",
@@ -82,15 +89,28 @@ export const metadata: Metadata = {
       "Explainable GNNs for climate justice · First-author paper in Urban Climate (IF 6.9) · " +
       "GAT·GCN·XAI spatial analysis · Full-stack research platforms",
     type:        "website",
+    url:         SITE_URL,
     locale:      "en_US",
     alternateLocale: "ko_KR",
     siteName:    "Heedo Choi — Portfolio",
+    images: [
+      {
+        url:    "/og.png",
+        width:  1200,
+        height: 630,
+        type:   "image/png",
+        alt:
+          "Heedo Choi (최희도) — M.S., Climate Technology Convergence, Kookmin University. " +
+          "First-author in Urban Climate (IF 6.9), 14 funded projects, Forest Pioneer research fellow, 4 competition awards.",
+      },
+    ],
   },
   twitter: {
     card:        "summary_large_image",
     title:       "Heedo Choi | Climate AI Researcher",
     description:
       "Explainable GNNs for climate justice · Urban Climate (IF 6.9) first-author · Full-stack research platforms",
+    images:      ["/og.png"],
   },
   robots: {
     index:  true,
@@ -121,7 +141,7 @@ const JSON_LD = {
   "@graph": [
     {
       "@type": "Person",
-      "@id": "https://portfolio-eight-ruddy-87.vercel.app/#person",
+      "@id": `${SITE_URL}/#person`,
       name: "Heedo Choi",
       alternateName: "최희도",
       jobTitle: "M.S. Student, Climate Technology Convergence",
@@ -151,7 +171,7 @@ const JSON_LD = {
       "@type": "ScholarlyArticle",
       headline:
         "Climate justice through explainable graph neural networks: A spatiotemporal attention-based urban heat risk assessment under IPCC AR6 framework",
-      author: { "@id": "https://portfolio-eight-ruddy-87.vercel.app/#person" },
+      author: { "@id": `${SITE_URL}/#person` },
       datePublished: "2026",
       isPartOf: { "@type": "Periodical", name: "Urban Climate" },
       identifier: "https://doi.org/10.1016/j.uclim.2026.102981",
