@@ -188,4 +188,4 @@ PDF 보고서를 주면 상대가 읽고 끝입니다. 피드백은 "잘 봤습�
 **링크**
 데모 https://seoul-commercial-district-risk.netlify.app
 관련 글 [상권의 붕괴는 전염된다 — 빅콘테스트 2025](https://zxsa716.tistory.com/29)
-포트폴리오 https://portfolio-eight-ruddy-87.vercel.app
+포트폴리오 https://heedo-choi.vercel.app

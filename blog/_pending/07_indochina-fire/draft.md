@@ -38,4 +38,4 @@ ISIMIP3a 산불 시뮬레이션(동일 기상강제력으로 구동된 7개 과�
 같은 산불이라도 어디서는 기후가 눌렀고 어디서는 밀어올렸습니다. 원인을 지역 단위로 분해해야 정책이 정밀해집니다. 긴 글 읽어주셔서 감사합니다.
 
 ---
-**링크** · 발표자료: /materials/인도차이나산불_포스터.pdf · 포트폴리오: https://portfolio-eight-ruddy-87.vercel.app
+**링크** · 발표자료: /materials/인도차이나산불_포스터.pdf · 포트폴리오: https://heedo-choi.vercel.app

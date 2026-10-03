@@ -66,4 +66,4 @@ links:
 데이터는 “폭염이 모두에게 같지 않다”는 사실을 분명하게 보여줍니다. 앞으로는 이 프레임을 산림·재해 등 다른 리스크로 확장하는 연구를 이어가려 합니다. 긴 글 읽어주셔서 감사합니다.
 
 ---
-**링크** · 논문 DOI: https://doi.org/10.1016/j.uclim.2026.102981 · 포트폴리오: https://portfolio-eight-ruddy-87.vercel.app · GitHub: https://github.com/zxsa0716
+**링크** · 논문 DOI: https://doi.org/10.1016/j.uclim.2026.102981 · 포트폴리오: https://heedo-choi.vercel.app · GitHub: https://github.com/zxsa0716

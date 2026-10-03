@@ -53,4 +53,4 @@ links:
 인과추론과 최적화를 결합해, 폭염 정책을 ‘감’이 아닌 ‘근거’로 설계할 수 있음을 보였습니다. 긴 글 읽어주셔서 감사합니다.
 
 ---
-**링크** · 발표자료: /materials/폭염예산_구두발표.pdf · 포트폴리오: https://portfolio-eight-ruddy-87.vercel.app
+**링크** · 발표자료: /materials/폭염예산_구두발표.pdf · 포트폴리오: https://heedo-choi.vercel.app

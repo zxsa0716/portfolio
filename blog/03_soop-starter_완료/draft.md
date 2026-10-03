@@ -58,4 +58,4 @@ links:
 공공데이터 25종을 결합하고 네 개 핵심 모듈을 검증해, 이미 배포된 서비스로 증명했습니다. 긴 글 읽어주셔서 감사합니다.
 
 ---
-**링크** · 데모: https://soop-starter.streamlit.app · GitHub: https://github.com/zxsa0716/soop-starter · 포트폴리오: https://portfolio-eight-ruddy-87.vercel.app
+**링크** · 데모: https://soop-starter.streamlit.app · GitHub: https://github.com/zxsa0716/soop-starter · 포트폴리오: https://heedo-choi.vercel.app

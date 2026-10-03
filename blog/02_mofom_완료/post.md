@@ -202,4 +202,4 @@ NPV는 쉽게 말해 "미래에 들어올 돈을 지금 가치로 환산해 비�
 **링크**
 라이브 데모 https://mofom-ai.vercel.app
 GitHub https://github.com/jwn6174-crypto/forest-ai-agent
-포트폴리오 https://portfolio-eight-ruddy-87.vercel.app
+포트폴리오 https://heedo-choi.vercel.app

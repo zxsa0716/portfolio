@@ -290,4 +290,4 @@ D·C·혼합을 합한 약 39%는 **단일 채널 검증으로는 식별이 불�
 
 **링크**
 GitHub(코드·데이터 명세·그림 원본) https://github.com/zxsa0716/AX_Contest (MIT License)
-포트폴리오 https://portfolio-eight-ruddy-87.vercel.app
+포트폴리오 https://heedo-choi.vercel.app

@@ -208,4 +208,4 @@ CINA가 한 일은 그 작업을 **재현 가능한 정량 분석으로 옮긴 �
 Ask CINA 프로그램 https://zxsa0716.github.io/cina/web/cina_program_v2.html
 Corpus Browser https://zxsa0716.github.io/cina/web/corpus_browser.html
 GitHub https://github.com/zxsa0716/cina
-포트폴리오 https://portfolio-eight-ruddy-87.vercel.app
+포트폴리오 https://heedo-choi.vercel.app

@@ -67,4 +67,4 @@ MOFOM은 흩어져 있던 위성·생장·경제성·시장·설명을 하나로
 라이브 데모와 전체 코드를 공개했습니다. 직접 필지번호를 넣어 결과를 확인해 보실 수 있습니다. 긴 글 읽어주셔서 감사합니다.
 
 ---
-**링크** · 데모: https://mofom-ai.vercel.app · GitHub: https://github.com/jwn6174-crypto/forest-ai-agent · 포트폴리오: https://portfolio-eight-ruddy-87.vercel.app
+**링크** · 데모: https://mofom-ai.vercel.app · GitHub: https://github.com/jwn6174-crypto/forest-ai-agent · 포트폴리오: https://heedo-choi.vercel.app

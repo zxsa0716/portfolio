@@ -41,4 +41,4 @@ links:
 아이디어 단계의 제안이지만, 위성 원격탐사가 기업 탄소 회계의 ‘제3자 검증자’가 될 수 있음을 보였습니다. (전체 구성은 발표자료 참조) 긴 글 읽어주셔서 감사합니다.
 
 ---
-**링크** · GitHub: https://github.com/zxsa0716/AX_Contest · 포트폴리오: https://portfolio-eight-ruddy-87.vercel.app
+**링크** · GitHub: https://github.com/zxsa0716/AX_Contest · 포트폴리오: https://heedo-choi.vercel.app

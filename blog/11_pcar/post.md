@@ -358,4 +358,4 @@ PCAR에는 이 위험이 내장돼 있습니다. "당신의 기후 점수가 낮
 **발표** ClimateGuard 팀(김민석·이윤빈·최희도·하수범), 「PCAR: 개인 기후적응역량 지수화 및 적응 생태계 플랫폼」, 2025학년도 국민대학교 기후변화대응 비즈니스 아이디어 공모전 (장려상)
 **참고** Sweeney(2002) k-anonymity · Dwork(2006) Differential Privacy · Chen & Guestrin(2016) XGBoost · Lundberg & Lee(2017) SHAP
 **관련 글** 폭염은 왜 누구에게 더 잔인한가 — 서울을 2,634칸으로 쪼개 AI에게 물어본 결과
-**포트폴리오** https://portfolio-eight-ruddy-87.vercel.app
+**포트폴리오** https://heedo-choi.vercel.app

@@ -42,4 +42,4 @@ links:
 겉의 녹화가 아니라 속의 회복력을 봐야 합니다. 향후 고해상(Sentinel-2·드론)·바이오매스 데이터와 결합해 고도화할 계획입니다. 긴 글 읽어주셔서 감사합니다.
 
 ---
-**링크** · 발표자료: /materials/산림과학회_포스터.pdf · 포트폴리오: https://portfolio-eight-ruddy-87.vercel.app
+**링크** · 발표자료: /materials/산림과학회_포스터.pdf · 포트폴리오: https://heedo-choi.vercel.app

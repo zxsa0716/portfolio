@@ -242,4 +242,4 @@ category: climate / with python
 
 *본 연구는 과학기술정보통신부 한국연구재단 이공분야기초연구사업(우수신진연구, 2022R1C1C1008489) 및 국립생물자원관 '생물기후 연구 전문인력 양성' 사업(NIBRE202602)의 지원을 받아 수행되었습니다.*
 
-**링크** · 포트폴리오 https://portfolio-eight-ruddy-87.vercel.app · GitHub https://github.com/zxsa0716
+**링크** · 포트폴리오 https://heedo-choi.vercel.app · GitHub https://github.com/zxsa0716

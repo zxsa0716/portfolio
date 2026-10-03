@@ -188,4 +188,4 @@ category: climate / with satellite
 
 *본 연구는 과학기술정보통신부 재원의 한국연구재단 이공분야기초연구사업(우수신진연구, 과제번호 2022R1C1C1008489)의 지원으로 수행되었습니다.*
 
-**링크** · 포트폴리오 https://portfolio-eight-ruddy-87.vercel.app
+**링크** · 포트폴리오 https://heedo-choi.vercel.app

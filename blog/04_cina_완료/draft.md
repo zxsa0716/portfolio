@@ -57,4 +57,4 @@ CINA는 정성적으로만 다뤄지던 기후 협상을 **재현 가능한 정�
 전체 결과는 6페이지 인터랙티브 웹으로 공개했습니다(한/영 지원). 코드와 데이터도 함께 공개되어 있습니다. 긴 글 읽어주셔서 감사합니다.
 
 ---
-**링크** · 웹: https://zxsa0716.github.io/cina/web/index.html · GitHub: https://github.com/zxsa0716/cina · 포트폴리오: https://portfolio-eight-ruddy-87.vercel.app
+**링크** · 웹: https://zxsa0716.github.io/cina/web/index.html · GitHub: https://github.com/zxsa0716/cina · 포트폴리오: https://heedo-choi.vercel.app

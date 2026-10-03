@@ -355,4 +355,4 @@ AR6는 위험을 세 요소의 상호작용으로 봅니다.
 
 **논문** Choi, H., Park, J.S., Lim, C.-H. (2026). Climate justice through explainable graph neural networks: A spatiotemporal attention-based urban heat risk assessment under IPCC AR6 framework. *Urban Climate*, 67, 102981.
 **DOI** https://doi.org/10.1016/j.uclim.2026.102981
-**포트폴리오** https://portfolio-eight-ruddy-87.vercel.app
+**포트폴리오** https://heedo-choi.vercel.app

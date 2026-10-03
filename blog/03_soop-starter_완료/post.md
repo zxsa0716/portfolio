@@ -202,4 +202,4 @@ category: climate / with python
 **링크**
 라이브 데모 https://soop-starter.streamlit.app
 GitHub(코드·그림 원본) https://github.com/zxsa0716/soop-starter (MIT License)
-포트폴리오 https://portfolio-eight-ruddy-87.vercel.app
+포트폴리오 https://heedo-choi.vercel.app

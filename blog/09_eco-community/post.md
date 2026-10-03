@@ -186,4 +186,4 @@ category: climate / with GIS
 
 ---
 
-**링크** · 포트폴리오 https://portfolio-eight-ruddy-87.vercel.app
+**링크** · 포트폴리오 https://heedo-choi.vercel.app

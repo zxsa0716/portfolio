@@ -77,6 +77,6 @@ export const LINKS = {
   scholar: "https://scholar.google.co.kr/citations?user=e_i_D8YAAAAJ&hl=ko",
   linkedin: "https://www.linkedin.com/in/heedo-%E2%80%8Dchoi-562540346/",
   blog: "https://zxsa716.tistory.com",
-  portfolio: "https://portfolio-eight-ruddy-87.vercel.app",
+  portfolio: "https://heedo-choi.vercel.app",
   paperDoi: "https://doi.org/10.1016/j.uclim.2026.102981",
 } as const;

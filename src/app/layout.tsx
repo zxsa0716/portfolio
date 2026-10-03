@@ -60,7 +60,7 @@ const kopubBatang = localFont({
 // One place to change if the site ever moves to a custom domain: this constant,
 // the JSON_LD ids below, and the URL printed on public/og.png (regenerate from
 // scripts/og/og-card.html).
-const SITE_URL = "https://portfolio-eight-ruddy-87.vercel.app";
+const SITE_URL = "https://heedo-choi.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

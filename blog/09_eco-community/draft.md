@@ -47,4 +47,4 @@ links:
 빈집이라는 방치 자원과 고령자 폭염 취약이라는 사회 문제를 하나로 이었습니다. 데이터로 진단하고 설계로 답한 제안입니다. 긴 글 읽어주셔서 감사합니다.
 
 ---
-**링크** · 발표자료: /materials/에코커뮤니티_발표.pdf · 포트폴리오: https://portfolio-eight-ruddy-87.vercel.app
+**링크** · 발표자료: /materials/에코커뮤니티_발표.pdf · 포트폴리오: https://heedo-choi.vercel.app
