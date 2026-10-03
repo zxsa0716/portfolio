@@ -8,8 +8,9 @@
  * a first-author SCIE article and a competition entry are not the same claim.
  */
 
+import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
-import { Trophy, Award, ExternalLink, FileText } from "lucide-react";
+import { Trophy, Award, ExternalLink, FileText, Quote, Check } from "lucide-react";
 import { publications, type Publication } from "@/data/research";
 import { fadeInUp, staggerContainer, viewportConfig } from "@/lib/animations";
 import { useLang } from "@/lib/i18n";
@@ -23,6 +24,36 @@ function awardToken(award: string) {
   if (award.includes("우수") || a.includes("excellence"))
     return { token: "award", icon: <Award className="h-3 w-3" /> };
   return { token: "accent", icon: <Award className="h-3 w-3" /> };
+}
+
+// ── Copy a BibTeX record ──────────────────────────────────────────────────
+// The thing a reader of a publication list most often wants to take away is
+// not the PDF but the citation, so it is offered next to the DOI.
+function CiteButton({ bibtex }: { bibtex: string }) {
+  const { t } = useLang();
+  const [copied, setCopied] = useState(false);
+
+  const copy = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(bibtex);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2200);
+    } catch {
+      /* clipboard blocked — the DOI link beside this still works */
+    }
+  }, [bibtex]);
+
+  return (
+    <button
+      onClick={copy}
+      className="inline-flex items-center gap-1 text-[11px] font-medium transition-opacity hover:opacity-70"
+      style={{ color: copied ? "var(--live)" : "var(--accent)" }}
+      aria-live="polite"
+    >
+      {copied ? <Check className="h-3 w-3" /> : <Quote className="h-3 w-3" />}
+      {copied ? t("BibTeX copied", "BibTeX 복사됨") : t("Cite (BibTeX)", "인용 (BibTeX)")}
+    </button>
+  );
 }
 
 const GROUPS: { type: Publication["venueType"]; ko: string; en: string }[] = [
@@ -127,8 +158,9 @@ function Entry({ pub, n }: { pub: Publication; n: number }) {
             {tags.join("  ·  ")}
           </p>
 
-          {(pub.doi || pub.paper || pub.video) && (
+          {(pub.doi || pub.paper || pub.video || pub.bibtex) && (
             <div className="flex shrink-0 flex-wrap items-center gap-x-3.5 gap-y-1.5">
+              {pub.bibtex && <CiteButton bibtex={pub.bibtex} />}
               {pub.doi && (
                 <a
                   href={pub.doi}

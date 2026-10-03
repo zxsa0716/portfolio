@@ -13,6 +13,10 @@ import ScrollProgress from "@/components/ui/ScrollProgress";
 export default function Home() {
   return (
     <main className="relative">
+      {/* Keyboard users land on the masthead first; this lets them pass it. */}
+      <a href="#about" className="skip-link">
+        Skip to content
+      </a>
       <ScrollProgress />
       <Navbar />
       <Hero />

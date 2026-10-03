@@ -99,10 +99,65 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor:  "#FFFFFF",
-  colorScheme: "light",
-  width:       "device-width",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
+    { media: "(prefers-color-scheme: dark)",  color: "#0F1311" },
+  ],
+  colorScheme:  "light dark",
+  width:        "device-width",
   initialScale: 1,
+};
+
+// ── Theme bootstrap ────────────────────────────────────────────────────────
+// Runs before first paint so a viewer who chose dark never sees a white flash.
+// Mirrors THEME_KEY and the data-theme contract in src/lib/theme.tsx.
+const THEME_BOOTSTRAP = `(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light"){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();`;
+
+// ── Structured data ────────────────────────────────────────────────────────
+// Lets search and scholarly indexes read the person and the paper as records
+// rather than as prose.
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://portfolio-eight-ruddy-87.vercel.app/#person",
+      name: "Heedo Choi",
+      alternateName: "최희도",
+      jobTitle: "M.S. Student, Climate Technology Convergence",
+      email: "mailto:zxsa0716@kookmin.ac.kr",
+      affiliation: {
+        "@type": "CollegeOrUniversity",
+        name: "Kookmin University",
+        department: {
+          "@type": "Organization",
+          name: "Global Climate Change, Innovative Monitoring & Modeling Lab (CLIM Lab)",
+        },
+      },
+      knowsAbout: [
+        "Climate risk assessment",
+        "Explainable AI",
+        "Graph neural networks",
+        "Remote sensing",
+        "Forest carbon modelling",
+      ],
+      sameAs: [
+        "https://scholar.google.co.kr/citations?user=e_i_D8YAAAAJ",
+        "https://github.com/zxsa0716",
+        "https://zxsa716.tistory.com",
+      ],
+    },
+    {
+      "@type": "ScholarlyArticle",
+      headline:
+        "Climate justice through explainable graph neural networks: A spatiotemporal attention-based urban heat risk assessment under IPCC AR6 framework",
+      author: { "@id": "https://portfolio-eight-ruddy-87.vercel.app/#person" },
+      datePublished: "2026",
+      isPartOf: { "@type": "Periodical", name: "Urban Climate" },
+      identifier: "https://doi.org/10.1016/j.uclim.2026.102981",
+      url: "https://doi.org/10.1016/j.uclim.2026.102981",
+    },
+  ],
 };
 
 // ── Root layout ───────────────────────────────────────────────────────────
@@ -111,7 +166,14 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+        />
+      </head>
       <body
         className={`${inter.variable} ${newsreader.variable} ${geistMono.variable} ${kopubDotum.variable} ${kopubBatang.variable} antialiased`}
       >

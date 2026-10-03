@@ -31,6 +31,9 @@ export interface Publication {
   doi?: string;
   paper?: string;   // /materials/ 경로 또는 외부 URL
   video?: string;
+  /** BibTeX record, offered for copying. Only fields verified from the
+      published article — no invented volume or issue numbers. */
+  bibtex?: string;
 }
 
 // ── 표기 원칙 (Language policy for titles) ────────────────────────────────
@@ -66,6 +69,17 @@ export const publications: Publication[] = [
     ],
     tags: ["GAT", "XAI", "IPCC AR6", "Urban Climate", "Climate Justice"],
     doi: "https://doi.org/10.1016/j.uclim.2026.102981",
+    bibtex: `@article{choi2026climatejustice,
+  author  = {Choi, H. and Park, J. S. and Lim, C.-H.},
+  title   = {Climate justice through explainable graph neural networks: A
+             spatiotemporal attention-based urban heat risk assessment under
+             {IPCC} {AR6} framework},
+  journal = {Urban Climate},
+  year    = {2026},
+  pages   = {102981},
+  doi     = {10.1016/j.uclim.2026.102981},
+  url     = {https://doi.org/10.1016/j.uclim.2026.102981}
+}`,
   },
 
   // ── International conference (presented in English) ─────────────────────

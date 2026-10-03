@@ -36,7 +36,7 @@ function Toast({ visible, label }: { visible: boolean; label: string }) {
             className="flex items-center gap-2.5 px-4 py-2.5 text-[13px] font-medium"
             style={{
               background: "var(--ink)",
-              color: "#FFFFFF",
+              color: "var(--paper)",
               borderRadius: 3,
               boxShadow: "var(--lift-3)",
             }}
@@ -136,7 +136,7 @@ export default function Contact() {
                   <AnimatePresence mode="wait">
                     {copied ? (
                       <motion.div key="check" initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.6, opacity: 0 }} transition={{ duration: 0.18 }}>
-                        <Check className="h-4 w-4" style={{ color: "#FFFFFF" }} />
+                        <Check className="h-4 w-4" style={{ color: "var(--on-accent)" }} />
                       </motion.div>
                     ) : (
                       <motion.div key="copy" initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.6, opacity: 0 }} transition={{ duration: 0.18 }}>

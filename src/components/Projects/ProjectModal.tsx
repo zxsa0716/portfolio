@@ -57,7 +57,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           <motion.div
             key="backdrop"
             className="fixed inset-0 z-40"
-            style={{ background: "rgba(20,24,26,0.32)", backdropFilter: "blur(3px)" }}
+            style={{ background: "var(--scrim)", backdropFilter: "blur(3px)" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

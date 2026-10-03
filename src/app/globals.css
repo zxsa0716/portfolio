@@ -6,8 +6,11 @@
    Ground   : white. Structure comes from rules and measure, not from boxes.
    Accent   : deep forest green #1F4E36 — the same accent as the CV, and the
               colour of the subject (forest · climate).
-   Light-only by design: a printed page has one appearance. Every colour is
-   declared explicitly so the page holds on any host background.
+   Two grounds: paper and night. Every component styles through tokens only —
+   never a literal inside a media or [data-theme] block — so both resolve as a
+   set. The viewer has three states: an explicit choice stamps data-theme on
+   <html>, and the default "system" stamps nothing, leaving prefers-color-scheme
+   to decide. All three are handled below.
    ═══════════════════════════════════════════════════════════════════════ */
 
 :root {
@@ -23,10 +26,13 @@
   --rule-faint:   #EDEDE7;
 
   /* ── Ink ────────────────────────────────────────────────── */
-  --ink:    #14181A;   /* headings */
-  --body:   #434C53;   /* running text */
-  --muted:  #76808A;   /* captions, metadata */
-  --faint:  #A2ABB2;   /* de-emphasised numerals, hints */
+  /* Every step passes WCAG AA (4.5:1) against --paper AND --surface, so the
+     smallest labels stay legible. The grey ramp is therefore short; the rest
+     of the hierarchy is carried by size and weight, not by fading out. */
+  --ink:    #14181A;   /* headings            17.9 : 1 */
+  --body:   #3E474E;   /* running text         9.5 : 1 */
+  --muted:  #5E6871;   /* captions, metadata   5.7 : 1 */
+  --faint:  #67727C;   /* numerals, hints      4.9 : 1 */
 
   /* ── Accent — deep forest green ─────────────────────────── */
   --accent:        #1F4E36;
@@ -43,10 +49,110 @@
   --code:       #4A4458;   --code-soft:    #EFEDF3;   --code-line:    #D4CFDF;
   --neutral:    #5A6670;   --neutral-soft: #F1F2F0;   --neutral-line: #DCDED9;
 
+  /* ── Text that sits ON the accent (buttons, filled chips) ─ */
+  --on-accent: #FFFFFF;
+
+  /* ── Chrome ─────────────────────────────────────────────── */
+  --masthead: rgba(255, 255, 255, 0.92);   /* sticky header wash */
+  --scrim:    rgba(20, 24, 26, 0.32);      /* modal backdrop */
+
   /* ── Elevation — paper lifts by shadow, not by glow ─────── */
   --lift-1: 0 1px 2px rgba(20, 24, 26, 0.04);
   --lift-2: 0 1px 2px rgba(20, 24, 26, 0.05), 0 6px 20px rgba(20, 24, 26, 0.06);
   --lift-3: 0 2px 4px rgba(20, 24, 26, 0.06), 0 14px 38px rgba(20, 24, 26, 0.09);
+
+  color-scheme: light;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   NIGHT GROUND
+   Not an inversion: the accent is lifted to stay legible on a dark field,
+   the tinted fills become deep washes rather than pale ones, and the
+   semantic hues are re-picked at the lightness the new ground needs.
+   Declared twice — once for the un-stamped document following the OS, once
+   for an explicit choice — so the toggle wins in both directions.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:        #0F1311;
+    --surface:      #161B18;
+    --surface-2:    #1E2521;
+    --surface-sunk: #121714;
+
+    --rule:         #27302B;
+    --rule-strong:  #3A4640;
+    --rule-faint:   #1D2521;
+
+    --ink:    #E9EEEA;   /* 15.9 : 1 */
+    --body:   #B2BCB6;   /*  9.6 : 1 */
+    --muted:  #8D978F;   /*  6.2 : 1 */
+    --faint:  #858F89;   /*  5.6 : 1 */
+
+    --accent:        #74C398;
+    --accent-deep:   #95D6B2;
+    --accent-bright: #56A87C;
+    --accent-soft:   #16241D;
+    --accent-line:   #2F4A3C;
+
+    --award:      #D9B069;   --award-soft:   #2A2316;   --award-line:   #4A3D22;
+    --live:       #6FC79A;   --live-soft:    #152420;   --live-line:    #2C473A;
+    --doi:        #E09292;   --doi-soft:     #2A1B1B;   --doi-line:     #4C2F2F;
+    --data:       #86BDD1;   --data-soft:    #16242A;   --data-line:    #2B434E;
+    --code:       #B5A9CE;   --code-soft:    #201D29;   --code-line:    #393350;
+    --neutral:    #96A09A;   --neutral-soft: #1A201D;   --neutral-line: #313A35;
+
+    --on-accent: #0F1311;
+
+    --masthead: rgba(15, 19, 17, 0.92);
+    --scrim:    rgba(0, 0, 0, 0.62);
+
+    --lift-1: 0 1px 2px rgba(0, 0, 0, 0.32);
+    --lift-2: 0 1px 2px rgba(0, 0, 0, 0.36), 0 6px 20px rgba(0, 0, 0, 0.30);
+    --lift-3: 0 2px 4px rgba(0, 0, 0, 0.42), 0 14px 38px rgba(0, 0, 0, 0.46);
+
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper:        #0F1311;
+  --surface:      #161B18;
+  --surface-2:    #1E2521;
+  --surface-sunk: #121714;
+
+  --rule:         #27302B;
+  --rule-strong:  #3A4640;
+  --rule-faint:   #1D2521;
+
+  --ink:    #E9EEEA;   /* 15.9 : 1 */
+  --body:   #B2BCB6;   /*  9.6 : 1 */
+  --muted:  #8D978F;   /*  6.2 : 1 */
+  --faint:  #858F89;   /*  5.6 : 1 */
+
+  --accent:        #74C398;
+  --accent-deep:   #95D6B2;
+  --accent-bright: #56A87C;
+  --accent-soft:   #16241D;
+  --accent-line:   #2F4A3C;
+
+  --award:      #D9B069;   --award-soft:   #2A2316;   --award-line:   #4A3D22;
+  --live:       #6FC79A;   --live-soft:    #152420;   --live-line:    #2C473A;
+  --doi:        #E09292;   --doi-soft:     #2A1B1B;   --doi-line:     #4C2F2F;
+  --data:       #86BDD1;   --data-soft:    #16242A;   --data-line:    #2B434E;
+  --code:       #B5A9CE;   --code-soft:    #201D29;   --code-line:    #393350;
+  --neutral:    #96A09A;   --neutral-soft: #1A201D;   --neutral-line: #313A35;
+
+  --on-accent: #0F1311;
+
+  --masthead: rgba(15, 19, 17, 0.92);
+  --scrim:    rgba(0, 0, 0, 0.62);
+
+  --lift-1: 0 1px 2px rgba(0, 0, 0, 0.32);
+  --lift-2: 0 1px 2px rgba(0, 0, 0, 0.36), 0 6px 20px rgba(0, 0, 0, 0.30);
+  --lift-3: 0 2px 4px rgba(0, 0, 0, 0.42), 0 14px 38px rgba(0, 0, 0, 0.46);
+
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -77,7 +183,6 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: light;
   /* Section anchors clear the fixed masthead. */
   scroll-padding-top: 5rem;
 }
@@ -111,6 +216,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
+  font-optical-sizing: auto;
   font-weight: 500;
   letter-spacing: -0.018em;
   color: var(--ink);
@@ -254,6 +360,22 @@ code, kbd, pre, .font-mono {
 
 @layer components {
 
+  /* ── Skip link — only present once it has focus ──────────── */
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    z-index: 100;
+    padding: 0.625rem 1rem;
+    background: var(--accent);
+    color: var(--on-accent);
+    border-radius: 3px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    transition: top 0.18s ease;
+  }
+  .skip-link:focus-visible { top: 1rem; }
+
   /* ── Buttons ─────────────────────────────────────────────── */
   .btn {
     display: inline-flex;
@@ -273,7 +395,7 @@ code, kbd, pre, .font-mono {
 
   .btn-primary {
     background: var(--accent);
-    color: #FFFFFF;
+    color: var(--on-accent);
     border: 1px solid var(--accent);
   }
   .btn-primary:hover { background: var(--accent-deep); border-color: var(--accent-deep); }
@@ -316,4 +438,50 @@ code, kbd, pre, .font-mono {
   .chip-live   { background: var(--live-soft);   border-color: var(--live-line);   color: var(--live); }
   .chip-doi    { background: var(--doi-soft);    border-color: var(--doi-line);    color: var(--doi); }
   .chip-data   { background: var(--data-soft);   border-color: var(--data-line);   color: var(--data); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PRINT
+   A researcher's page gets printed and handed over, so it has to survive
+   the paper: one ground, no chrome, and every link's destination spelled
+   out because a printed anchor is otherwise a dead end.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@media print {
+  :root, :root[data-theme="dark"] {
+    --paper: #FFFFFF;  --surface: #FFFFFF;  --surface-2: #FFFFFF;  --surface-sunk: #FFFFFF;
+    --rule: #BBBBBB;   --rule-strong: #888888;  --rule-faint: #DDDDDD;
+    --ink: #000000;    --body: #222222;  --muted: #555555;  --faint: #777777;
+    --accent: #1F4E36; --accent-soft: #FFFFFF;  --accent-line: #AAAAAA;
+    --on-accent: #FFFFFF;
+    --award: #000; --live: #000; --doi: #000; --data: #000; --code: #000; --neutral: #000;
+    --award-soft: #FFF; --live-soft: #FFF; --doi-soft: #FFF;
+    --data-soft: #FFF;  --code-soft: #FFF; --neutral-soft: #FFF;
+    --award-line: #AAA; --live-line: #AAA; --doi-line: #AAA;
+    --data-line: #AAA;  --code-line: #AAA; --neutral-line: #AAA;
+    --lift-1: none; --lift-2: none; --lift-3: none;
+    color-scheme: light;
+  }
+
+  /* Chrome and decoration carry no information on paper. */
+  header, .ledger-fine, .ledger-bg, [data-print="hide"] { display: none !important; }
+
+  body { background: #FFFFFF; font-size: 10.5pt; line-height: 1.45; }
+  .section-pad { padding-block: 1.25rem; }
+  .measure { max-width: 100%; padding-inline: 0; }
+
+  /* Keep an entry whole rather than splitting its title from its figures. */
+  article, section, tr, .card, dl > div { break-inside: avoid; }
+  h2, h3 { break-after: avoid; }
+
+  /* Spell out where a link went. */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.78em;
+    color: #555555;
+    word-break: break-all;
+  }
+  a[href^="#"]::after, a[href^="mailto"]::after { content: ""; }
+
+  @page { margin: 14mm 12mm; }
 }

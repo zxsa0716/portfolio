@@ -18,6 +18,7 @@ export default function ScrollProgress() {
   return (
     <motion.div
       aria-hidden
+      data-print="hide"
       style={{
         scaleX,
         transformOrigin: "0%",
